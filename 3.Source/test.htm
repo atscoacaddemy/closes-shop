@@ -1,0 +1,59 @@
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<style type="text/css">
+    img { position: absolute;   width: 600px; height: 300px;}
+    div.container { border: 1px solid red;  width: 600px; height: 300px; }
+</style>
+
+<div class="container">
+    <img src="Data/002-01.png" alt="" class="slide">
+    <img src="Data/002-02.png" alt="" class="slide">
+    <img src="Data/002-03.png" alt="" class="slide">
+    <img src="Data/002-04.png" alt="" class="slide">
+    <img src="Data/002-05.png" alt="" class="slide">
+</div> 
+<div class="container">
+    <img src="Data/002-01.png" alt="" class="slide">
+    <img src="Data/002-02.png" alt="" class="slide">
+    <img src="Data/002-03.png" alt="" class="slide">
+    <img src="Data/002-04.png" alt="" class="slide">
+    <img src="Data/002-05.png" alt="" class="slide">
+</div> 
+<div class="container">
+    <img src="Data/002-01.png" alt="" class="slide">
+    <img src="Data/002-02.png" alt="" class="slide">
+    <img src="Data/002-03.png" alt="" class="slide">
+    <img src="Data/002-04.png" alt="" class="slide">
+    <img src="Data/002-05.png" alt="" class="slide">
+</div> 
+<script type="text/javascript">
+	(function() {
+    var enable = null,
+        container = $('div.container'),
+        imgs = container.find('img'),
+        timeInOut = 3000,
+        intervalTime = imgs.length * timeInOut;
+		alert(container.length);
+		container.each(function() {
+			
+		});
+    imgs.each( function( ){
+        $(this).hide();
+    });
+
+    function flash_imgs( images, time ){
+        images.each( function( i ){
+            $(this).delay( time * i ).fadeIn( time / 2 ).fadeOut( time / 2 );
+        });
+    }
+		for(var i = 0; i < 3; i ++) {
+			
+			flash_imgs( imgs, timeInOut );
+			enable = setInterval(flash_imgs, intervalTime, imgs, timeInOut);
+		}
+
+    container.on('mouseout', function(){
+        clearInterval(enable);
+    });
+})();
+
+</script>

@@ -1,0 +1,202 @@
+<!-- user content -->
+<script type="text/javascript">
+function showPopupEdit(userId)
+	{		
+		 $("#lightbox, #lightbox-panel").fadeIn(300);
+		$("#lightbox-panel").load("action/action_user.php?action=getUserById",{'userId':userId});
+		
+	}
+function closePopupEdit() {
+  $("#lightbox, #lightbox-panel").fadeOut(300);
+}
+function updateUser(id)
+{
+	var email = $("#emailEdit").val();
+	var phone = $("#phoneEdit").val();
+	var role = $("#roleEdit").val();
+	var pass = $("#passEdit").val();
+	$("#lightbox-panel").load("action/action_user.php?action=update",{'id':id,'email':email,'phone':phone,'role':role,'pass':pass});
+	
+}
+</script>
+
+<div id="wrapper">
+<div id="content">
+	<div id="box">
+		<h3>Users</h3>
+		<table width="100%">
+			<thead>
+				<tr>
+					<th width="40px"><a href="#">ID<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>					
+					<th><a href="#">Email</a></th>
+					<th><a href="#">Password</a></th>
+					<th width="90px"><a href="#">Phone</a></th>
+					<th width="50px"><a href="#">Role</a></th>
+					<th width="90px"><a href="#">Created Date</a></th>
+					<th width="60px"><a href="#">Action</a></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td class="a-center">232</td>
+					<td><a href="#">Jennifer Hodes</a></td>
+					<td>jennifer.hodes@gmail.com</td>
+					<td>General</td>
+					<td>1000</td>
+					<td>July 2, 2008</td>
+					<td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit(1);" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
+				</tr>
+				
+			</tbody>
+		</table>
+		<div id="pager">
+			Page <a href="#"><img src="img/icons/arrow_left.gif" width="16" height="16" /></a>
+			<input size="1" value="1" type="text" name="page" id="page" />
+			<a href="#"><img src="img/icons/arrow_right.gif" width="16" height="16" /></a>of 42
+			pages | View
+			<select name="view">
+				<option>10</option>
+				<option>20</option>
+				<option>50</option>
+				<option>100</option>
+			</select>
+			per page | Total <strong>420</strong> records found
+		</div>
+	</div>
+	<br />
+	<div id="box">
+		<h3 id="adduser">USER</h3>
+		<form id="form" action="action/action_user.php" method="post">
+			<fieldset id="personal">
+				<legend>
+					ADD NEW
+				</legend>
+				<label for="email">Email : </label>
+				<input name="email" id="email" type="text" tabindex="1" />
+				<br />
+				<label for="phone">Phone : </label>
+				<input name="phone" id="phone" type="text"
+				tabindex="2" />
+				<br />
+				<label for="role">Role : </label>
+				<input name="role" id="role" type="text"
+				tabindex="2" />
+				<br />
+				<p>
+					Send auto generated password
+					<input name="generatepass" id="yes" type="checkbox"
+					value="yes" tabindex="35" />
+				</p>
+				<label for="pass">Password : </label>
+				<input name="pass" id="pass" type="password"
+				tabindex="2" />
+				<br />
+				<label for="pass-2">Password Re: </label>
+				<input name="pass-2" id="pass-2" type="password"
+				tabindex="2" />
+				<br />
+			</fieldset>
+			<!--
+			<fieldset id="address">
+							<legend>
+								Address
+							</legend>
+							<label for="street">Street address : </label>
+							<input name="street" id="street" type="text"
+							tabindex="1" />
+							<br />
+							<label for="city">City : </label>
+							<input name="city" id="city" type="text"
+							tabindex="2" />
+							<br />
+							<label for="country">Country : </label>
+							<input name="country" id="country" type="text"
+							tabindex="1" />
+							<br />
+							<label for="state">State/Province : </label>
+							<input name="state" id="state" type="text"
+							tabindex="2" />
+							<br />
+							<label for="zip">Zip/Postal Code : </label>
+							<input name="zip" id="zip" type="text"
+							tabindex="2" />
+							<br />
+							<label for="tel">Telephone : </label>
+							<input name="tel" id="tel" type="text"
+							tabindex="2" />
+						</fieldset>
+						<fieldset id="opt">
+							<legend>
+								OPTIONS
+							</legend>
+							<label for="choice">Group : </label>
+							<select name="choice">
+								<option selected="selected" label="none" value="none"> General </option>
+								<optgroup label="Group 1">
+									<option label="cg1a" value="val_1a">Selection group 1a </option>
+									<option label="cg1b" value="val_1b">Selection group 1b </option>
+									<option label="cg1c" value="val_1c">Selection group 1c </option>
+								</optgroup>
+								<optgroup label="Group 2">
+									<option label="cg2a" value="val_2a">Selection group 2a </option>
+									<option label="cg2b" value="val_2a">Selection group 2b </option>
+								</optgroup>
+								<optgroup label="Group 3">
+									<option label="cg3a" value="val_3a">Selection group 3a </option>
+									<option label="cg3a" value="val_3a">Selection group 3b </option>
+								</optgroup>
+							</select>
+						</fieldset>-->
+			
+			<div align="center">
+				<input id="button1" type="submit" value="Save" name="btnAddUser"/>
+				<input id="button2" type="reset" />
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="lightbox-panel">
+    <form id="form" action="..." method="post">
+			<fieldset id="personal">
+				<legend>
+					EDIT USER
+				</legend>
+				<label for="email">Email : </label>
+				<input name="email" id="emailEdit" type="text" tabindex="1" />
+				<br />
+				<label for="phone">Phone : </label>
+				<input name="phone" id="phoneEdit" type="text"
+				tabindex="2" />
+				<br />
+				<label for="role">Role : </label>
+				<input name="role" id="roleEdit" type="text"
+				tabindex="2" />
+				<br />
+				<p>
+					Send auto generated password
+					<input name="generatepass" id="yes" type="checkbox"
+					value="yes" tabindex="35" />
+				</p>
+				<label for="pass">Password : </label>
+				<input name="pass" id="passEdit" type="password"
+				tabindex="2" />
+				<br />
+				<label for="pass-2">Password Re: </label>
+				<input name="pass-2" id="pass-2" type="password"
+				tabindex="2" />
+				<br />
+			</fieldset>
+			
+			
+			<div align="center">
+				<input id="button1" type="button" value="Save" onclick="updateUser();"/>
+				<input  type="button" id="close-panel" value="Close"/>
+			</div>
+		</form>
+</div><!-- /lightbox-panel -->
+
+<div id="lightbox"> </div><!-- /lightbox -->
+
+
+</div>

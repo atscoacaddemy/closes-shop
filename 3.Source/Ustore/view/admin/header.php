@@ -32,15 +32,4 @@ $(document).ready(function(){
 	<div id="container">
     	<div id="header">
         	<h2>My eCommerce Admin area</h2>
-    <div id="topmenu">
-            	<ul>
-                	<li><a href="index.html">Dashboard</a></li>
-                    <li><a href="#">Orders</a></li>
-                	<li class="current"><a href="#">Users</a></li>
-                    <li><a href="#">Manage</a></li>
-                    <li><a href="#">CMS</a></li>
-                    <li><a href="#">Statistics</a></li>
-                    <li><a href="#">Settings</a></li>
-              </ul>
-          </div>
-      </div>
+   

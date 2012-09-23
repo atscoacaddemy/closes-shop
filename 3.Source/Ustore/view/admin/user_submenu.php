@@ -1,3 +1,11 @@
+ <div id="topmenu">
+            	<ul>
+                	<li class="current"><a href="user_index.php">Users</a></li>
+                    <li><a href="product_index.php">Products</a></li>
+                	
+              </ul>
+          </div>
+      </div>
 <div id="top-panel">
 	<div id="panel">
 		<ul>

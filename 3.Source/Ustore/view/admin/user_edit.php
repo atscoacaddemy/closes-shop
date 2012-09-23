@@ -124,9 +124,27 @@ function deleteUser()
 				<input name="phone" id="phone" type="text"
 				tabindex="2" />
 				<br />
+				<?php
+					require_once ("../../controller/RoleController.php");
+					$roles=RoleController::GetAll();
+				?>
 				<label for="role">Role : </label>
+				<select name="role" id="role">
+				<?php
+					for ($i=0;$i<count($roles);$i++) {
+						if($i==0)//select first option
+							echo "<option  selected='selected' value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
+						else {
+							echo "<option  value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
+						}
+					}
+				?>
+				</select>
+				<!--
 				<input name="role" id="role" type="text"
-				tabindex="2" />
+								tabindex="2" />-->
+				
+				
 				<br />
 				<p>
 					Send auto generated password

@@ -2,6 +2,8 @@
 class UserUtil{
 	public static function createFormEdit($user)
 	{
+		require_once ("../../../controller/RoleController.php");
+		$roles=RoleController::GetAll();
 		$str="";
 		$str.=' <form id="form" action="..." method="post">';
 		$str.='	<fieldset id="personal"> ';
@@ -15,9 +17,18 @@ class UserUtil{
 		$str.='		<input name="phone" id="phoneEdit" type="text" value="'.$user["Phone"].'"';
 		$str.='		tabindex="2" />';
 		$str.='		<br />';
-		$str.='		<label for="role">Role : </label>';
-		$str.='		<input name="role" id="roleEdit" type="text" value="'.$user["Role"].'"';
-		$str.='		tabindex="2" />';
+		$str.='		<label for="role">Role : </label>';		
+		$str.='		<select name="role" id="role">';
+				
+					for ($i=0;$i<count($roles);$i++) {
+						if($user["Role"]==$roles[$i]["ID"])//select first option
+							$str.= "<option  selected='selected' value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
+						else {
+							$str.= "<option  value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
+						}
+					}
+				
+		$str.='		</select>';
 		$str.='		<br />
 				<p>
 					Send auto generated password

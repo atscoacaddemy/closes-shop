@@ -8,7 +8,7 @@
 	{
     	public static function Add ($password, $email,$phone,$role)
         {
-            $strSQL = "Insert into user values (NULL, '$password','$phone', '$email','$role', NOW() )";
+            $strSQL = "Insert into user (Password,Phone,Email,Role,Create_Date) values ( '$password','$phone', '$email','$role', NOW() )";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -35,6 +35,19 @@
 			DataProvider::Close ($cn);
             return $result;
         }
+		public static function Delete($id)
+		{
+			$strSQL = "update user set Delete_Flag=1 where ID=$id";
+		    $cn = DataProvider::Open ();
+			DataProvider::MoreQuery ($strSQL,$cn);
+			
+			if(mysql_affected_rows () == 0)
+				$result=false;
+			else
+				$result=true;
+			DataProvider::Close ($cn);
+            return $result;
+		}
 		 public static function GetUserByEmail ($email)
          {
                 $strSQL = "select * 
@@ -70,6 +83,7 @@
 						from user 				
 						limit $offset, $count";
             $result = DataProvider::Query($strSQL);
+			$return[]=null;
             while($row= mysql_fetch_array ($result,MYSQL_BOTH))
                 $return[]=$row;
 			return $return;

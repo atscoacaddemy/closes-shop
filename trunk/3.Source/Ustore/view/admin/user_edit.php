@@ -8,6 +8,7 @@ function showPopupEdit(userId)
 	}
 function closePopupEdit() {
   $("#lightbox, #lightbox-panel, #info-panel").fadeOut(300);
+  window.location.reload(true);
 }
 function updateUser(id)
 {
@@ -31,7 +32,7 @@ function showConfirmDelete(userId)
 function deleteUser()
 {
 	var userId=$("#txtUserId").val();
-	
+	$("#message-panel").load("action/action_user.php?action=delete",{'userId':userId});
 }
 </script>
 <?php

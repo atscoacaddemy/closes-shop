@@ -83,7 +83,6 @@
 						from user 				
 						limit $offset, $count";
             $result = DataProvider::Query($strSQL);
-			$return[]=null;
             while($row= mysql_fetch_array ($result,MYSQL_BOTH))
                 $return[]=$row;
 			return $return;

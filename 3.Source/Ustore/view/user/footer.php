@@ -1,4 +1,6 @@
 ﻿<link rel="stylesheet" href="<?php echo $contextPath?>template/css/default.css" type="text/css" media="screen">
+
+
 <div id="footer" class="footer">
 	<ul>
 		<li><a href="AD Gallery 1.2.7/example/images/6.jpg"></a> <span>Copyright

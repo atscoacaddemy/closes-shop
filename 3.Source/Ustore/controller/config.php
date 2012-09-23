@@ -1,8 +1,8 @@
 <?php
 	$hostName = "localhost";
-   	$databaseName = "clothes_shop";
+   	$databaseName = "ustore";
    	$username = "root";
-   	$password = "";	
+   	$password = "root";	
 	$maxPages = 5;
 	$maxItems = 1;
 	$amountDate = 30;

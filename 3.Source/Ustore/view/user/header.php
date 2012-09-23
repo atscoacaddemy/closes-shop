@@ -1,6 +1,19 @@
+
 <body class="body">
 	<div id="header" class="header">
 		<img src="<?php echo $contextPath?>template/images/banner.png" />
+		<div ><table >
+			<tr>
+				<td width="800"></td>
+				<td><a class="lnk"  onclick="return press_DangNhap();" href="#">Đăng Nhập</a></td>
+				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
+				<td><a class="lnk" href="#">Đăng Ký</a></td>
+				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
+				<td><a class="lnk" href="#">Giỏ hàng</a></td>
+			</tr>
+			<tr height="10"></tr>
+		</table>
+		</div>
 	</div>
 	<div id="menu" class="menu">
 		<ul id="nav">

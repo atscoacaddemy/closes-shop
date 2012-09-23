@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-22 23:49:23
+-- Date/time:                    2012-09-23 16:37:58
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -51,16 +51,16 @@ CREATE TABLE IF NOT EXISTS `comment` (
 -- Dumping structure for table ustore.present_type
 DROP TABLE IF EXISTS `present_type`;
 CREATE TABLE IF NOT EXISTS `present_type` (
-  `ID` varchar(2) COLLATE latin1_general_ci NOT NULL,
+  `ID` int(2) NOT NULL,
   `Name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 -- Dumping data for table ustore.present_type: ~3 rows (approximately)
 /*!40000 ALTER TABLE `present_type` DISABLE KEYS */;
 REPLACE INTO `present_type` (`ID`, `Name`) VALUES
-	('0', 'Normal'),
-	('1', 'Hot'),
-	('2', 'New');
+	(0, 'Normal'),
+	(1, 'Hot'),
+	(2, 'New');
 /*!40000 ALTER TABLE `present_type` ENABLE KEYS */;
 
 
@@ -72,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `Type` int(11) NOT NULL,
   `Sub_Type` int(11) NOT NULL,
   `Price` float NOT NULL,
+  `Present_Type` int(50) NOT NULL DEFAULT '0',
   `Description` text COLLATE utf8_unicode_ci NOT NULL,
   `Promotion_ID` int(11) NOT NULL,
   `Delete_Flag` int(11) NOT NULL DEFAULT '0',
@@ -116,7 +117,7 @@ CREATE TABLE IF NOT EXISTS `product_image` (
 DROP TABLE IF EXISTS `product_subtype`;
 CREATE TABLE IF NOT EXISTS `product_subtype` (
   `Type_ID` int(11) NOT NULL,
-  `Name` char(50) COLLATE utf8_unicode_ci NOT NULL,
+  `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`Type_ID`,`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -132,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `product_type` (
   `Type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Type` (`Type`(30))
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- Dumping data for table ustore.product_type: ~0 rows (approximately)
 /*!40000 ALTER TABLE `product_type` DISABLE KEYS */;
@@ -160,7 +161,7 @@ CREATE TABLE IF NOT EXISTS `user` (
   `Password` text COLLATE utf8_unicode_ci NOT NULL,
   `Phone` text COLLATE utf8_unicode_ci NOT NULL,
   `Email` text COLLATE utf8_unicode_ci NOT NULL,
-  `role` int(11) NOT NULL,
+  `Role` int(11) NOT NULL,
   `Create_Date` datetime NOT NULL,
   `Delete_Flag` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
@@ -174,8 +175,8 @@ CREATE TABLE IF NOT EXISTS `user` (
 -- Dumping structure for table ustore.user_role
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE IF NOT EXISTS `user_role` (
-  `ID` char(2) COLLATE utf8_unicode_ci NOT NULL,
-  `Name` char(20) COLLATE utf8_unicode_ci NOT NULL,
+  `ID` int(2) NOT NULL,
+  `Name` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `Delete_Flag` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`,`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
@@ -183,8 +184,8 @@ CREATE TABLE IF NOT EXISTS `user_role` (
 -- Dumping data for table ustore.user_role: ~2 rows (approximately)
 /*!40000 ALTER TABLE `user_role` DISABLE KEYS */;
 REPLACE INTO `user_role` (`ID`, `Name`, `Delete_Flag`) VALUES
-	('0', 'Admin', 0),
-	('1', 'User', 0);
+	(0, 'Admin', 0),
+	(1, 'User', 0);
 /*!40000 ALTER TABLE `user_role` ENABLE KEYS */;
 /*!40014 SET FOREIGN_KEY_CHECKS=1 */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -183,4 +183,13 @@
 	height: 60px;
 	width: 60px;
 }
- 
+a.lnk:link, a.lnk:active, a.lnk:visited {
+    color: #FFFFFF;
+    font-weight: bold;
+    text-decoration: none;
+}
+a.lnk:hover {
+    color: #999999;
+    font-weight: bold;
+    text-decoration: underline;
+}

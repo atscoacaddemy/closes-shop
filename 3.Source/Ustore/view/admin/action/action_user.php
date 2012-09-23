@@ -38,7 +38,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="update")
 		if($result)
 			echo UserUtil::createMessageBox("Update completed!"); 
 		else {
-			echo UserUtil::createMessageBox("Update does not completed!"); 
+			echo UserUtil::createMessageBox("Update does not complete!"); 
 		}
 	
 	
@@ -56,4 +56,21 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="showPopupInfo")
 		}
 			
 }
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete" )
+	{
+	require_once("../../../controller/UserController.php");
+	require_once ("../utils/user_util.php");
+	$id=$_REQUEST["userId"];
+
+	$result = UserController::Delete($id);
+	if($result)
+	{
+	echo UserUtil::createMessageBox("Delete completed!");
+	}
+	else
+	{
+		echo UserUtil::createMessageBox("Delete does not complete!");
+	}
+
+	}
 ?>

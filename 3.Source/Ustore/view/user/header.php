@@ -1,5 +1,4 @@
-
-<?php
+﻿<?php
 	session_start();
     $_SESSION["contextPath"] = $contextPath;
 	if(isset($_GET["do"])&&$_GET["do"]=="logout")
@@ -9,11 +8,10 @@
 	}
 	$curUser=$_SESSION["curUser"];
 ?>
-
 <body class="body">
 	<div id="header" class="header">
 		<img src="<?php echo $contextPath?>template/images/banner.png" />
-		<div ><table >
+		<div><table>
 			<tr>
 				<td width="800"></td>
 				<?php
@@ -22,7 +20,7 @@
 				?>
 				<td><a class="lnk"  onclick="return press_DangNhap();" href="#">Đăng Nhập</a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
-				<td><a class="lnk" href="#">Đăng Ký</a></td>
+				<td><a class="lnk" href="<?php echo $contextPath?>view/user/register.php">Đăng Ký</a></td>
 				<?php
 				}
 				else{

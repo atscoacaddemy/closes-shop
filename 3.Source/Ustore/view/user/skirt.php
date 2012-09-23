@@ -1,6 +1,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<?php $contextPath = "../../"?>
+ <?php  
+  $contextPath="../../";
+ ?>
 	<head>
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
 		<title></title>
@@ -10,7 +12,7 @@
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui.js"></script>
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 	</head>
-	<body class="body" >
+	<body class="body">
  <?php include_once 'header.php';?>
 		<div id="contain" class="contain contain box-transparent">
 			<div class="sub-menu-title">

@@ -109,7 +109,7 @@
 									</tr>
 									<tr>
 										<td align="right" valign="top" style="padding-top:6px;">
-										E-mail liên lạc:<span style="color:red;"> (*)</span>
+										E-mail truy cập:<span style="color:red;"> (*)</span>
 										</td>
 										<td align="left">
 											<div style="float:left;">
@@ -130,7 +130,7 @@
 									</tr>
 									<tr>
 										<td align="right" valign="top" style="padding-top:6px;">
-										Tên truy cập:<span style="color:red;"> (*)</span>
+										E-mail truy cập:<span style="color:red;"> (*)</span>
 										</td>
 										<td align="left">
 										<div style="float:left;">

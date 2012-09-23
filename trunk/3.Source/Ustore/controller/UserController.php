@@ -87,6 +87,16 @@
                 $return[]=$row;
 			return $return;
 		 }
+		 public static function CheckLogin($email,$pass)
+		 {
+		 	 $strSQL = "select * 
+                            from user
+                            where email='$email' and password='$pass' ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                return mysql_fetch_row ($result,MYSQL_BOTH);
+		 }
 		 /*
 		public static function SetPassword ($id, $newPassword)
    

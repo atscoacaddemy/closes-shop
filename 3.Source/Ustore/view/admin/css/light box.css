@@ -1,5 +1,5 @@
 * /Lightbox background */
-#lightbox {
+.lightbox {
  display:none;
  background:#000000;
  opacity:0.9;
@@ -12,7 +12,7 @@
  z-index:1000;
 }
 /* Lightbox panel with some content */
-#lightbox-panel {
+.lightbox-panel {
  display:none;
  position:fixed;
  top:100px;

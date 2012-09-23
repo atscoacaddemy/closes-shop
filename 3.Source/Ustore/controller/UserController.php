@@ -57,6 +57,23 @@
                 $return[]=$row;
 				return $return[0];
          }
+		 public static function Count()
+		 {
+			 $strSQL = "select count(*) from user";
+            $result = DataProvider::Query($strSQL);
+			$temp = mysql_fetch_array($result);
+            return $temp[0];
+		 }
+		 public static function GetUsers($offset,$count)
+		 {
+		 	$strSQL = "	select * 
+						from user 				
+						limit $offset, $count";
+            $result = DataProvider::Query($strSQL);
+            while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+			return $return;
+		 }
 		 /*
 		public static function SetPassword ($id, $newPassword)
    

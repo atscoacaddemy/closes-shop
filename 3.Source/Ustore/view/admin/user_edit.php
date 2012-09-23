@@ -3,11 +3,11 @@
 function showPopupEdit(userId)
 	{		
 		 $("#lightbox, #lightbox-panel").fadeIn(300);
-		$("#lightbox-panel").load("action/action_user.php?action=getUserById",{'userId':userId});
+		$("#lightbox-panel").load("action/action_user.php?action=showPopupEdit",{'userId':userId});
 		
 	}
 function closePopupEdit() {
-  $("#lightbox, #lightbox-panel").fadeOut(300);
+  $("#lightbox, #lightbox-panel, #info-panel").fadeOut(300);
 }
 function updateUser(id)
 {
@@ -18,8 +18,32 @@ function updateUser(id)
 	$("#lightbox-panel").load("action/action_user.php?action=update",{'id':id,'email':email,'phone':phone,'role':role,'pass':pass});
 	
 }
+function showPopupInfo(userId)
+{
+	$("#lightbox, #info-panel").fadeIn(300);
+	$("#info-panel").load("action/action_user.php?action=showPopupInfo",{'userId':userId});
+}
+function showConfirmDelete(userId)
+{
+	$("#txtUserId").val(userId);
+	$("#lightbox, #message-panel").fadeIn(300);
+}
+function deleteUser()
+{
+	var userId=$("#txtUserId").val();
+	
+}
 </script>
-
+<?php
+	require_once("../../utility/Utils.php");
+	$maxItems = 1;
+	$maxPages = 5;
+	$curPage = "";
+	if (isset($_GET["page"]))
+		$curPage = (int) $_GET["page"];
+    $curPage = $curPage>0?$curPage:1;
+	$curItem = ($curPage-1)*$maxItems;
+?>
 <div id="wrapper">
 <div id="content">
 	<div id="box">
@@ -37,31 +61,52 @@ function updateUser(id)
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<td class="a-center">232</td>
-					<td><a href="#">Jennifer Hodes</a></td>
-					<td>jennifer.hodes@gmail.com</td>
-					<td>General</td>
-					<td>1000</td>
-					<td>July 2, 2008</td>
-					<td><a href="#"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit(1);" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
-				</tr>
+				<?php
+				require_once ("../../controller/UserController.php");
+				$users=UserController::GetUsers($curItem,$maxItems);
+				$totalItems=UserController::Count();
+				foreach ($users as $user) {
+					?>
+					<tr>
+					<td class="a-center"><?php echo $user["ID"]; ?></td>
+					<td><a href="#"><?php echo $user["Email"] ;?></a></td>
+					<td><?php echo $user["Password"] ;?></td>
+					<td><?php echo $user["Phone"] ;?></td>
+					<td><?php echo $user["Role"] ;?></td>
+					<td><?php echo$user["Create_Date"] ;?></td>
+					<td><a href="#" onclick="showPopupInfo(<?php echo $user["ID"]; ?>)"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit(<?php echo $user["ID"]; ?>);" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $user["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
+					</tr>
+					<?php
+				}
+				?>
+				
 				
 			</tbody>
 		</table>
-		<div id="pager">
+	
+			<?php 
+				
+				$strLink = "user_index.php?view=user&";
+								$strPaging = Utils::paging ($strLink,$totalItems,$curPage,$maxPages,$maxItems);
+								echo $strPaging; 
+				
+			?>
+			
+			<!--
 			Page <a href="#"><img src="img/icons/arrow_left.gif" width="16" height="16" /></a>
-			<input size="1" value="1" type="text" name="page" id="page" />
-			<a href="#"><img src="img/icons/arrow_right.gif" width="16" height="16" /></a>of 42
-			pages | View
-			<select name="view">
-				<option>10</option>
-				<option>20</option>
-				<option>50</option>
-				<option>100</option>
-			</select>
-			per page | Total <strong>420</strong> records found
-		</div>
+									<input size="1" value="1" type="text" name="page" id="page" />
+									<a href="#"><img src="img/icons/arrow_right.gif" width="16" height="16" /></a>of 42
+									pages | View
+									<select name="view">
+										<option>10</option>
+										<option>20</option>
+										<option>50</option>
+										<option>100</option>
+									</select>
+									per page | Total <strong>420</strong> records found-->
+			
+			
+		
 	</div>
 	<br />
 	<div id="box">
@@ -156,7 +201,7 @@ function updateUser(id)
 	</div>
 </div>
 
-<div id="lightbox-panel">
+<div id="lightbox-panel" class="lightbox-panel">
     <form id="form" action="..." method="post">
 			<fieldset id="personal">
 				<legend>
@@ -196,7 +241,26 @@ function updateUser(id)
 		</form>
 </div><!-- /lightbox-panel -->
 
-<div id="lightbox"> </div><!-- /lightbox -->
-
-
+<div class="lightbox" id="lightbox"> </div><!-- /lightbox -->
+<!-- Confirm Messagebox -->
+<div class="lightbox-panel" id="message-panel">
+    <form id="form" action="..." method="post">
+			<fieldset id="personal">
+				<legend>
+					EDIT USER
+				</legend>
+				<h3>Are you sure remove!</h3>
+			</fieldset>
+			
+			
+			<div align="center">
+				<input id="txtUserId" type="hidden" />
+				<input id="button1" type="button" value="Yes" onclick="deleteUser();"/>
+				<input  type="button" id="close-panel" value="No"/>
+			</div>
+		</form>
+</div>
+<!-- -->
+<!-- Confirm Messagebox -->
+<div class="lightbox-panel" id="info-panel"></div>
 </div>

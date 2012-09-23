@@ -22,7 +22,7 @@ $(document).ready(function(){
     $("#lightbox, #lightbox-panel").fadeIn(300);
  })
  $("input#close-panel").click(function(){
-     $("#lightbox, #lightbox-panel").fadeOut(300);
+     $("#lightbox, #lightbox-panel, #message-panel").fadeOut(300);
  })
 })
 </script>

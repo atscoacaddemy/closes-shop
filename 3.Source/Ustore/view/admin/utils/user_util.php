@@ -61,5 +61,32 @@ class UserUtil{
 		</form>';
 		return $str;
 	}
+public static function createFormInfo($user)
+	{
+		$str="";
+		$str.=' <form id="form" action="..." method="post">';
+		$str.='	<fieldset id="personal"> ';
+		$str.='		<legend> ';
+		$str.='			USER INFOMATION ';
+		$str.='		</legend>';
+		$str.='		<p>Email : '.$user["Email"].'</p>';
+
+		$str.='		<p>Phone : '.$user["Phone"].'</p>';
+
+		$str.='		<p>Role : '.$user["Role"].'</p>';
+		$str.='		
+				
+				<p>Password : '.$user["Password"].'</p>
+				<br />
+				
+			</fieldset>
+			
+			
+			<div align="center">
+				<input  type="button" id="close-panel" value="Close" onclick="closePopupEdit();"/>
+			</div>
+		</form>';
+		return $str;
+	}
 }
 ?>

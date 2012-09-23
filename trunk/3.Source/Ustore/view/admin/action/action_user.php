@@ -12,20 +12,15 @@ if(isset($_POST["btnAddUser"]))
 		if($result)
 			header("Location:../user_index.php?id=".$result['id']);
 }
-if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="getUserById")
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="showPopupEdit")
 {
 	include_once("../../../controller/UserController.php");
 	$id=$_REQUEST["userId"];
 	$result = UserController::GetUserByID($id);
 		if($result)
 		{
-			echo $result;
-			echo $result[0];	
-			echo $result[1];	
-			echo $result[2];	
 			require_once ("../utils/user_util.php");
 			echo UserUtil::createFormEdit($result);
-			//header("Location:../user_index.php?id=".$result['id']);
 		}
 			
 }
@@ -47,5 +42,18 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="update")
 		}
 	
 	
+}
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="showPopupInfo")
+{
+	require_once("../../../controller/UserController.php");
+	$id=$_REQUEST["userId"];
+	
+	$result = UserController::GetUserByID($id);
+		if($result)
+		{
+			require_once ("../utils/user_util.php");
+			echo UserUtil::createFormInfo($result);
+		}
+			
 }
 ?>

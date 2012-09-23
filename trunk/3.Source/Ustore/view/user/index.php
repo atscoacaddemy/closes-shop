@@ -12,10 +12,9 @@
 			$(function() {
 				var galleries = $('.ad-gallery').adGallery();
 			});
-
 		</script>
 </head>
-<?php $contextPath = ""?>
+<?php $contextPath ="" ?>
 <?php include_once 'view/user/header.php';?>
 		<div id="contain" class="contain box-transparent">
 			<div class="ad-gallery" style="padding: 20px;width:940px;float: left;">

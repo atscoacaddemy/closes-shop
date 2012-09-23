@@ -1,3 +1,1 @@
-<?php
-
-?>
+<?php include_once  'view/user/index.php';?>

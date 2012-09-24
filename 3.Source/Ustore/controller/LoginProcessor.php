@@ -5,24 +5,24 @@
 		include("UserController.php");
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
-		 echo "user=".$email."</br>";
-		 echo "pass=".$pass."</br>";
+		 // echo "user=".$email."</br>";
+		 // echo "pass=".$pass."</br>";
 		
 		$result=UserController::CheckLogin($email,$pass);
-		 echo "result =".$result[1]."</br>";
+		 // echo "result[0] =".$result[0]."</br>";
 		 if($result==null)
 			 $fLogin=false;
 		 else
 		 {
 			 $_SESSION["curUser"] = $result;
-			 echo "rs=".$result;
-			 echo "role=".$result[5];
+			 // echo "rs=".$result;
+			 // echo "role=".$result[5];
 			 if ($result[5] == 1) 
 			 {
 			// $path=$contextPath."skirt.php"
-			 echo "rs=".$result;
-			 echo "path=".$contextPath."view/user/skirt.php?id=";
-				header("Location:".$contextPath."view/user/skirt.php?id=".$result["ID"]);
+			 // echo "path=".$contextPath."view/user/skirt.php?id=";
+			 // echo "rs[1]=".$result[1];
+				header("Location:".$contextPath."view/user/skirt.php?id=".$result[0]);
 			 }
 			// else
 			// {

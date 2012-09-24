@@ -1,5 +1,5 @@
 ﻿<link rel="stylesheet" href="<?php echo $contextPath?>template/css/default.css" type="text/css" media="screen">
-
+<script type="text/javascript" src="<?php echo $contextPath?>template/js/utilities.js"></script>
 
 <div id="footer" class="footer">
 	<ul>

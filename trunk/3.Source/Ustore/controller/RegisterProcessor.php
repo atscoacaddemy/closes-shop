@@ -1,28 +1,31 @@
 ﻿<?php
 		if(isset($_POST["btnForgetPassword"]))
 		{
-			include_once("PHPMailer/email.php");
+			
 			$txtEmail = $_POST["txtEmail"];
 			
-			echo "email=".$txtEmail ;
+			echo "email=".$txtEmail."</br>";
 			
 			if($_POST["txtEmail"] !== null)
 			{
 				include_once("UserController.php");
 			}
 			$checkstatus = UserController::GetUserByEmail($txtEmail);
-			echo "check status=".$checkstatus;
+			//echo "check status=".$checkstatus[0]."</br>";
 			if($checkstatus !== null)
 			{
 				$random = rand (1,1000000);
-				$changePass = UserController::SetPassword($checkstatus['id'],$random);
+				$changePass = UserController::SetPassword($checkstatus[0],$random);
+				echo "changePass=".$changePass."</br>";
+				echo "random=".$random."</br>";
 				if($changePass == true )
 				{
 					$tag="";
-					$content_Subject="Ustore.com";
+					//$content_Subject="Đinh Bá Nhựt là Nhựt két!";
+					$content_Subject="Change password from Ustore.com website!";
 					$content_Body="
 					<div id='yiv1540714745'>
-						Xin chào, ".$checkstatus['username']."
+						Xin chào, ".$checkstatus[1]."
 						<br><br>
 						Website Ustore.com có nhận được yêu cầu thay đổi mật khẩu cùa quý khách vào ngày ".date('d-m-Y , h:i:s')."
 						<br>
@@ -31,7 +34,7 @@
 						<br>
 						Quí khách vui lòng quay trở lại trang web để đăng nhập lại.
 						<br>
-
+						<a  href='http://ustore.com' >http://ustore.com</a>
 						<br>
 						<br>
 						__________________________________________________
@@ -53,20 +56,20 @@
 							$type = 2;
 						 else 
 							$type = 3;
-					echo "<br>type=".$type;
-					echo "<br>tag=".$tag;
-					
+					//echo "<br>type=".$type;
+					//echo "<br>tag=".$tag;
+					include_once("../view/user/PHPMailer/email.php");
 					$rs=SendEmail::send_Email($txtEmail,$content_Subject,$content_Body,$type);
-					echo "<br>rs=".$rs;
+					//echo "</br>rs=".$rs."</br>";
 					if($rs == true)
 					{
-						//header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=success");
-						header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=success");
+						header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=success");
+						//header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=success");
 					}
 					else
 					{
-						//header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
-						header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=failed");
+						header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
+						//header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=failed");
 					}
 				}
 				else

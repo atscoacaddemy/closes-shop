@@ -8,8 +8,13 @@
 	}
 	$curUser=$_SESSION["curUser"];
 	
-	if(isset($_GET["do"])&& $_GET["do"]=="login")
+	//echo "current-user=".$curUser;
+	if(isset($_GET["do"])&& $_GET["do"]=="login" && !isset($_SESSION["register"]))
+	{
+		$_SESSION["register"]="true";
 		echo"<body onload='press_DangNhapRegister();'>";
+		//$_SESSION["register"] = "fail";
+	}
 ?>
 <body class="body">
 	<div id="header" class="header">

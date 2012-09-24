@@ -5,17 +5,17 @@
 		include("UserController.php");
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
-		// echo "user=".$email."</br>";
-		// echo "pass=".$pass."</br>";
+		 echo "user=".$email."</br>";
+		 echo "pass=".$pass."</br>";
 		
 		$result=UserController::CheckLogin($email,$pass);
-		// echo "result =".$result[1]."</br>";
+		 echo "result =".$result[1]."</br>";
 		 if($result==null)
 			 $fLogin=false;
 		 else
 		 {
 			 $_SESSION["curUser"] = $result;
-			 if ($result["role"] == 0) //admin => log thang vao trang admin.php
+			 if ($result["role"] == 1) //admin => log thang vao trang admin.php
 			 {
 			// $path=$contextPath."skirt.php"
 				header("Location:".$contextPath."view/user/skirt.php?id=".$result["ID"]);

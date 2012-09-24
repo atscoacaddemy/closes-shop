@@ -66,7 +66,7 @@
 			var strRePassword = $("#txtRePassword").attr("value");
 			var strEmail = $("#txtEmail").attr("value");
 			var flag = true;			
-			 alert("submit");
+			// alert("submit");
 			if(strUsername.length<3 || strUsername.length > 50)
 			{				
 				flag=false;
@@ -115,8 +115,8 @@
 				alert ("Có lỗi trong thông tin đăng ký. Xin kiểm tra lại");
 
 			//alert($("#cbAgree").attr('checked'));
-			alert("checked=" + document.getElementById('cbAgree').checked);
-			alert("flag=" + flag);
+			//alert("checked=" + document.getElementById('cbAgree').checked);
+			//alert("flag=" + flag);
 			//if(flag==true && $("#cbAgree").attr('checked') == false)
 			//if(flag==true && document.getElementById('cbAgree').checked == false)
 			if(document.getElementById('cbAgree').checked == false && flag == true)
@@ -131,7 +131,7 @@
 				alert ("Email này đã được sử dụng. Xin chọn email khác");
 			}
 			
-			alert("vao end");
+			//alert("vao end");
 			return flag;
 		});
 	//check password
@@ -456,6 +456,7 @@
 										Tôi đồng ý với các quy định của ustore.com 
 										</td>
 									</tr>
+									<?php  unset($_SESSION["register"]); ?>
 									<tr>
 										<td align="right"></td>
 										<td align="left" style="padding-left:30px;">

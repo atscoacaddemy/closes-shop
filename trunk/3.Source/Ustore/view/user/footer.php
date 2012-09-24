@@ -1,5 +1,6 @@
 ﻿<link rel="stylesheet" href="<?php echo $contextPath?>template/css/default.css" type="text/css" media="screen">
 <script type="text/javascript" src="<?php echo $contextPath?>template/js/utilities.js"></script>
+<script type="text/javascript" src="<?php echo $contextPath?>template/js/common.js"></script>
 
 <div id="footer" class="footer">
 	<ul>
@@ -52,7 +53,7 @@
 							<br />
 							<a style="color:yellow;" href="forgetpassword.php">Quên mật khẩu?</a>
 							|
-							<a style="color:yellow;" href="dangky.php">Đăng ký thành viên</a>
+							<a style="color:yellow;" href="register.php">Đăng ký thành viên</a>
 						</p>
 						<p style="text-align: right; padding: 0px 10px 0 0; float: right; width: 100px; position: relative;">
 							<a href="">	<img style="border:0;" onclick="return press_closeLogIn();" src="<?php echo $contextPath?>template/images/fileclose.png" alt="" /></a>

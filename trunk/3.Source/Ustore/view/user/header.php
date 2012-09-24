@@ -1,14 +1,14 @@
 ﻿<?php
 	session_start();
     $_SESSION["contextPath"] = $contextPath;
-	if(isset($_GET["do"])&&$_GET["do"]=="logout")
+	if(isset($_GET["do"])&& $_GET["do"]=="logout")
 	{
         unset($_SESSION["curUser"]);
 		$curUser=null;	
 	}
 	$curUser=$_SESSION["curUser"];
 	
-	//echo "current-user=".$curUser;
+	//echo "flag_register=".isset($_SESSION["register"]);
 	if(isset($_GET["do"])&& $_GET["do"]=="login" && !isset($_SESSION["register"]))
 	{
 		$_SESSION["register"]="true";

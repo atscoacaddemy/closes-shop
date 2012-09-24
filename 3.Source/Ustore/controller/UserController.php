@@ -22,7 +22,7 @@
         }
 		public static function AddUser ($username,$password, $email,$phone,$role)
         {
-            $strSQL = "Insert into user (Username,Password,Phone,Email,Role,Create_Date) values ( '$username','$password','$phone', '$email','$role', NOW() )";
+            $strSQL = "Insert into user (Name,Password,Phone,Email,Role,Create_Date) values ( '$username','$password','$phone', '$email','$role', NOW() )";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			

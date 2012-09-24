@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-09-23 16:37:58
+-- Date/time:                    2012-09-24 22:30:27
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -121,8 +121,12 @@ CREATE TABLE IF NOT EXISTS `product_subtype` (
   PRIMARY KEY (`Type_ID`,`Name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table ustore.product_subtype: ~0 rows (approximately)
+-- Dumping data for table ustore.product_subtype: ~3 rows (approximately)
 /*!40000 ALTER TABLE `product_subtype` DISABLE KEYS */;
+REPLACE INTO `product_subtype` (`Type_ID`, `Name`) VALUES
+	(1, 'Cao cấp'),
+	(1, 'For Teen'),
+	(1, 'Thời Trang');
 /*!40000 ALTER TABLE `product_subtype` ENABLE KEYS */;
 
 
@@ -133,10 +137,12 @@ CREATE TABLE IF NOT EXISTS `product_type` (
   `Type` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Type` (`Type`(30))
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table ustore.product_type: ~0 rows (approximately)
+-- Dumping data for table ustore.product_type: ~1 rows (approximately)
 /*!40000 ALTER TABLE `product_type` DISABLE KEYS */;
+REPLACE INTO `product_type` (`ID`, `Type`) VALUES
+	(1, 'Túi Xách');
 /*!40000 ALTER TABLE `product_type` ENABLE KEYS */;
 
 
@@ -158,6 +164,7 @@ CREATE TABLE IF NOT EXISTS `promotion` (
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE IF NOT EXISTS `user` (
   `ID` bigint(20) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `Password` text COLLATE utf8_unicode_ci NOT NULL,
   `Phone` text COLLATE utf8_unicode_ci NOT NULL,
   `Email` text COLLATE utf8_unicode_ci NOT NULL,

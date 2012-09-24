@@ -7,6 +7,9 @@
 		$curUser=null;	
 	}
 	$curUser=$_SESSION["curUser"];
+	
+	if(isset($_GET["do"])&& $_GET["do"]=="login")
+		echo"<body onload='press_DangNhapRegister();'>";
 ?>
 <body class="body">
 	<div id="header" class="header">

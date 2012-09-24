@@ -20,6 +20,20 @@
 			DataProvider::Close ($cn);
             return $result;
         }
+		public static function AddUser ($username,$password, $email,$phone,$role)
+        {
+            $strSQL = "Insert into user (Username,Password,Phone,Email,Role,Create_Date) values ( '$username','$password','$phone', '$email','$role', NOW() )";
+			$cn = DataProvider::Open ();
+			DataProvider::MoreQuery ($strSQL,$cn);
+			
+			if(mysql_affected_rows () == 0)
+				$result=false;
+			else
+				$result=mysql_insert_id ();
+				
+			DataProvider::Close ($cn);
+            return $result;
+        }
 
     	public static function Update ($id,$password, $email,$phone,$role)
         {

@@ -57,6 +57,83 @@
 <script type="text/javascript">
 	$(document).ready(function()
 	{
+	//check submit 
+		$("#frmRegister").submit(function()
+		{
+		   
+			var strUsername = $("#txtUsername").attr("value");
+			var strPassword = $("#txtPassword").attr("value");
+			var strRePassword = $("#txtRePassword").attr("value");
+			var strEmail = $("#txtEmail").attr("value");
+			var flag = true;			
+			 alert("submit");
+			if(strUsername.length<3 || strUsername.length > 50)
+			{				
+				flag=false;
+				//$("#messUsername").attr("innerHTML","Tên đăng nhập từ 6-50 ký tự");
+				document.getElementById('messUsername').innerHTML="Tên đăng nhập từ 6-50 ký tự";
+				$("#messUsername").css("color","red");
+				
+			}
+			if(strPassword.length <6 || strPassword.length > 50)
+			{				
+				flag=false;
+				document.getElementById('messPassword').innerHTML="5< Password <50";				
+				$("#messPassword").css("color","red");
+			}
+			else if(HaveSpecialChar(strPassword))
+			{
+				flag=false;
+				document.getElementById('messPassword').innerHTML="Mật khẩu có chứa ký tự lạ!";
+				$("#messPassword").css("color","red");
+			}					
+			if(strPassword != strRePassword)
+			{
+				flag=false;
+				document.getElementById('messRePassword').innerHTML="Mật khẩu nhập không khớp";
+				$("#messRePassword").css("color","red");
+			}			
+			else
+			{
+				 var serverURL = "checkPassword.php?txtRePassword=" + strRePassword;
+				 $("#messRePassword").load(serverURL);
+			}
+			if(IsEmail(strEmail)==false)
+			{
+				flag=false;
+				document.getElementById('messEmail').innerHTML="Email không hợp lệ";
+				$("#messEmail").css("color","red");
+				
+			}
+			else
+			{
+				var serverURL = "checkEmail.php?txtEmail=" + strEmail;
+				 $("#messEmail").load(serverURL);
+			}
+
+			if(flag==false)
+				alert ("Có lỗi trong thông tin đăng ký. Xin kiểm tra lại");
+
+			//alert($("#cbAgree").attr('checked'));
+			alert("checked=" + document.getElementById('cbAgree').checked);
+			alert("flag=" + flag);
+			//if(flag==true && $("#cbAgree").attr('checked') == false)
+			//if(flag==true && document.getElementById('cbAgree').checked == false)
+			if(document.getElementById('cbAgree').checked == false && flag == true)
+			{
+				flag=false;
+				alert ("Bạn phải đồng ý với thỏa thuận sử dụng");
+			}
+			
+			if(flag==true && $("#hdEmailError").attr("value") == "true")
+			{
+				flag=false;
+				alert ("Email này đã được sử dụng. Xin chọn email khác");
+			}
+			
+			alert("vao end");
+			return flag;
+		});
 	//check password
 		$("#txtPassword").blur(function ()
 		{
@@ -65,11 +142,10 @@
 			//alert(strUsername);
 			//alert("passwr	!"+txtPassword.length);
 			if(txtPassword.length <6 || txtPassword.length > 50)
-			{				//alert(strUsername);
+			{				
 				flag=false;
 				//$("#messPassword").attr("innerHTML","5< Password <50");
-				document.getElementById('messPassword').innerHTML="5< Password <50";
-				
+				document.getElementById('messPassword').innerHTML="5< Password <50";				
 				$("#messPassword").css("color","red");
 			}
 			
@@ -259,7 +335,8 @@
 									Đăng Ký Thành Viên</div>
 								<hr style="color: rgb(211, 232, 248);" width="680" size="1">	
 							<div style="padding:20px;" id="frmRegister" name="frmRegister">
-<!--form -->					<form action="user/xulydangky.php" method="post" name="frmRegister" id="frmRegister" >
+<!--form -->					<form action="<?php echo $contextPath?>controller/RegisterProcessor.php" method="post" name="frmRegister" id="frmRegister">
+				
 								<table border="0" id="nhaban_box" cellspacing="0" cellpadding="5" border="0" width="700">
 									<tr>
 										<td align="left" colspan="2" style="font-size:13px;">

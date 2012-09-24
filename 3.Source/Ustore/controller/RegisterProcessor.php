@@ -131,7 +131,7 @@
 		}
 		if(isset($_POST["btRegister"]))
 		{
-			echo "register";
+			//echo "register";
 			include ("UserController.php");				 
 			$password = $_POST["txtPassword"];
 			$username = $_POST["txtUsername"];
@@ -146,13 +146,14 @@
 			if(!empty ($id))
 			{	
 				$fRegister="true";
-				echo "suceess";
+				//echo "suceess";
+			//$_SESSION["register"] = "true";
 				header("Location:../view/user/skirt.php?do=login");
 			}
 			else
 			{
 				echo "failed";
-				//header("Location:../view/user/register.php?do=failed");
+				header("Location:../view/user/register.php?do=failed");
 			}
 			
 		}	

@@ -20,9 +20,13 @@
 			DataProvider::Close ($cn);
             return $result;
         }
-		public static function AddUser ($username,$password, $email,$phone,$role)
+		public static function AddUser ($name,$password, $email,$phone,$role)
         {
-            $strSQL = "Insert into user (Name,Password,Phone,Email,Role,Create_Date) values ( '$username','$password','$phone', '$email','$role', NOW() )";
+			$password = trim($password);
+			$password = md5 ($password);
+			$email = addslashes($email);
+		
+            $strSQL = "Insert into user (Name,Password,Phone,Email,Role,Create_Date) values ( '$name','$password','$phone', '$email','$role', NOW() )";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -37,7 +41,9 @@
 
     	public static function Update ($id,$password, $email,$phone,$role)
         {
-
+			$password = md5 ($password);
+			$email =addslashes($email);	
+			
             $strSQL = "update user set Password='$password', Email='$email' , Phone='$phone', Role='$role' where ID=$id";
 		    $cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
@@ -66,7 +72,7 @@
          {
                 $strSQL = "select * 
                             from user
-                            where email='$email' and delete_flag='0' ";
+                            where email='$email' and delete_flag='0'";
                 $result = DataProvider::Query($strSQL);
                 if(mysql_num_rows($result)==0)
                     return null;
@@ -104,6 +110,9 @@
 		 }
 		 public static function CheckLogin($email,$pass)
 		 {
+			$pass=md5($pass);
+			$email =addslashes($email);
+			
 		 	 $strSQL = "select * 
                             from user
                             where email='$email' and password='$pass' ";
@@ -115,6 +124,7 @@
 		 //start lam.hoson
 		 public static function SetPassword ($id,$password)
          {
+				$password=md5($password);
                 $strSQL = "update user set Password='$password' where ID='$id' ";
 				$cn = DataProvider::Open ();
 				DataProvider::MoreQuery ($strSQL,$cn);

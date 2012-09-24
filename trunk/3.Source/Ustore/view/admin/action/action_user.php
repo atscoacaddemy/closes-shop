@@ -30,7 +30,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="update")
 	require_once ("../utils/user_util.php");
 	$email=$_REQUEST["email"];
 	$pass=$_REQUEST["pass"];
-	$pass=md5($pass);
 	$phone=$_REQUEST["phone"];
 	$role=$_REQUEST["role"];
 	$id=$_REQUEST["id"];

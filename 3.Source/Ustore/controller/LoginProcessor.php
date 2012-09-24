@@ -15,9 +15,13 @@
 		 else
 		 {
 			 $_SESSION["curUser"] = $result;
-			 if ($result["role"] == 1) //admin => log thang vao trang admin.php
+			 echo "rs=".$result;
+			 echo "role=".$result[5];
+			 if ($result[5] == 1) 
 			 {
 			// $path=$contextPath."skirt.php"
+			 echo "rs=".$result;
+			 echo "path=".$contextPath."view/user/skirt.php?id=";
 				header("Location:".$contextPath."view/user/skirt.php?id=".$result["ID"]);
 			 }
 			// else

@@ -51,7 +51,7 @@
 						<input type="submit" name="btn_Login" value=""/>	
 							<br />
 							<br />
-							<a style="color:yellow;" href="forgetpassword.php">Quên mật khẩu?</a>
+							<a style="color:yellow;" href="forget-password.php">Quên mật khẩu?</a>
 							|
 							<a style="color:yellow;" href="register.php">Đăng ký thành viên</a>
 						</p>

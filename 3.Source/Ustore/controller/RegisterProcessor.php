@@ -1,26 +1,30 @@
 ﻿<?php
 		if(isset($_POST["btnForgetPassword"]))
 		{
-			include_once("../PHPMailer/email.php");
+			include_once("PHPMailer/email.php");
 			$txtEmail = $_POST["txtEmail"];
+			
+			echo "email=".$txtEmail ;
+			
 			if($_POST["txtEmail"] !== null)
 			{
-				include_once("../../BUS/UsersBUS.php");
+				include_once("UserController.php");
 			}
-			$checkstatus = UsersBUS::GetUser_StatusByEmail($txtEmail);
+			$checkstatus = UserController::GetUserByEmail($txtEmail);
+			echo "check status=".$checkstatus;
 			if($checkstatus !== null)
 			{
 				$random = rand (1,1000000);
-				$changePass = UsersBUS::SetPassword($checkstatus['id'],$random);
+				$changePass = UserController::SetPassword($checkstatus['id'],$random);
 				if($changePass == true )
 				{
 					$tag="";
-					$content_Subject="RealEstate_HoaPhuong.com";
+					$content_Subject="Ustore.com";
 					$content_Body="
 					<div id='yiv1540714745'>
-						Xin chào, ".$checkstatus['hoten']."
+						Xin chào, ".$checkstatus['username']."
 						<br><br>
-						Website RealEstate_HoaPhuong.com có nhận được yêu cầu thay đổi mật khẩu cùa quý khách vào ngày ".date('d-m-Y , h:i:s')."
+						Website Ustore.com có nhận được yêu cầu thay đổi mật khẩu cùa quý khách vào ngày ".date('d-m-Y , h:i:s')."
 						<br>
 						Mật khẩu đã được thay đổi:<b style='color:#336699;'>".$random."</b>
 						<br>
@@ -36,7 +40,7 @@
 						<br>
 						Điện thoại : (08) 38777939. - Fax : (08) 62602665
 						<br>
-						E-mail: support@realestate_hoaphuong.com
+						E-mail: support@ustore.com
 						<br>
 					</div>";
 					for($i=strlen($txtEmail)-9;$i<strlen($txtEmail);$i++)
@@ -56,20 +60,24 @@
 					echo "<br>rs=".$rs;
 					if($rs == true)
 					{
-						header("Location:../forgetpassword.php?email='".$txtEmail."'&send=success");
+						//header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=success");
+						header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=success");
 					}
 					else
-						header("Location:../forgetpassword.php?email='".$txtEmail."'&send=failed");
+					{
+						//header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
+						header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=failed");
+					}
 				}
 				else
 				{
-				header("Location:../forgetpassword.php?email='".$txtEmail."'&send=failed");
+					header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
 				}
 				
 			}
 			else
 			{
-				header("Location:../forgetpassword.php?email='".$txtEmail."'&send=failed");
+				header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
 			}
 		}
 		if(isset($_POST["btnGuiTin"]))

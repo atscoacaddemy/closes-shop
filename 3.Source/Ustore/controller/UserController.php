@@ -66,12 +66,13 @@
          {
                 $strSQL = "select * 
                             from user
-                            where email='$email' ";
+                            where email='$email' and delete_flag='0' ";
                 $result = DataProvider::Query($strSQL);
                 if(mysql_num_rows($result)==0)
                     return null;
                 return mysql_fetch_row ($result,MYSQL_BOTH);
          }
+	
 		  public static function GetUserByID ($id)
          {
                 $strSQL = "select * 
@@ -111,6 +112,22 @@
                     return null;
                 return mysql_fetch_row ($result,MYSQL_BOTH);
 		 }
+		 //start lam.hoson
+		 public static function SetPassword ($id,$password)
+         {
+                $strSQL = "update user set Password='$password' where ID='$id' ";
+				$cn = DataProvider::Open ();
+				DataProvider::MoreQuery ($strSQL,$cn);
+				
+				if(mysql_affected_rows () == 0)
+					$result=false;
+				else
+					$result=true;
+				DataProvider::Close ($cn);
+				return $result;
+         }
+		 //end lam.hoson
+		 
 		 /*
 		public static function SetPassword ($id, $newPassword)
    

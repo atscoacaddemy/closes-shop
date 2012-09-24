@@ -171,10 +171,67 @@
 						<img src="Data/002-11.png"/>
 						<img src="Data/002-12.png"/>
 					</div>
+					<div class="comment-content">
+					<div>
+						<a id="comment-toggle" href="javascript:;" >4 comment(s)</a>
+					</div>
+					<div id="comment" style="display: none">
+						<div id= "comment-list">
+							<div class="comment-item">
+								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
+								<div style="clear: both"></div>
+								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							</div>
+							<div class="comment-item">
+								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
+								<div style="clear: both"></div>
+								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							</div>
+							<div class="comment-item">
+								<div style="float:right" class="comment-info">By dinhbanhut24 04/10/2012 1:00AM</div>
+								<div style="clear: both"></div>
+								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							</div>
+							<div class="comment-item">
+								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
+								<div style="clear: both"></div>
+								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							</div>
+						</div>
+						<div>
+							<textarea id="txtValue" rows="3" title="Write a comment" cols="60">Write a comment</textarea>
+						</div>
+						<div>
+						<a id="" href="javascript:;" >Send comment</a>
+					</div>
+					</div>
+					</div>
 					<div style="clear: both;"></div>
 				</div>
 				<div style="clear: both;"></div>
 			</div>
 			 <?php include_once 'footer.php';?>
+			 <script type="text/javascript">
+				$('#nav').spasticNav();
+				$('#comment-toggle').click(function() {
+					  $('#comment').toggle('slow', function() {
+					    // Animation complete.
+					  });
+					});
+				
+				$(document).ready(function() {
+					$("#txtValue").css("background-color", "#EDEDED"); //You can use some more styling.
+					$("#txtValue").bind("focusin", function() {
+						if ($("#txtValue").val() == 'Write a comment') {
+							$("#txtValue").val("");
+						}
+					});
+					$("#txtValue").bind("focusout", function() {
+						if ($("#txtValue").val() == '') {
+							$("#txtValue").val("Write a comment");
+						}
+					});
+				});
+			</script>
 	</body>
 </html>

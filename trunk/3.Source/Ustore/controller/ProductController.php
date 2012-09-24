@@ -80,6 +80,35 @@
                 $return[]=$row;
 				return $return[0];
          }
+
+         public static function getProducts($type, $subtype) {
+         	$strSQL = "select *
+         	from product
+         	where Type=".$type;
+         	if ($subtype == null) {
+         		$strSQL."and Sub_Type = ". $subtype;
+         	}
+         	$result = DataProvider::Query($strSQL);
+         	if(mysql_num_rows($result)==0)
+         		return null;
+         	while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+         		$return[]=$row;
+         	return $return[0];
+         }
+         public static function getProductSubType($type) {
+         	$strSQL = "select *
+         	from product_subtype
+         	where Type_ID=".$type;
+         	echo $strSQL;
+         	$result = DataProvider::Query($strSQL);
+         	if(mysql_num_rows($result)==0)
+         		return null;
+         	while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+         		$return[]=$row;
+         	return $return;
+         }
+				
+
 		 public static function GetProductTypes()
 		 {
 		 	$strSQL = "select * 

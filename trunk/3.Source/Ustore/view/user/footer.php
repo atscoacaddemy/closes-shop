@@ -123,7 +123,7 @@
 		{
 		    if(document.getElementById("txtUsernameLogin").value == "")
 		    {
-                alert("Username không được để trống");
+                alert("Tên đăng ký không được để trống");
                 return false;
 		    }
             if(document.getElementById("txtPasswordLogin").value == "")

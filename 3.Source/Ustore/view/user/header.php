@@ -52,7 +52,7 @@
 			</li>
 			<li><a href="#">Hot</a>
 			</li>
-			<li><a href="<?php echo $contextPath?>view/user/skirt.php">Tui Xach</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list.php">Tui Xach</a>
 			</li>
 			<li><a href="#">Khuyen Mai</a>
 			</li>

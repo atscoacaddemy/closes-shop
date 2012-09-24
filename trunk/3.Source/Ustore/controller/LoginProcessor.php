@@ -5,12 +5,10 @@
 		include("UserController.php");
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
-		echo "user=".$email."</br>";
-		echo "pass=".$pass."</br>";
+		// echo "user=".$email."</br>";
+		// echo "pass=".$pass."</br>";
 		
 		$result=UserController::CheckLogin($email,$pass);
-		// echo "result =".$result["3"]."</br>";
-		// echo "result =".$result["2"]."</br>";
 		// echo "result =".$result[1]."</br>";
 		 if($result==null)
 			 $fLogin=false;

@@ -53,7 +53,199 @@
 
 					</div>
 			</div>
+<!--start script for register -->
+<script type="text/javascript">
+	$(document).ready(function()
+	{
+	//check password
+		$("#txtPassword").blur(function ()
+		{
+			
+			var txtPassword = $("#txtPassword").attr("value");
+			//alert(strUsername);
+			//alert("passwr	!"+txtPassword.length);
+			if(txtPassword.length <6 || txtPassword.length > 50)
+			{				//alert(strUsername);
+				flag=false;
+				//$("#messPassword").attr("innerHTML","5< Password <50");
+				document.getElementById('messPassword').innerHTML="5< Password <50";
 				
+				$("#messPassword").css("color","red");
+			}
+			
+			else
+			{
+				//$("#messPassword").attr("innerHTML", "");
+				var serverURL = "checkPassword.php?txtPassword=" + txtPassword;
+				$("#messPassword").load(serverURL);
+			}
+		});
+	//check repassword
+		$("#txtRePassword").blur(function ()
+		{
+			//alert("pass	!");
+			var txtPassword = $("#txtPassword").attr("value");
+			var txtRePassword = $("#txtRePassword").attr("value");
+			//alert(strUsername);
+			if(txtPassword != txtRePassword)
+			{				//alert(strUsername);
+				flag=false;
+				//$("#messRePassword").attr("innerHTML","Mật khẩu không khớp !");
+				document.getElementById('messRePassword').innerHTML="Mật khẩu không khớp !";
+				$("#messRePassword").css("color","red");
+			}
+			
+			else
+			{
+				//$("#messPassword").attr("innerHTML", "");
+				var serverURL = "checkPassword.php?txtRePassword=" + txtRePassword;
+				$("#messRePassword").load(serverURL);
+			}
+		});
+	//check email
+		$("#txtEmail").blur(function ()
+		{
+			var strEmail = $("#txtEmail").attr("value");
+			var flag=true;	
+			
+			
+			//alert("aaa");
+			if(IsEmail(strEmail)==false)
+			{
+				flag=false;
+				//$("#messEmail").attr("innerHTML","Email không hợp lệ");
+				document.getElementById('messEmail').innerHTML=" Email không hợp lệ";
+				$("#messEmail").css("color","red");
+			}
+			else
+			{
+				document.frmRegister.txtAccess.value = document.frmRegister.txtEmail.value;
+				var serverURL = "checkEmail.php?txtEmail=" + strEmail;
+				$("#messEmail").load(serverURL);
+			}
+		});
+		
+		
+	// check phone number
+		function CheckPhoneNumber(strText)
+		{
+			var strTemp="0123456789./\_-()";
+			for (var i=0; i<strText.length; i++)
+			if (strTemp.indexOf (strText.charAt(i))==-1)//==-1 ko bao gio xay ra
+			{
+				return true;
+			}	
+			return false;
+		}
+		
+		$("#txtPhone").blur(function ()
+		{
+			var strPhone = $("#txtPhone").attr("value");
+			
+			//var txtPhone = $("#txtPhone").attr("value");
+			
+			if (txtPhone == "")
+				return;
+			//alert(strPhone +" "+txtPhone );
+			if(strPhone.length<10 || strPhone.length>12)
+			{				//alert(strUsername);
+				flag=false;
+				//$("#messPhone").attr("innerHTML","10 <= SDT <= 12");
+				document.getElementById('messPhone').innerHTML=" 10 <= SDT <= 12";
+				$("#messPhone").css("color","red");
+			}
+			else if(CheckPhoneNumber(txtPhone))
+			{
+			
+				flag=false;
+				//$("#messPhone").attr("innerHTML", "Số điện thoại ko hợp lệ");
+				document.getElementById('messPhone').innerHTML=" Số điện thoại ko hợp lệ!";
+				$("#messPhone").css("color","red");
+			}
+			else
+			{
+				document.getElementById('messPhone').innerHTML="";
+				document.getElementById('messPhone').innerHTML="<img src='../../template/images/valid.png' alt='Hợp lệ' title='Hợp lệ' width=20 height=20>";
+
+			}
+		});
+	//check Username
+		$("#txtUsername").blur(function ()
+		{
+
+			var strUsername = $("#txtUsername").attr("value");
+			//alert(strUsername);
+			if(strUsername.length< 6 || strUsername.length > 50)
+			{				//alert(strUsername);
+				flag=false;
+				//$("#messUsername").attr("innerHTML","Nhập từ 6-50 ký tự");
+				document.getElementById('messUsername').innerHTML="Nhập từ 6-50 ký tự";
+				$("#messUsername").css("color","red");
+			}		
+			else
+			{
+				document.getElementById('messUsername').innerHTML="<img src='../../template/images/valid.png' alt='Hợp lệ' title='Hợp lệ' width=20 height=20>";
+			}
+		});
+	});
+	
+	
+	
+	function IsEmail(email)
+	{
+			if (email=="")
+				return false;
+
+			if (email.indexOf ("@")==-1)
+				return false;
+			var i = 1;
+			var sLength = email.length;
+			if (email.indexOf (".")==-1)
+				return false;
+			if (email.indexOf ("..")!=-1)
+				return false;
+			if (email.indexOf ("@")!= email.lastIndexOf ("@"))
+				return false;
+			if (email.lastIndexOf (".")==sLength-1)
+				return false;
+			var str="abcdefghijklmnopqrstuvwxyz-@._1234567890";
+			for (var i=0;i<email.length;i++)
+				if (str.indexOf (email.charAt(i))==-1)
+					return false;
+			return true;
+	}
+	function passwordStrength(password)
+	{
+		var desc = new Array();
+		desc[0] = "Very Weak";
+		desc[1] = "Weak";
+		desc[2] = "Better";
+		desc[3] = "Medium";
+		desc[4] = "Strong";
+		desc[5] = "Strongest";
+
+		var score   = 0;
+
+		//if password bigger than 6 give 1 point
+		if (password.length > 6) score++;
+
+		//if password has both lower and uppercase characters give 1 point	
+		if ( ( password.match(/[a-z]/) ) && ( password.match(/[A-Z]/) ) ) score++;
+
+		//if password has at least one number give 1 point
+		if (password.match(/\d+/)) score++;
+
+		//if password has at least one special caracther give 1 point
+		if ( password.match(/.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/) )	score++;
+
+		//if password bigger than 12 give another 1 point
+		if (password.length > 12) score++;
+
+		 document.getElementById("passwordDescription").innerHTML = desc[score];
+		 document.getElementById("passwordStrength").className = "strength" + score;
+	}
+</script>
+<!--end script for register -->
 <!--start contend in register!-->		
 			<!--div class="product-cell"-->
 			<div>
@@ -115,7 +307,7 @@
 											<div style="float:left;">
 												<input type="text" name="txtEmail" id="txtEmail"  value="" style="width:280px;" maxlength="50">
 											</div>
-											<div id="messEmail" style="width:140px;float:left;" class="mess"></div>
+											<div id="messEmail" style="width:140px;float:left;" class="mess"> </div>
 										<br>
 										<div>
 										<span style="font-size:10px;float:left;">Hãy điền chính xác địa chỉ email để nhận được thư kích hoạt</span>

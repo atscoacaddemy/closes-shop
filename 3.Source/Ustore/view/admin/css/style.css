@@ -320,7 +320,7 @@ form#form select {
 }
 form#form textarea {
 	width:410px;
-	height:200px;
+	height:100px;
 	padding:5px;
 	overflow:auto;
 }

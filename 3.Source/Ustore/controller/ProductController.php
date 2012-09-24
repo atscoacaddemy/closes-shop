@@ -23,9 +23,9 @@
 			$temp = mysql_fetch_array($result);
             return $temp[0];
 		 }
-		public static function Add ($Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID)
+		public static function Add ($Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
         {
-            $strSQL = "Insert into product (Name,Type,Sub_Type,Price,Description,Promotion_ID) values ( '$Name','$Type','$Sub_Type','$Price','$Description','$Promotion_ID' )";
+            $strSQL = "Insert into product (Name,Type,Sub_Type,Price,Description,Promotion_ID,Present_Type) values ( '$Name','$Type','$Sub_Type','$Price','$Description','$Promotion_ID','$Present_Type' )";
 			echo $strSQL;
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
@@ -38,9 +38,9 @@
 			DataProvider::Close ($cn);
             return $result;
         }
-		public static function Update ($ID,$Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID)
+		public static function Update ($ID,$Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
         {
-            $strSQL = "update product set Name=$Name,Type=$Type,Sub_Type=$Sub_Type,Price=$Price,Description=$Description,Promotion_ID=$Promotion_ID
+            $strSQL = "update product set Name='$Name',Type='$Type',Sub_Type='$Sub_Type',Price='$Price',Description='$Description',Promotion_ID='$Promotion_ID' ,Present_Type='$Present_Type' 
                       where ID=$ID";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
@@ -80,5 +80,53 @@
                 $return[]=$row;
 				return $return[0];
          }
+		 public static function GetProductTypes()
+		 {
+		 	$strSQL = "select * 
+                            from product_type
+                            ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+		 }
+		 public static function GetProductSubTypes()
+		 {
+			 $strSQL = "select * 
+                            from product_subtype
+                            ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+		 }
+		 public static function GetProductPresentTypes()
+		 {
+			 $strSQL = "select * 
+                            from present_type
+                            ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+		 }
+		  public static function GetProductPromotions()
+		 {
+			 $strSQL = "select * 
+                            from promotion
+                            ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+		 }
 	}
 ?>

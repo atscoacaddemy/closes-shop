@@ -9,15 +9,15 @@ class SendEmail
 		//IsSMTP(); // send via SMTP
 		$mail->SMTPAuth = true; // turn on SMTP authentication
 		//$mail->Username = "sieudanglegend@gmail.com"; // SMTP username
-		echo "<br>emailTo=".$emailTo;
-		echo "<br>type=".$type;
+		//echo "<br>emailTo=".$emailTo;
+		//echo "<br>type=".$type;
 		if($type==1)
 		{
 			//$mail->Username = "sieudangf2@yahoo.com"; // SMTP username
 			$mail->Username = "lam.hoson_uns@yahoo.com"; // SMTP username
-			$mail->Password = "ZXCasd123"; // SMTP password		
-			//$webmaster_email = "sieudangf2@yahoo.com"; //Reply to this email ID			
-			$webmaster_email = "lam.hoson_uns@yahoo.com"; //Reply to this email ID			
+			$mail->Password = "ZXCasd123"; // SMTP password
+			//$webmaster_email = "sieudangf2@yahoo.com"; //Reply to this email ID	
+			$webmaster_email = "lam.hoson_uns@yahoo.com"; //Reply to this email ID	
 		}
 		else
 		{

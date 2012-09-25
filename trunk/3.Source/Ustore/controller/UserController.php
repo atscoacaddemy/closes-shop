@@ -136,6 +136,19 @@
 				DataProvider::Close ($cn);
 				return $result;
          }
+		  public static function CheckOldPassword ($id,$password)
+         {
+				$password=md5($password);
+                $strSQL = "select * 
+                            from user
+                            where ID='$id' and password='$password' ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return[0];
+         }
 		 //end lam.hoson
 		 
 		 /*

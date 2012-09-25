@@ -22,7 +22,7 @@
 			// $path=$contextPath."skirt.php"
 			 // echo "path=".$contextPath."view/user/skirt.php?id=";
 			 // echo "rs[1]=".$result[1];
-				header("Location:".$contextPath."view/user/skirt.php?id=".$result[0]);
+				header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
 			 }
 			// else
 			// {

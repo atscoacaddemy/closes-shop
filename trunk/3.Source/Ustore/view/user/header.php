@@ -33,9 +33,9 @@
 				}
 				else{
 				?>
-				<td><label style="color:#FFFFFF;font-weight:bold" type="type">Hello <?php echo $curUser["Email"] ?></label></td>
+				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser["Email"] ?></a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/skirt.php?do=logout">Đăng xuất</a></td>
+				<td><a class="lnk" href="<?php echo $contextPath?>view/user/product-list.php?do=logout">Đăng xuất</a></td>
 				<?php }
 				?>
 				

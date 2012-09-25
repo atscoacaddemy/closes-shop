@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
  <?php  
   $contextPath="../../";
+  $productid="1";
  ?>
 	<head>
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
@@ -66,7 +67,7 @@
 					<div class="product-cell">
 						<div class="product-picture">
 							<div class="product-label-new"></div>
-							<a href="product-detail.php"> <img src="temp/002-10.png" /> </a>
+							<a href="product-detail.php?productid=<?php$productid ?>"> <img src="temp/002-10.png" /> </a>
 						</div>
 						<div>
 							<div class="product-id">

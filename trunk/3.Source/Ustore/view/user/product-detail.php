@@ -97,6 +97,17 @@
 <!-- 						<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fustore.vn&amp;width=292&amp;height=590&amp;colorscheme=light&amp;show_faces=true&amp;border_color=blue&amp;stream=true&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:590px;" allowTransparency="true"></iframe> -->
 					</div>
 				</div>
+	<?php 
+	if(isset($_REQUEST['iddichvu'])) 
+	{
+		include_once ($contextPath."../../controller/ProductController.php");
+		include_once ($contextPath."../../controller/CommentController.php");
+		if(isset($productid) && $productid !=null)
+		{
+			$product=ProductController::GetProductByID($productid);
+		}
+	}
+	?>			
 				<div >
 					<div class="product-detail-picture">
 						<div id="image_wrap" >

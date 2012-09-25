@@ -67,7 +67,7 @@
 					<div class="product-cell">
 						<div class="product-picture">
 							<div class="product-label-new"></div>
-							<a href="product-detail.php?productid=<?php$productid ?>"> <img src="temp/002-10.png" /> </a>
+							<a href="product-detail.php?productid=<?php echo $productid; ?>"> <img src="temp/002-10.png" /> </a>
 						</div>
 						<div>
 							<div class="product-id">

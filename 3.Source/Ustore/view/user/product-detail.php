@@ -136,22 +136,21 @@
 								<div class="scrollable" id="scrollable" style="border:0px; margin-top:10px;">
 									<!-- root element for the items -->
 									<div class="items">
+									
+										<?php 
+											for($i=1;$i<7;$i++)
+											{
+												//show detail image
+												if($productImage[$i] != null)
+												{ ?>
 										<div style="width:102px">
-											<a href='../../data/1_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: '../../data/1_002.jpg' "> <img src="../../data/1_002.jpg" alt = "Thumbnail 1"/></a>
+											<a href='<?php echo $contextPath.$productImage[$i];?>' class='cloud-zoom-gallery' title='Thumbnail 1' rel="useZoom: 'zoom1', smallImage: '<?php echo $contextPath.$productImage[$i];?>' "> 
+											<img src="<?php echo $contextPath.$productImage[$i];?>" alt = "Thumbnail 1"/></a>
 										</div>
-										<!--div style="width:102px">
-											<a href='../../data/2_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: '../../data/2_002.jpg' "> <img src="../../data/2_002.jpg" alt = "Thumbnail 1"/></a>
-										</div>
-										<div style="width:102px">
-											<a href='../../data/3_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: '../../data/3_002.jpg' "> <img src="../../data/3_002.jpg" alt = "Thumbnail 1"/></a>
-										</div>
-										<div style="width:102px">
-											<a href='../../data/4_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: '../../data/4_002.jpg' "> <img src="../../data/4_002.jpg" alt = "Thumbnail 1"/></a>
-										</div-->
+												<?php }
+											}
+										?>
+										
 									</div>
 								</div>
 								<!-- "next page" action -->
@@ -181,7 +180,7 @@
 					<?php 
 					for($i=7;$i<17;$i++)
 					{
-						//echo $i."=".$contextPath.$productImage[$i]."</br>";
+						//show detail image
 						if($productImage[$i] != null)
 						{
 							echo "<img src='".$contextPath.$productImage[$i]."'/></br>";
@@ -189,18 +188,6 @@
 					}
 					?>
 					
-						<!--img src="../../data/002-01.png"/>
-						<img src="../../data/002-02.png"/>
-						<img src="../../data/002-03.png"/>
-						<img src="../../data/002-04.png"/>
-						<img src="../../data/002-05.png"/>
-						<img src="../../data/002-06.png"/>
-						<img src="../../data/002-07.png"/>
-						<img src="../../data/002-08.png"/>
-						<img src="../../data/002-09.png"/>
-						<img src="../../data/002-10.png"/>
-						<img src="../../data/002-11.png"/>
-						<img src="../../data/002-12.png"/-->
 					</div>
 					<div class="comment-content">
 					<div>

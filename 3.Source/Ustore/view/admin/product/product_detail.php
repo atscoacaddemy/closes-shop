@@ -21,6 +21,7 @@
 			</fieldset>
 			
 			<div align="center">
+				<input id="button1" type="button" value="Edit image" onclick="window.location='product_index.php?action=image&proId=<?php echo $product["ID"]; ?>'"/>
 				<input id="button1" type="button" value="Back"/>			
 			</div>
 		</form>

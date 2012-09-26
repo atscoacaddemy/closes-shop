@@ -182,7 +182,7 @@ function deleteProduct()
 					ADD IMAGE
 				</legend>
 				<label for="cover_img">Cover_Img : </label>			
-				<input  name="cover_img" id="cover_img" type="file"/>
+				
 				<?php
 				for($i=1;$i<6;$i++)
 				{
@@ -206,12 +206,22 @@ function deleteProduct()
 				<br/>
 				<label for="detail_img_10">Detail_Img_10 : </label>			
 				<input  name="detail_img_10" id="detail_img_10" type="file"/>
+			
+        ?>        
 			</fieldset>
 			<div align="center">
 				<input id="button1" type="submit" value="Save" name="btnAddProduct"/>
 				<input id="button2" type="reset" />
 			</div>
 		</form>
+		<?php    
+				  require_once "../../utility/phpfileuploader/phpuploader/include_phpuploader.php" ;
+			            $uploader=new PhpUploader();    
+			            $uploader->Name="myuploader";    
+			            //Create a new file upload handler    
+			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php";    
+			            $uploader->Render();    
+        			?> 
 	</div>
 </div>
 

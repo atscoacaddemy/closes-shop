@@ -5,10 +5,12 @@
 	class ProductImageController
 	{
 		
-		public static function Add ($Cover_Img,$Preview_Img_01,$Preview_Img_02,$Preview_Img_03,$Preview_Img_04,$Preview_Img_05,$Detail_Img_01,$Detail_Img_02,$Detail_Img_03,$Detail_Img_04,$Detail_Img_05,$Detail_Img_06,$Detail_Img_07,$Detail_Img_08,$Detail_Img_09,$Detail_Img_10)
+		public static function Add ($ProID,$Cover_Img,$Preview_Img_01,$Preview_Img_02,$Preview_Img_03,$Preview_Img_04,$Preview_Img_05,$Detail_Img_01,$Detail_Img_02,$Detail_Img_03,$Detail_Img_04,$Detail_Img_05,$Detail_Img_06,$Detail_Img_07,$Detail_Img_08,$Detail_Img_09,$Detail_Img_10)
         {
-            $strSQL = "Insert into product_image (Cover_Img,Preview_Img_01,Preview_Img_02,Preview_Img_03,Preview_Img_04,Preview_Img_05,Detail_Img_01,Detail_Img_02,Detail_Img_03,Detail_Img_04,Detail_Img_05,Detail_Img_06,Detail_Img_07,Detail_Img_08,Detail_Img_09,Detail_Img_10,Delete_Flag) values ('$Cover_Img','$Preview_Img_01','$Preview_Img_02','$Preview_Img_03','$Preview_Img_04','$Preview_Img_05','$Preview_Img_06','$Preview_Img_07' ,'$Preview_Img_08' ,'$Preview_Img_09','$Preview_Img_10' ,'$Delete_Flag')";
-			echo $strSQL;
+            $strSQL = "Insert into product_image (Product_ID,Cover_Img,Preview_Img_01,Preview_Img_02,Preview_Img_03,Preview_Img_04,Preview_Img_05,
+            Detail_Img_01,Detail_Img_02,Detail_Img_03,Detail_Img_04,Detail_Img_05,Detail_Img_06,Detail_Img_07,Detail_Img_08,Detail_Img_09,Detail_Img_10,Delete_Flag)
+             values ('$ProID','$Cover_Img','$Preview_Img_01','$Preview_Img_02','$Preview_Img_03','$Preview_Img_04','$Preview_Img_05',
+             '$Detail_Img_01','$Detail_Img_02' ,'$Detail_Img_03' ,'$Detail_Img_04','$Detail_Img_05','$Detail_Img_06','$Detail_Img_07','$Detail_Img_08','$Detail_Img_09','$Detail_Img_10' ,'$Delete_Flag')";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -20,6 +22,20 @@
 			DataProvider::Close ($cn);
             return $result;
         }
+		public static function Update($ProID,$DbColumn,$value)
+		{
+			$strSQL="update product_image set ".$DbColumn."='$value' where Product_ID=$ProID";
+			$cn = DataProvider::Open ();
+			DataProvider::MoreQuery ($strSQL,$cn);
+			
+			if(mysql_affected_rows () == 0)
+				$result=false;
+			else
+				$result=true;
+				
+			DataProvider::Close ($cn);
+            return $result;
+		}
 		// public static function Update ($ID,$Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
         // {
             // $strSQL = "update product_image set Name='$Name',Type='$Type',Sub_Type='$Sub_Type',Price='$Price',Description='$Description',Promotion_ID='$Promotion_ID' ,Present_Type='$Present_Type' 

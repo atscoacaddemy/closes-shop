@@ -50,11 +50,11 @@
 			DataProvider::Close ($cn);
             return $result;
 		}
-		 public static function GetProductByID ($id)
+		 public static function GetProductByID ($product_id)
          {
                 $strSQL = "select * 
                             from product_image
-                            where ID='$id' ";
+                            where product_id='$product_id' ";
                 $result = DataProvider::Query($strSQL);
                 if(mysql_num_rows($result)==0)
                     return null;

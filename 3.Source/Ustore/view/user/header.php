@@ -1,8 +1,7 @@
 ﻿<?php
 	session_start();
-	
-$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-echo "url=".$url;
+//$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+//echo "url=".$url;
 
     $_SESSION["contextPath"] = $contextPath;
 	if(isset($_GET["do"])&& $_GET["do"]=="logout")
@@ -37,7 +36,7 @@ echo "url=".$url;
 				}
 				else{
 				?>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser["Email"] ?></a></td>
+				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser["Name"] ?></a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
 				<td><a class="lnk" href="<?php echo $contextPath?>view/user/product-list.php?do=logout">Đăng xuất</a></td>
 				<?php }

@@ -2,7 +2,7 @@
 	//xu ly dang nhap
 	if(isset($_POST["btn_Login"]))
 	{   
-		include("UserController.php");
+		include_once("UserController.php");
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
 		 // echo "user=".$email."</br>";

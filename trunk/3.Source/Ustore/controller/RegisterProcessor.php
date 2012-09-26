@@ -143,7 +143,7 @@
 		if(isset($_POST["btRegister"]))
 		{
 			//echo "register";
-			include ("UserController.php");				 
+			include_once ("UserController.php");				 
 			$password = $_POST["txtPassword"];
 			$username = $_POST["txtUsername"];
 			$phone = $_POST["txtPhone"];

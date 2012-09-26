@@ -54,7 +54,47 @@
                                         // when page loads simulate a "click" on the first image
                                 }).filter(":first").click();
                         });
-					
+			//ajax comment			
+			function checkLoginToComment()
+			{
+				//document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lơn hơn 5 kí tự!";
+				var strUsername = $("#idUser").attr("value");
+				var strTextComment = $("#txtComment").attr("value");
+				alert("strUsername="+ strUsername);
+				var change="";
+			//	strTextComment=strTextComment.replace(/ /g,"_");
+				strTextComment=strTextComment.replace(/&/g," ");
+				strTextComment=strTextComment.replace(/#/g," ");
+				strTextComment=strTextComment.replace(/\s+/g,"_");
+
+
+				
+				//alert(strTextComment.replace('&', '-'));
+				//var change=changeString(strTextComment);
+				
+			//	alert("change="+strTextComment);
+				if(strUsername != "")
+				{
+				//alert("strUsername not equal null="+ strUsername);
+					if(strTextComment != null){
+						
+						var serverURL = "checkEmail.php?txtComment=" + strTextComment;
+						//alert("strTextComment ="+ strTextComment);	
+						$("#messCommentAjax").load(serverURL);
+						
+			//	alert("again="+ strTextComment);
+					}
+					else{
+						alert("Bạn hãy điền nội dung mới comment được!")
+					}
+				}
+				else
+				{
+					alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
+				}
+				
+			}
+			
 					
                 </script>
         </head>

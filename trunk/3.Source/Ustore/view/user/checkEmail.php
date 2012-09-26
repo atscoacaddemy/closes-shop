@@ -1,6 +1,7 @@
 <?php 
 	$txtEmail = $_REQUEST["txtEmail"];
 	$txtNumberPhone = $_REQUEST["txtNumberPhone"];
+	$txtComment = $_REQUEST["txtComment"];
 	//echo "email=".$txtEmail;
 	//echo "<script>alert 'aaaa';</script>";
 	if(!empty($txtEmail))
@@ -24,6 +25,14 @@
 	if(!empty($txtNumberPhone))
 	{
 		echo "<img src='../../template/images/valid.png' alt='Hợp lệ' title='Hợp lệ' width=20 height=20>";
+	}
+	if(!empty($txtComment))
+	{
+		//$PATH_BASE = str_replace('//','/',dirname(__FILE__).'/');
+		echo " <div class='comment-item' >";
+		echo "<div style='float:right' class='comment-info'>By dinhbanhut24 04/10/2012 1:00AM</div>";
+		echo "<div style='clear: both'></div>";
+		echo "<div class='comment-detail'>".$txtComment."</div></div>";
 	}
 	
 	

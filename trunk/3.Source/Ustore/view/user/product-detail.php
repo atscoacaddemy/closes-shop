@@ -102,17 +102,16 @@
 	<?php 
 	if(isset($_REQUEST['productid']) && $_REQUEST['productid'] !=null) 
 	{
-		//$path = $contextPath."controller/LoginProcessor.php";
 		include_once ($contextPath."controller/ProductController.php");
 		include_once ($contextPath."controller/CommentController.php");
 	    include_once ($contextPath."controller/ProductImageController.php");
+	    include_once ($contextPath."controller/UserController.php");
 		$productid = $_REQUEST['productid'];
 		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
-		$productImage  =ProductImageController::GetProductByID($productid);	
+		$productImage  =ProductImageController::GetImageOfProductFromProductID($productid);
+		$productComment=CommentController::GetCommentFromProductID($productid);
 		
-		//echo "product id=".$product_detail;
-		//echo "product id=".$productImage;
-		//echo "first image=".$contextPath.$productImage[1];
+
 	}
 	else
 	{
@@ -190,43 +189,46 @@
 					
 					</div>
 					<div class="comment-content">
-					<div>
-						<a id="comment-toggle" href="javascript:;" >4 comment(s)</a>
-					</div>
-					<div id="comment" style="display: none">
-						<div id= "comment-list">
-							<div class="comment-item">
-								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
-								<div style="clear: both"></div>
-								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+						<div>
+							<a id="comment-toggle" href="javascript:;" >4 comment(s)</a>
+						</div>
+<!--start comment -->					
+						<div id="comment" style="display: none">
+							<div id= "comment-list">
+							
+							
+								<?php
+								//echo "count=".count($productComment);
+								for($i=0;$i<count($productComment);$i++)
+								{
+									if($productComment[$i] !=null)
+									{
+										echo "<div class='comment-item'>";
+										$commentUser=UserController::GetUserByID($productComment[$i][2]);
+								?>
+									
+										<div style="float:right" class="comment-info"><?php echo $commentUser[1]; $productComment[$i][4];?></div>
+										<div style="clear: both"></div>
+										<div class="comment-detail"><?php echo $productComment[$i][3];?></div>
+									
+								<?php
+										echo "</div>";
+									}
+								}
+								?>
 							</div>
-							<div class="comment-item">
-								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
-								<div style="clear: both"></div>
-								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							<div>
+								<textarea id="txtValue" rows="3" title="Write a comment" cols="80">Write a comment</textarea>
 							</div>
-							<div class="comment-item">
-								<div style="float:right" class="comment-info">By dinhbanhut24 04/10/2012 1:00AM</div>
-								<div style="clear: both"></div>
-								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
-							</div>
-							<div class="comment-item">
-								<div style="float:right" class="comment-info">dinhbanhut24 04/10/2012 1:00AM</div>
-								<div style="clear: both"></div>
-								<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div>
+							<div>
+								<a id="" href="javascript:;" >Send comment</a>
 							</div>
 						</div>
-						<div>
-							<textarea id="txtValue" rows="3" title="Write a comment" cols="60">Write a comment</textarea>
+<!--end comment -->					
 						</div>
-						<div>
-						<a id="" href="javascript:;" >Send comment</a>
-					</div>
-					</div>
+						<div style="clear: both;"></div>
 					</div>
 					<div style="clear: both;"></div>
-				</div>
-				<div style="clear: both;"></div>
 			</div>
 			 <?php include_once 'footer.php';?>
 			 <script type="text/javascript">

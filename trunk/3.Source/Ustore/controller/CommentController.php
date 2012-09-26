@@ -2,12 +2,12 @@
 	include_once("DataProvider.php");
 ?>
 <?php
-	class CommmentController
+	class CommentController
 	{
 	/*	public static function GetAll($offset,$count)
 		{
 			$strSQL = "	select * 
-						from product 				
+						from comment 				
 						limit $offset, $count";
             $result = DataProvider::Query($strSQL);
 			$return[]=null;
@@ -18,14 +18,14 @@
 		}
 		public static function Count()
 		 {
-			 $strSQL = "select count(*) from product";
+			 $strSQL = "select count(*) from comment";
             $result = DataProvider::Query($strSQL);
 			$temp = mysql_fetch_array($result);
             return $temp[0];
 		 }
 		 public static function Update ($ID,$Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
         {
-            $strSQL = "update commment set Name='$Name',Type='$Type',Sub_Type='$Sub_Type',Price='$Price',Description='$Description',Promotion_ID='$Promotion_ID' ,Present_Type='$Present_Type' 
+            $strSQL = "update comment set Name='$Name',Type='$Type',Sub_Type='$Sub_Type',Price='$Price',Description='$Description',Promotion_ID='$Promotion_ID' ,Present_Type='$Present_Type' 
                       where ID=$ID";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
@@ -41,7 +41,7 @@
 		 */
 		public static function Add ($Product_ID,$User_ID,$Detail)
         {
-            $strSQL = "Insert into commment (Name,Type,Sub_Type,Price,Description,Promotion_ID,Present_Type) values ( '$Product_ID','$User_ID','$Detail')";
+            $strSQL = "Insert into comment (Product_ID,User_ID,Detail,Create_Date) values ( '$Product_ID','$User_ID','$Detail', NOW())";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -56,7 +56,7 @@
 		
 		public static function Delete ($ID)
 		{
-			$strSQL = "update commment set Delete_Flag=1
+			$strSQL = "update comment set Delete_Flag=1
                       where ID=$ID";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
@@ -69,22 +69,23 @@
 			DataProvider::Close ($cn);
             return $result;
 		}
-		 public static function GetProductByID ($id)
-         {
+		public static function GetCommentFromProductID($product_id)
+        {
                 $strSQL = "select * 
-                            from product
-                            where ID='$id' ";
+                            from comment
+                            where Product_ID='$product_id' ";
                 $result = DataProvider::Query($strSQL);
                 if(mysql_num_rows($result)==0)
                     return null;
                 while($row= mysql_fetch_array ($result,MYSQL_BOTH))
                 $return[]=$row;
-				return $return[0];
-         }
+				return $return;
+        }
+		
 /*
          public static function getProducts($type, $subtype) {
          	$strSQL = "select *
-         	from product
+         	from comment
          	where Type=".$type;
          	if ($subtype == null) {
          		$strSQL."and Sub_Type = ". $subtype;

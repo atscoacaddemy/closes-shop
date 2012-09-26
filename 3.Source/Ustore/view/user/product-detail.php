@@ -174,6 +174,12 @@
                                                                 Còn Hàng
                                                         </div>
                                                 </div>
+												<div>
+													<span class="action-button-left"></span>						
+														<input class="submitYellow" type="submit" value="Add Giỏ Hàng" id="btAddCart" name="btAddCart" />
+														<span class="action-button-right"></span>
+												</div>
+												
                                         </div>
                                         <div style="float:left; width: 750px;">
                                                <?php //show detail image

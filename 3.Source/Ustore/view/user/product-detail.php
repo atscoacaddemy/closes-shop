@@ -104,7 +104,7 @@
 			include_once ($contextPath."controller/ProductController.php");
 			include_once ($contextPath."controller/CommentController.php");
 			include_once ($contextPath."controller/ProductImageController.php");
-			//include_once ($contextPath."controller/UserController.php");
+			include_once ($contextPath."controller/UserController.php");
 			$productid = $_REQUEST['productid'];
 			$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
 			$productImage  =ProductImageController::GetImageOfProductFromProductID($productid);
@@ -200,12 +200,12 @@
 															if($productComment[$i] !=null)
 															{
 																echo "<div class='comment-item'>";
-																// $commentUser=UserController::GetUserByID($productComment[$i][2]);
+																$commentUser=UserController::GetUserByID($productComment[$i][2]);
 														?>
 															
-																<!--div style="float:right" class="comment-info"><?php //echo $commentUser[1]; $productComment[$i][4];?></div>
+																<div style="float:right" class="comment-info"><?php echo $commentUser[1]; $productComment[$i][4];?></div>
 																<div style="clear: both"></div>
-																<div class="comment-detail"><?php //echo $productComment[$i][3];?></div-->
+																<div class="comment-detail"><?php echo $productComment[$i][3];?></div>
 															
 														<?php
 																echo "</div>";

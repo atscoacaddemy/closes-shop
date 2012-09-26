@@ -3,7 +3,7 @@
 	echo "cccccccccccccccccccccccccccccccccccccccccccc";
 	if(isset($_POST["btnSubmitChangePass"]))
 	{   
-		include("UserController.php");
+		include_once("UserController.php");
 		$id=$_POST["idUser"];
 		$oldpass=$_POST["txtOldPassword"];
 		$newpass=$_POST["txtNewPassword"];

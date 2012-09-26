@@ -121,7 +121,8 @@
                                         <div class="product-detail-picture">
 										   <div id="image_wrap" >
 												<div href='<?php echo $contextPath.$productImage[1];?>' class = "cloud-zoom" id="zoom1" rel="adjustX: 10, adjustY:-4">						
-												<img  src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;" />
+												<img  src="<?php echo $contextPath.$productImage[1];?>" title="Optional title display" width="330px" height="300px;" />
+												
 												</div>
 											</div>
 											<div id="img_scroll" style="border:0px; background: white; margin-top: 10px;">
@@ -203,7 +204,7 @@
 																$commentUser=UserController::GetUserByID($productComment[$i][2]);
 														?>
 															
-																<div style="float:right" class="comment-info"><?php echo $commentUser[1]; $productComment[$i][4];?></div>
+																<div style="float:right" class="comment-info"><?php echo $commentUser[1]; echo $productComment[$i][4]; ?></div>
 																<div style="clear: both"></div>
 																<div class="comment-detail"><?php echo $productComment[$i][3];?></div>
 															
@@ -213,14 +214,24 @@
 															}
 														}
 														?>
+														<div id="messCommentAjax" name="messCommentAjax">
+															<!--div style="float:right" class="comment-info">By dinhbanhut24 04/10/2012 1:00AM</div>
+															<div style="clear: both"></div>
+															<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div-->
+														 </div>
                                                 </div>
                                                 <div>
-                                                        <textarea id="txtValue" rows="3" title="Write a comment" cols="60">Write a comment</textarea>
-                                                </div>
-                                                <div>
-                                                <a id="" href="javascript:;" >Send comment</a>
-                                        </div>
-                                        </div>
+													<textarea id="txtComment" name="txtComment" rows="3" title="Write a comment" cols="80">Write a comment</textarea>
+												</div>
+												<div>
+														</br>
+														<span class="action-button-left"></span>						
+														<input class="submitYellow" type="button" value="Send comment" id="btSendComment" name="btSendComment" onclick="checkLoginToComment();"/>
+														<span class="action-button-right"></span>
+														<?php
+														echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
+														?>
+												</div>
                                         </div>
                                         <div style="clear: both;"></div>
                                 </div>
@@ -236,15 +247,15 @@
                                         });
                                
                                 $(document).ready(function() {
-                                        $("#txtValue").css("background-color", "#EDEDED"); //You can use some more styling.
-                                        $("#txtValue").bind("focusin", function() {
-                                                if ($("#txtValue").val() == 'Write a comment') {
-                                                        $("#txtValue").val("");
+                                        $("#txtComment").css("background-color", "#EDEDED"); //You can use some more styling.
+                                        $("#txtComment").bind("focusin", function() {
+                                                if ($("#txtComment").val() == 'Write a comment') {
+                                                        $("#txtComment").val("");
                                                 }
                                         });
-                                        $("#txtValue").bind("focusout", function() {
-                                                if ($("#txtValue").val() == '') {
-                                                        $("#txtValue").val("Write a comment");
+                                        $("#txtComment").bind("focusout", function() {
+                                                if ($("#txtComment").val() == '') {
+                                                        $("#txtComment").val("Write a comment");
                                                 }
                                         });
                                 });

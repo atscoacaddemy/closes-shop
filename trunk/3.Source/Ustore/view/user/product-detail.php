@@ -210,7 +210,7 @@
 																$commentUser=UserController::GetUserByID($productComment[$i][2]);
 														?>
 															
-																<div style="float:right" class="comment-info"><?php echo $commentUser[1]; echo $productComment[$i][4]; ?></div>
+																<div style="float:right" class="comment-info"><?php echo $commentUser[1]; echo " (".$productComment[$i][4].")"; ?></div>
 																<div style="clear: both"></div>
 																<div class="comment-detail"><?php echo $productComment[$i][3];?></div>
 															
@@ -227,7 +227,7 @@
 														 </div>
                                                 </div>
                                                 <div>
-													<textarea id="txtComment" name="txtComment" rows="3" title="Write a comment" cols="80">Write a comment</textarea>
+													<textarea id="txtComment" name="txtComment" rows="3" title="Write a comment" cols="80" class="comment-textarea">Write a comment</textarea>
 												</div>
 												<div>
 														</br>

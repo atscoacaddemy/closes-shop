@@ -2,6 +2,8 @@
 	$txtEmail = $_REQUEST["txtEmail"];
 	$txtNumberPhone = $_REQUEST["txtNumberPhone"];
 	$txtComment = $_REQUEST["txtComment"];
+	$userID = $_REQUEST["userID"];
+	$productID = $_REQUEST["productID"];
 	//echo "email=".$txtEmail;
 	//echo "<script>alert 'aaaa';</script>";
 	if(!empty($txtEmail))
@@ -26,19 +28,34 @@
 	{
 		echo "<img src='../../template/images/valid.png' alt='Hợp lệ' title='Hợp lệ' width=20 height=20>";
 	}
-	if(!empty($txtComment))
+	if(!empty($txtComment) && !empty($userID) && !empty($productID))
 	{
-		//$PATH_BASE = str_replace('//','/',dirname(__FILE__).'/');
-		
-		$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+		$PATH_BASE = str_replace('//','/',dirname(__FILE__).'/');
+		include_once ($PATH_BASE . '../../controller/CommentController.php');
+		include_once ($PATH_BASE . '../../controller/UserController.php');
 		$replace = array(' ');
 		$order   = array('_');
 		$txtComment = str_replace($order, $replace, $txtComment);
-
-		echo " <div class='comment-item' >";
-		echo "<div style='float:right' class='comment-info'>By dinhbanhut24 04/10/2012 1:00AM</div>";
-		echo "<div style='clear: both'></div>";
-		echo "<div class='comment-detail'>".$txtComment."</div></div>";
+		//echo "userID=".$userID;
+		//echo "</br>productID=".$productID;
+		
+		$commentUser=UserController::GetUserByID($userID);
+		
+		$rs = CommentController::Add($productID,$userID,$txtComment);
+		
+		if($rs != null)
+		{
+			$cm = CommentController::GetCommentByID($rs);
+			
+			echo " <div class='comment-item' >";
+			echo "<div style='float:right' class='comment-info'> By ".$commentUser[1]." (".$cm[4].")</div>";
+			echo "<div style='clear: both'></div>";
+			echo "<div class='comment-detail'>".$txtComment."</div></div>";
+		}
+		else
+		{
+			
+		}
 	}
 	
 	

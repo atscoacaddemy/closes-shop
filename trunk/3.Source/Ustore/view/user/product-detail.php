@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
+
 <?php $contextPath = "../../"?>
 	<head>
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
@@ -59,6 +60,7 @@
 	</head>
 	<body class="body" >
  <?php include_once 'header.php';?>
+
 		<div id="contain" class="contain contain box-transparent">
 			<div class="sub-menu-title">
 				<h1 style="top:20px">Túi Xách</h1>
@@ -98,24 +100,33 @@
 					</div>
 				</div>
 	<?php 
-	if(isset($_REQUEST['iddichvu'])) 
+	if(isset($_REQUEST['productid']) && $_REQUEST['productid'] !=null) 
 	{
-		include_once ($contextPath."../../controller/ProductController.php");
-		include_once ($contextPath."../../controller/CommentController.php");
-		if(isset($productid) && $productid !=null)
-		{
-			$product=ProductController::GetProductByID($productid);
-		}
+		//$path = $contextPath."controller/LoginProcessor.php";
+		include_once ($contextPath."controller/ProductController.php");
+		include_once ($contextPath."controller/CommentController.php");
+	    include_once ($contextPath."controller/ProductImageController.php");
+		$productid = $_REQUEST['productid'];
+		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
+		$productImage  =ProductImageController::GetProductByID($productid);	
+		
+		//echo "product id=".$product_detail;
+		//echo "product id=".$productImage;
+		//echo "first image=".$contextPath.$productImage[1];
+	}
+	else
+	{
+		header("Location:product-list.php");
 	}
 	?>			
 				<div >
 					<div class="product-detail-picture">
 						<div id="image_wrap" >
-							<div href='Data/1_002.jpg' class = 'cloud-zoom' id='zoom1'
-							rel="adjustX: 10, adjustY:-4">
-								<img  src="temp/cute-date-idea.jpg" alt='' title="Optional title display" width="330px" height="300px;" />
+							<div href='<?php echo $contextPath.$productImage[1];?>' class = "cloud-zoom" id="zoom1" rel="adjustX: 10, adjustY:-4">						
+								<img  src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;" />
 							</div>
 						</div>
+						
 						<div id="img_scroll" style="border:0px; background: white; margin-top: 10px;">
 							<!--scroll-->
 							<div style="margin:0 auto; width: 634px; height:100px;">
@@ -126,21 +137,21 @@
 									<!-- root element for the items -->
 									<div class="items">
 										<div style="width:102px">
-											<a href='Data/1_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: 'Data/1_002.jpg' "> <img src="Data/1_002.jpg" alt = "Thumbnail 1"/></a>
+											<a href='../../data/1_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
+											rel="useZoom: 'zoom1', smallImage: '../../data/1_002.jpg' "> <img src="../../data/1_002.jpg" alt = "Thumbnail 1"/></a>
+										</div>
+										<!--div style="width:102px">
+											<a href='../../data/2_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
+											rel="useZoom: 'zoom1', smallImage: '../../data/2_002.jpg' "> <img src="../../data/2_002.jpg" alt = "Thumbnail 1"/></a>
 										</div>
 										<div style="width:102px">
-											<a href='Data/2_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: 'Data/2_002.jpg' "> <img src="Data/2_002.jpg" alt = "Thumbnail 1"/></a>
+											<a href='../../data/3_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
+											rel="useZoom: 'zoom1', smallImage: '../../data/3_002.jpg' "> <img src="../../data/3_002.jpg" alt = "Thumbnail 1"/></a>
 										</div>
 										<div style="width:102px">
-											<a href='Data/3_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: 'Data/3_002.jpg' "> <img src="Data/3_002.jpg" alt = "Thumbnail 1"/></a>
-										</div>
-										<div style="width:102px">
-											<a href='Data/4_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
-											rel="useZoom: 'zoom1', smallImage: 'Data/4_002.jpg' "> <img src="Data/4_002.jpg" alt = "Thumbnail 1"/></a>
-										</div>
+											<a href='../../data/4_002.jpg' class='cloud-zoom-gallery' title='Thumbnail 1'
+											rel="useZoom: 'zoom1', smallImage: '../../data/4_002.jpg' "> <img src="../../data/4_002.jpg" alt = "Thumbnail 1"/></a>
+										</div-->
 									</div>
 								</div>
 								<!-- "next page" action -->
@@ -151,16 +162,14 @@
 					</div>
 					<div class="product-description" id="product-description">
 						<div class="product-title" id="product-title">
-							Váy công sở V001
+							<?php echo $product_detail[1];?>
 						</div>
 						<div>
-							Màu sắc: Đỏ, Xanh
+							<?php echo $product_detail[5];?>
 						</div>
-						<div>
-							Chất liệu: Vải ren mỏng
-						</div>
+						
 						<div  class="product-price">
-							Giá: <span>150.000</span><sup style="margin-left: 5px;">đ</sup>
+							Giá: <span><?php echo $product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
 						</div>
 						<div class="stock-status">
 							<div>
@@ -169,18 +178,29 @@
 						</div>
 					</div>
 					<div style="float:left; width: 750px;">
-						<img src="Data/002-01.png"/>
-						<img src="Data/002-02.png"/>
-						<img src="Data/002-03.png"/>
-						<img src="Data/002-04.png"/>
-						<img src="Data/002-05.png"/>
-						<img src="Data/002-06.png"/>
-						<img src="Data/002-07.png"/>
-						<img src="Data/002-08.png"/>
-						<img src="Data/002-09.png"/>
-						<img src="Data/002-10.png"/>
-						<img src="Data/002-11.png"/>
-						<img src="Data/002-12.png"/>
+					<?php 
+					for($i=7;$i<17;$i++)
+					{
+						//echo $i."=".$contextPath.$productImage[$i]."</br>";
+						if($productImage[$i] != null)
+						{
+							echo "<img src='".$contextPath.$productImage[$i]."'/></br>";
+						}
+					}
+					?>
+					
+						<!--img src="../../data/002-01.png"/>
+						<img src="../../data/002-02.png"/>
+						<img src="../../data/002-03.png"/>
+						<img src="../../data/002-04.png"/>
+						<img src="../../data/002-05.png"/>
+						<img src="../../data/002-06.png"/>
+						<img src="../../data/002-07.png"/>
+						<img src="../../data/002-08.png"/>
+						<img src="../../data/002-09.png"/>
+						<img src="../../data/002-10.png"/>
+						<img src="../../data/002-11.png"/>
+						<img src="../../data/002-12.png"/-->
 					</div>
 					<div class="comment-content">
 					<div>

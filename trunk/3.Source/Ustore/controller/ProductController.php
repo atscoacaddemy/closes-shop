@@ -72,7 +72,7 @@
          {
                 $strSQL = "select * 
                             from product
-                            where ID='$id' ";
+                            where ID='$id' and delete_flag='0' ";
                 $result = DataProvider::Query($strSQL);
                 if(mysql_num_rows($result)==0)
                     return null;

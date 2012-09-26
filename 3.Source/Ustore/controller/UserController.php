@@ -79,7 +79,7 @@
                 return mysql_fetch_row ($result,MYSQL_BOTH);
          }
 	
-		  public static function GetUserByID ($id)
+		 public static function GetUserByID ($id)
          {
                 $strSQL = "select * 
                             from user
@@ -149,6 +149,7 @@
                 $return[]=$row;
 				return $return[0];
          }
+		 
 		 //end lam.hoson
 		 
 		 /*

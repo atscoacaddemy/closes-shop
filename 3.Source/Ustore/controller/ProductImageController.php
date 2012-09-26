@@ -50,7 +50,7 @@
 			DataProvider::Close ($cn);
             return $result;
 		}
-		 public static function GetProductByID ($product_id)
+		 public static function GetImageOfProductFromProductID ($product_id)
          {
                 $strSQL = "select * 
                             from product_image

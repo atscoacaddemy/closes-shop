@@ -29,6 +29,12 @@
 	if(!empty($txtComment))
 	{
 		//$PATH_BASE = str_replace('//','/',dirname(__FILE__).'/');
+		
+		$phrase  = "You should eat fruits, vegetables, and fiber every day.";
+		$replace = array(' ');
+		$order   = array('_');
+		$txtComment = str_replace($order, $replace, $txtComment);
+
 		echo " <div class='comment-item' >";
 		echo "<div style='float:right' class='comment-info'>By dinhbanhut24 04/10/2012 1:00AM</div>";
 		echo "<div style='clear: both'></div>";

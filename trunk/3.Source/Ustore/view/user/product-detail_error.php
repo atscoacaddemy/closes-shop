@@ -145,11 +145,11 @@
 	?>			
 				<div >
 					<div class="product-detail-picture">
-						<div id="image_wrap" >
-							<div href='<?php //echo $contextPath.$productImage[1];?>' class = "cloud-zoom" id="zoom1" rel="adjustX: 10, adjustY:-4">						
-								<img  src="<?php //echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;" />
+							<div id="image_wrap" >
+								<div href='<?php //echo $contextPath.$productImage[1];?>' class = "cloud-zoom" id="zoom1" rel="adjustX: 10, adjustY:-4">						
+									<img  src="<?php //echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;" />
+								</div>
 							</div>
-						</div>
 						
 						<div id="img_scroll" style="border:0px; background: white; margin-top: 10px;">
 							<!--scroll-->
@@ -194,7 +194,7 @@
 						</div>
 						
 						<div  class="product-price">
-							Giá: <span><?php echo //$product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
+							Giá: <span><?php //echo $product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
 						</div>
 						<div class="stock-status">
 							<div>

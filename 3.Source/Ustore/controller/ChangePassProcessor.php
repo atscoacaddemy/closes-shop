@@ -1,6 +1,6 @@
 ﻿<?php
 	//xu ly dang nhap
-	echo "cccccccccccccccccccccccccccccccccccccccccccc";
+	
 	if(isset($_POST["btnSubmitChangePass"]))
 	{   
 		include_once("UserController.php");

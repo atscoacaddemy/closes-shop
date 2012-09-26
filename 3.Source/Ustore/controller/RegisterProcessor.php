@@ -122,7 +122,7 @@
 		}
 		if(isset($_POST["btnChangeInfoUser"]))
 		{
-			 include ("../../BUS/UsersBUS.php");
+			 include_once ("../../BUS/UsersBUS.php");
 			 $id = $_GET["id"];
 			 $username = $_POST["txtUsername"];
 			 $address =  $_POST["txtAddress"];

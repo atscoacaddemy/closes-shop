@@ -41,7 +41,7 @@
 		 */
 		public static function Add ($Product_ID,$User_ID,$Detail)
         {
-            $strSQL = "Insert into comment (Product_ID,User_ID,Detail,Create_Date) values ( '$Product_ID','$User_ID','$Detail', NOW())";
+            $strSQL = "Insert into comment (Product_ID, User_ID, Detail, Create_Date, Delete_Flag) values ( '$Product_ID','$User_ID', '$Detail', NOW(), '0')";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -53,7 +53,31 @@
 			DataProvider::Close ($cn);
             return $result;
         }
-		
+		public static function GetCommentFromProductID($product_id)
+        {
+                $strSQL = "select * 
+                            from comment
+                            where Product_ID='$product_id' ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+        }
+		public static function GetCommentByID($id)
+        {
+                $strSQL = "select * 
+                            from comment
+                            where ID='$id' ";
+                $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return[0];
+        }
+		 
 		public static function Delete ($ID)
 		{
 			$strSQL = "update comment set Delete_Flag=1
@@ -69,18 +93,7 @@
 			DataProvider::Close ($cn);
             return $result;
 		}
-		public static function GetCommentFromProductID($product_id)
-        {
-                $strSQL = "select * 
-                            from comment
-                            where Product_ID='$product_id' ";
-                $result = DataProvider::Query($strSQL);
-                if(mysql_num_rows($result)==0)
-                    return null;
-                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
-                $return[]=$row;
-				return $return;
-        }
+		
 		
 /*
          public static function getProducts($type, $subtype) {

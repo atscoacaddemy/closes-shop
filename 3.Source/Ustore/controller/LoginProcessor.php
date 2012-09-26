@@ -19,6 +19,8 @@
 			 // echo "role=".$result[5];
 			 if ($result[5] == 1) 
 			 {
+				$contextPath =$_SESSION["contextPath"];
+				echo "contextPath=".$contextPath;
 			// $path=$contextPath."skirt.php"
 			 // echo "path=".$contextPath."view/user/skirt.php?id=";
 			 // echo "rs[1]=".$result[1];

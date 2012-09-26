@@ -1,5 +1,9 @@
 ﻿<?php
 	session_start();
+	
+$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+echo "url=".$url;
+
     $_SESSION["contextPath"] = $contextPath;
 	if(isset($_GET["do"])&& $_GET["do"]=="logout")
 	{
@@ -26,7 +30,7 @@
 				if ($curUser == null)
 				{
 				?>
-				<td><a class="lnk"  onclick="return press_DangNhap();" href="#">Đăng Nhập</a></td>
+				<td><a class="lnk"  onclick="return press_DangNhap();" href="">Đăng Nhập</a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
 				<td><a class="lnk" href="<?php echo $contextPath?>view/user/register.php">Đăng Ký</a></td>
 				<?php

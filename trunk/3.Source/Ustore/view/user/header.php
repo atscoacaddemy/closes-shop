@@ -1,14 +1,34 @@
 ﻿<?php
 	session_start();
-//$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-//echo "url=".$url;
+	$_SESSION["contextPath"] = $contextPath;
+	include_once ($contextPath."controller/config.php");
+	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	// echo "url=".$url;
+	echo "</br>nameFolder=".$nameFolder;
 
-    $_SESSION["contextPath"] = $contextPath;
+	$removeLogOut ="?do=logout";
+	$posLogOut = strpos($url,"logout");
+	$pos = strpos($url,$nameFolder);
+	$question=strpos($url,"?");
+	if($posLogOut > 1)
+	{
+		echo "</br>posLogout=".$posLogOut;
+		$strUrl = substr($url,$pos+7,strlen($url) - 10- ($pos+7)); 
+	}
+	else
+	{
+		$strUrl = substr($url,$pos+7); 
+	}
+//echo "</br>subString=".$strUrl;
+	$_SESSION["strUrl"] = $strUrl;
+
 	if(isset($_GET["do"])&& $_GET["do"]=="logout")
 	{
         unset($_SESSION["curUser"]);
-		$curUser=null;	
+		$curUser=null;
+		header("Location:".$contextPath.$strUrl);
 	}
+
 	$curUser=$_SESSION["curUser"];
 	
 	//echo "flag_register=".isset($_SESSION["register"]);
@@ -38,8 +58,14 @@
 				?>
 				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser["Name"] ?></a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/product-list.php?do=logout">Đăng xuất</a></td>
-				<?php }
+				<?php if( $question >1) { ?>
+				<td><a class="lnk" href="<?php echo $contextPath.$strUrl?>&do=logout">Đăng xuất</a></td>
+				<?php 
+					  }
+					  else{
+						echo "<td><a class='lnk' href='".$contextPath.$strUrl."?do=logout'>Đăng xuất</a></td>";
+					  }
+				}
 				?>
 				
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>

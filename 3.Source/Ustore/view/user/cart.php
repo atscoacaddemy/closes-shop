@@ -73,14 +73,118 @@
 
 	}
 	$productidx = $_POST["productidx"];
-	echo "productidx=".$productidx;
+	//echo "productidx=".$productidx;
 	?>                    
 <div >
+	
+<div style="width: 686px; padding-top:20px;float:left;">
+	<div style="margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;"> Giỏ Hàng Của Bạn </div>
+	
 	<div class="product-detail-picture">
 		
+	<div style="width: 686px; padding-top:20px;float:left;">	
+	
+		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
+		<div class="mid_content" id="loadAjax" name="loadAjax">	
+			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
+			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#8BC5F4;'>
+				   <td style='border-right:solid 1px #D3D3D3; padding:4px;' align='center'>Hình Ảnh</td>
+				   <td style='border-right:solid 1px #D3D3D3; padding:4px;'>Mô Tả</td>
+				   <td style='border-right:solid 1px #D3D3D3; padding:4px;width:65px;'>Loại Hình</td>
+				   <td style='border-right:solid 1px #D3D3D3; padding:4px;width:65px;'>Cập Nhật</td>
+				   <td style='padding:4px;' align='center'>Giá</td>
+			   </tr>
+			  
+				
+				<tr style="background-color: rgb(239, 239, 239);">
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
+						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
+					</td>
+				
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
+							Vị trí: xxxxxx<br>
+							Diện tích: <br>
+							Số phòng ngủ:XX<br>
+							Tầng: xxx<br><br>
+					</td>
+					
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
+					
+					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<img src='../images/vip.gif'/></br>3/2/2010
+					</td>
+					
+					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
+				</tr>
+				<tr style="background-color: rgb(255, 255, 255);">
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
+						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
+					</td>
+				
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
+							Vị trí: xxxxxx<br>
+							Diện tích: <br>
+							Số phòng ngủ:XX<br>
+							Tầng: xxx<br><br>
+					</td>
+					
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
+					
+					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<img src='../images/vip.gif'/></br>3/2/2010
+					</td>
+					
+					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
+				</tr>
+				<tr style="background-color: rgb(239, 239, 239);">
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
+						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
+					</td>
+				
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
+							Vị trí: xxxxxx<br>
+							Diện tích: <br>
+							Số phòng ngủ:XX<br>
+							Tầng: xxx<br><br>
+					</td>
+					
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
+					
+					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
+						<img src='../images/vip.gif'/></br>3/2/2010
+					</td>
+					
+					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
+				</tr>
 		
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td align="center" colspan="3">
+						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
+							<span class="action-button-left"></span>						
+							<input class="submitYellow" type="submit" value="Đặt hàng" id="btnDatHang" name="btnDatHang" onclick="checkLoginToComment();"/>
+							<span class="action-button-right"></span>
+						</h3>
+					</td>
+				</tr>
+				
+				<tr>
+					<td></td>
+				</tr>
+			</table>
+		</div>
+	</div>	
 		
+        <script>
+		$("table[id='tblist'] tr:odd").css('background-color', '#EFEFEF');
+		</script>
 		
 	
 <!--start comment -->	
@@ -94,10 +198,7 @@
 				
 					</br>
 					<div>
-						<span class="action-button-left"></span>						
-						<input class="submitYellow" type="submit" value="Đặt hàng" id="btnDatHang" name="btnDatHang" 
-						onclick="checkLoginToComment();"/>
-						<span class="action-button-right"></span>
+						
 <?php
 	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";

@@ -37,20 +37,75 @@
 		$order   = array('_');
 		$txtComment = str_replace($order, $replace, $txtComment);
 		//echo "userID=".$userID;
-		//echo "</br>productID=".$productID;
+		echo "</br>productID=".$productID;
 		
 		$commentUser=UserController::GetUserByID($userID);
 		
 		$rs = CommentController::Add($productID,$userID,$txtComment);
-		
+		$productComment=CommentController::GetCommentFromProductID($productID);
+		echo "count=".count($productComment);
 		if($rs != null)
 		{
-			$cm = CommentController::GetCommentByID($rs);
+		
+		echo "<label type='text' value=''>Phần đánh giá sản phẩm của các bạn</label>";
+			echo "<div><a id='comment-toggle' href='javascript:;' >".count($productComment)." comment(s)</a></div>";
+			echo "<div id='comment' style='display:visible'>";
+				echo "<div id= 'comment-list'>";
+					
+					echo "count=".count($productComment);
+					
+					for($i=0;$i<count($productComment);$i++)
+					{
+						if($productComment[$i] !=null)
+						{
+							echo "<div class='comment-item'>";
+							$commentUser=UserController::GetUserByID($productComment[$i][2]);
+								echo "<div style='float:right' class='comment-info'>";
+									echo $commentUser[1];
+									echo "(".$productComment[$i][4].")";
+								echo "</div>";
+								echo "<div style='clear: both'></div>";
+								echo "<div class='comment-detail'>";
+									echo $productComment[$i][3];
+								echo "</div>";
+							echo "</div>";			
+						}
+					}
+				echo "</div>";
 			
-			echo " <div class='comment-item' >";
-			echo "<div style='float:right' class='comment-info'> By ".$commentUser[1]." (".$cm[4].")</div>";
-			echo "<div style='clear: both'></div>";
-			echo "<div class='comment-detail'>".$txtComment."</div></div>";
+				echo "<div>";
+echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
+				echo "</div>";
+			echo "</div>";
+			echo "<script type='text/javascript'>
+								$(document).ready(function() {
+                                        $('#txtComment').css('background-color', '#EDEDED'); 
+                                        $('#txtComment').bind('focusin', function() {
+                                                if ($('#txtComment').val() == 'Write a comment') {
+                                                        $('#txtComment').val('');
+                                                }
+                                        });
+                                        $('#txtComment').bind('focusout', function() {
+										
+                                                if ($('#txtComment').val() == '') {
+                                                        $('#txtComment').val('Write a comment');
+                                                }
+                                        });
+                                });
+								
+								$('#nav').spasticNav();
+                                $('#comment-toggle').click(function() {
+                                          $('#comment').toggle('slow', function() {
+                                            // Animation complete.
+                                          });
+                                        });
+			</script>";
+			// $cm = CommentController::GetCommentByID($rs);
+			
+			// echo " <div class='comment-item' >";
+			// echo "<div style='float:right' class='comment-info'> By ".$commentUser[1]." (".$cm[4].")</div>";
+			// echo "<div style='clear: both'></div>";
+			// echo "<div class='comment-detail'>".$txtComment."</div></div>";
 		}
 		else
 		{

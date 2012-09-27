@@ -152,10 +152,7 @@
 <div >
 	<div class="product-detail-picture">
 		<div id="image_wrap" >
-			<!--div href='Data/1_002.jpg' class = 'cloud-zoom' id='zoom1'rel="adjustX: 10, adjustY:-4">
-				<img  src="temp/cute-date-idea.jpg" alt='' title="Optional title display" width="330px" height="300px;" />
-			</div-->
-			
+	
 			<div href='<?php echo $contextPath.$productImage[1];?>' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">		
 				<img src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;"/>
 			</div>
@@ -227,15 +224,16 @@
 			}
 			?>
 		</div>
-		<div class="comment-content">
-			<lable type="text" value="">Phần đánh giá sản phẩm của các bạn</lable>
-			<div>
-					<a id="comment-toggle" href="javascript:;" >4 comment(s)</a>
-			</div>
-			<div id="comment" style="display: none">
 	<!--start comment -->	
-				<div id= "comment-list">
+		<div class="comment-content" >
+		<div id="messCommentAjax" name="messCommentAjax">
+		<!--begin ajax for div messCommentAjax -->
 					<?php 
+					echo "<label type='text' class='suggest_comment' value=''>Phần đánh giá sản phẩm của các bạn</label>";
+					echo "<div><a id='comment-toggle' href='javascript:;' >".count($productComment)." comment(s)</a></div>";
+					echo "<div id='comment' style='display: none'>";
+					echo "<div id= 'comment-list'>";
+					
 					echo "count=".count($productComment);
 					
 					for($i=0;$i<count($productComment);$i++)
@@ -244,30 +242,35 @@
 						{
 							echo "<div class='comment-item'>";
 							$commentUser=UserController::GetUserByID($productComment[$i][2]);
-					?>
-						
-							<div style="float:right" class="comment-info"><?php echo $commentUser[1];echo "(".$productComment[$i][4].")";?></div>
-							<div style="clear: both"></div>
-							<div class="comment-detail"><?php echo $productComment[$i][3];?></div>	
-					<?php
+								echo "<div style='float:right' class='comment-info'>";
+									echo $commentUser[1];
+									echo "(".$productComment[$i][4].")";
+								echo "</div>";
+								echo "<div style='clear: both'></div>";
+								echo "<div class='comment-detail'>";
+									echo $productComment[$i][3];
+								echo "</div>";
 							echo "</div>";			
 						}
 					}
+				echo "</div>";
+			
+				echo "<div>";
+echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
+				echo "</div>";
+			echo "</div>";
 					?>
-					<div id="messCommentAjax" name="messCommentAjax">
-						<!--div style="float:right" class="comment-info">By dinhbanhut24 04/10/2012 1:00AM</div>
-						<div style="clear: both"></div>
-						<div class="comment-detail">Con ku kfdfadfdsfafsdasdfasdfasdfafdu</div-->
-					</div>				
-					</div>
+				<!--text area -->
+		<!--end ajax for div messCommentAjax -->
+		</div>
+
 <!--end comment -->				
-					<div>
-						<textarea id="txtComment" rows="3" title="Write a comment" cols="85" class="comment-textarea">Write a comment</textarea>
-					</div>
+				
 					</br>
 					<div>
 						<span class="action-button-left"></span>						
-						<input class="submitYellow" type="button" value="Send comment" id="btSendComment" name="btSendComment" onclick="checkLoginToComment();"/>
+						<input class="submitYellow" type="button" value="Send comment" id="btSendComment" name="btSendComment" 
+						onclick="checkLoginToComment();"/>
 						<span class="action-button-right"></span>
 <?php
 	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
@@ -280,6 +283,7 @@
 				</div>
 				<div style="clear: both;"></div>
 			</div>
+			
                          <?php include_once 'footer.php';?>
                          <script type="text/javascript">
                                 $('#nav').spasticNav();
@@ -290,13 +294,14 @@
                                         });
                                
                                 $(document).ready(function() {
-                                        $("#txtComment").css("background-color", "#EDEDED"); //You can use some more styling.
+                                        $("#txtComment").css("background-color", "#EDEDED"); 
                                         $("#txtComment").bind("focusin", function() {
                                                 if ($("#txtComment").val() == 'Write a comment') {
                                                         $("#txtComment").val("");
                                                 }
                                         });
                                         $("#txtComment").bind("focusout", function() {
+										
                                                 if ($("#txtComment").val() == '') {
                                                         $("#txtComment").val("Write a comment");
                                                 }

@@ -10,7 +10,7 @@ function addProduct()
 		 var promotion_id = $("#promotion_id").val();
 		 var present_type = $("#present_type").val();
 		 var price = $("#price").val();
-		 alert(name+"_"+description+"_"+type+"_"+present_type);
+		 //alert(name+"_"+description+"_"+type+"_"+present_type);
 		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
 		$("#lightbox, #info-panel").fadeIn(300);
 		
@@ -19,6 +19,7 @@ function closePopupEdit() {
   $("#lightbox, #lightbox-panel, #info-panel").fadeOut(300);
   window.location.reload(true);
 }
+</script>
 <div id="wrapper">
 <div id="content">
 <div id="box">
@@ -107,4 +108,6 @@ function closePopupEdit() {
 		</form>
 	</div>
 	</div>
+	<div class="lightbox" id="lightbox"> </div><!-- /lightbox -->
+	<div class="lightbox-panel" id="info-panel"></div>
 </div>

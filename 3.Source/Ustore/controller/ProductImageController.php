@@ -8,9 +8,9 @@
 		public static function Add ($ProID,$Cover_Img,$Preview_Img_01,$Preview_Img_02,$Preview_Img_03,$Preview_Img_04,$Preview_Img_05,$Detail_Img_01,$Detail_Img_02,$Detail_Img_03,$Detail_Img_04,$Detail_Img_05,$Detail_Img_06,$Detail_Img_07,$Detail_Img_08,$Detail_Img_09,$Detail_Img_10)
         {
             $strSQL = "Insert into product_image (Product_ID,Cover_Img,Preview_Img_01,Preview_Img_02,Preview_Img_03,Preview_Img_04,Preview_Img_05,
-            Detail_Img_01,Detail_Img_02,Detail_Img_03,Detail_Img_04,Detail_Img_05,Detail_Img_06,Detail_Img_07,Detail_Img_08,Detail_Img_09,Detail_Img_10,Delete_Flag)
+            Detail_Img_01,Detail_Img_02,Detail_Img_03,Detail_Img_04,Detail_Img_05,Detail_Img_06,Detail_Img_07,Detail_Img_08,Detail_Img_09,Detail_Img_10)
              values ('$ProID','$Cover_Img','$Preview_Img_01','$Preview_Img_02','$Preview_Img_03','$Preview_Img_04','$Preview_Img_05',
-             '$Detail_Img_01','$Detail_Img_02' ,'$Detail_Img_03' ,'$Detail_Img_04','$Detail_Img_05','$Detail_Img_06','$Detail_Img_07','$Detail_Img_08','$Detail_Img_09','$Detail_Img_10' ,'$Delete_Flag')";
+             '$Detail_Img_01','$Detail_Img_02' ,'$Detail_Img_03' ,'$Detail_Img_04','$Detail_Img_05','$Detail_Img_06','$Detail_Img_07','$Detail_Img_08','$Detail_Img_09','$Detail_Img_10')";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			

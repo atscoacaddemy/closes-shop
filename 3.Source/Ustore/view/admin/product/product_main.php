@@ -1,9 +1,17 @@
 <!-- user content -->
 <script type="text/javascript">
-function showPopupEdit(userId)
+function addProduct()
 	{		
-		 $("#lightbox, #lightbox-panel").fadeIn(300);
-		$("#lightbox-panel").load("action/action_user.php?action=showPopupEdit",{'userId':userId});
+		 var name = $("#name").val();
+		 var description = $("#description").val();
+		 var type = $("#type").val();
+		 var sub_type = $("#sub_type").val();
+		 var promotion_id = $("#promotion_id").val();
+		 var present_type = $("#present_type").val();
+		 var price = $("#price").val();
+		 alert(name+"_"+description+"_"+type+"_"+present_type);
+		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
+		$("#lightbox, #info-panel").fadeIn(300);
 		
 	}
 function closePopupEdit() {
@@ -177,93 +185,16 @@ function deleteProduct()
 				
 
 			</fieldset>
-			<fieldset id="personal">
-				<legend>
-					ADD IMAGE
-				</legend>
-				<label for="cover_img">Cover_Img : </label>			
-				
-				<?php
-				for($i=1;$i<6;$i++)
-				{
-				?>
-				<br/>
-				<label for="preview_img_0<?php echo $i; ?>">Preview_Img_0<?php echo $i; ?> : </label>			
-				<input  name="preview_img_0<?php echo $i; ?>" id="preview_img_0<?php echo $i; ?>" type="file"/>
-				<?php
-				}
-				?>
-				<?php
-				for($i=1;$i<10;$i++)
-				{
-				?>
-				<br/>
-				<label for="detail_img_0<?php echo $i; ?>">Detail_Img_0<?php echo $i; ?> : </label>			
-				<input  name="detail_img_01" id="detail_img_0<?php echo $i; ?>" type="file"/>
-				<?php
-				}
-				?>
-				<br/>
-				<label for="detail_img_10">Detail_Img_10 : </label>			
-				<input  name="detail_img_10" id="detail_img_10" type="file"/>
-			
-        ?>        
-			</fieldset>
+		
 			<div align="center">
-				<input id="button1" type="submit" value="Save" name="btnAddProduct"/>
+				<input id="button1" type="button" value="Save" name="btnAddProduct" onclick="addProduct();"/>
 				<input id="button2" type="reset" />
 			</div>
 		</form>
-		<?php    
-				  require_once "../../utility/phpfileuploader/phpuploader/include_phpuploader.php" ;
-			            $uploader=new PhpUploader();    
-			            $uploader->Name="myuploader";    
-			            //Create a new file upload handler    
-			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php";    
-			            $uploader->Render();    
-        			?> 
+	
 	</div>
 </div>
 
-<div id="lightbox-panel" class="lightbox-panel">
-    <form id="form" action="..." method="post">
-			<fieldset id="personal">
-				<legend>
-					EDIT USER
-				</legend>
-				<label for="email">Email : </label>
-				<input name="email" id="emailEdit" type="text" tabindex="1" />
-				<br />
-				<label for="phone">Phone : </label>
-				<input name="phone" id="phoneEdit" type="text"
-				tabindex="2" />
-				<br />
-				<label for="role">Role : </label>
-				<input name="role" id="roleEdit" type="text"
-				tabindex="2" />
-				<br />
-				<p>
-					Send auto generated password
-					<input name="generatepass" id="yes" type="checkbox"
-					value="yes" tabindex="35" />
-				</p>
-				<label for="pass">Password : </label>
-				<input name="pass" id="passEdit" type="password"
-				tabindex="2" />
-				<br />
-				<label for="pass-2">Password Re: </label>
-				<input name="pass-2" id="pass-2" type="password"
-				tabindex="2" />
-				<br />
-			</fieldset>
-			
-			
-			<div align="center">
-				<input id="button1" type="button" value="Save" onclick="updateUser();"/>
-				<input  type="button" id="close-panel" value="Close"/>
-			</div>
-		</form>
-</div><!-- /lightbox-panel -->
 
 <div class="lightbox" id="lightbox"> </div><!-- /lightbox -->
 <!-- Confirm Messagebox -->
@@ -287,4 +218,5 @@ function deleteProduct()
 <!-- -->
 <!-- Confirm Messagebox -->
 <div class="lightbox-panel" id="info-panel"></div>
+
 </div>

@@ -1,8 +1,10 @@
 <?php
-if(isset($_POST["btnAddProduct"]))
+include_once ("../utils/product_util.php");
+include_once("../../../controller/ProductController.php");
+include_once("../../../controller/ProductImageController.php");
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="addNew")
 {
-	include_once("../../../controller/ProductController.php");
-	include_once("../../../controller/ProductImageController.php");
+	
 		$name=$_REQUEST["name"];
 		$type=$_REQUEST["type"];
 		$sub_type=$_REQUEST["sub_type"];
@@ -16,22 +18,11 @@ if(isset($_POST["btnAddProduct"]))
 		{
 			//create empty product image
 			ProductImageController::Add($result,"","","","","","","","","","","","","","","","");
-			header("Location:../product_index.php?action=image&proId=$result");
+			//header("Location:../product_index.php?action=image&proId=$result");
+			echo ProductUtil::createMessageBox("ADD PRODUCT","Add completed!");
 		}
 					
 		
-}
-else if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="showPopupEdit")
-{
-	include_once("../../../controller/ProductController.php");
-	$id=$_REQUEST["userId"];
-	$result = ProductController::GetProductByID($id);
-		if($result)
-		{
-			require_once ("../utils/user_util.php");
-			echo UserUtil::createFormEdit($result);
-		}
-			
 }
 else if(isset($_POST["btnUpdateProduct"]))
 {

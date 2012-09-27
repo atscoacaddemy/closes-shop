@@ -4,7 +4,7 @@
 	include_once ($contextPath."controller/config.php");
 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	// echo "url=".$url;
-	echo "</br>nameFolder=".$nameFolder;
+//	echo "</br>nameFolder=".$nameFolder;
 
 	$removeLogOut ="?do=logout";
 	$posLogOut = strpos($url,"logout");

@@ -37,22 +37,22 @@
 		$order   = array('_');
 		$txtComment = str_replace($order, $replace, $txtComment);
 		//echo "userID=".$userID;
-		echo "</br>productID=".$productID;
+		//echo "</br>productID=".$productID;
 		
 		$commentUser=UserController::GetUserByID($userID);
 		
 		$rs = CommentController::Add($productID,$userID,$txtComment);
 		$productComment=CommentController::GetCommentFromProductID($productID);
-		echo "count=".count($productComment);
+		//echo "count=".count($productComment);
 		if($rs != null)
 		{
 		
-		echo "<label type='text' value=''>Phần đánh giá sản phẩm của các bạn</label>";
+		echo "<label type='text' value=''>Phần đánh giá sản phẩm của các bạn</label></br>";
 			echo "<div><a id='comment-toggle' href='javascript:;' >".count($productComment)." comment(s)</a></div>";
 			echo "<div id='comment' style='display:visible'>";
 				echo "<div id= 'comment-list'>";
 					
-					echo "count=".count($productComment);
+					//echo "count=".count($productComment);
 					
 					for($i=0;$i<count($productComment);$i++)
 					{

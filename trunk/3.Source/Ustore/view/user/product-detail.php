@@ -233,12 +233,12 @@
 		<div id="messCommentAjax" name="messCommentAjax">
 		<!--begin ajax for div messCommentAjax -->
 					<?php 
-					echo "<label type='text' class='suggest_comment' value=''>Phần đánh giá sản phẩm của các bạn</label>";
+					echo "<label type='text' class='suggest_comment' value=''>Phần đánh giá sản phẩm của các bạn</label></br>";
 					echo "<div><a id='comment-toggle' href='javascript:;' >".count($productComment)." comment(s)</a></div>";
 					echo "<div id='comment' style='display: none'>";
 					echo "<div id= 'comment-list'>";
 					
-					echo "count=".count($productComment);
+					//echo "count=".count($productComment);
 					
 					for($i=0;$i<count($productComment);$i++)
 					{

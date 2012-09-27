@@ -83,7 +83,8 @@
 		}
 		else
 		{
-			alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
+			press_LoginToComment();
+		//alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
 		}
 		
 	}

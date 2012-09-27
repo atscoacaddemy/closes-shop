@@ -62,8 +62,7 @@
                     </form>
                     <?php
                         //xu ly dang nhap
-                      //  $kq=QuanBUS::GetAllQuan();
-					  $path = $contextPath."controller/LoginProcessor.php";
+                      $path = $contextPath."controller/LoginProcessor.php";
 					 // echo "XXXXXXXXXXXXXX=".$path;
                       include_once($path);
                      // include_once("controller/LoginProcessor.php");
@@ -109,6 +108,18 @@
             document.getElementById("txtUsernameLogin").focus();
 			//$("#messRegister").attr("innerHTML","Đăng ký thành công.Mời bạn đăng nhập!");
 			document.getElementById('messRegister').innerHTML="Đăng ký thành công.Mời bạn đăng nhập!";
+			$("#messRegister").css("color","blue");
+			
+            return false;
+        }
+		function press_LoginToComment()
+        {
+            document.getElementById("popup").style.visibility = "visible";
+            document.getElementById("txtUsernameLogin").value = "";
+            document.getElementById("txtPasswordLogin").value = "";
+            document.getElementById("txtUsernameLogin").focus();
+			//$("#messRegister").attr("innerHTML","Đăng ký thành công.Mời bạn đăng nhập!");
+			document.getElementById('messRegister').innerHTML="Hãy đăng nhập để comment sản phẩm này!";
 			$("#messRegister").css("color","blue");
 			
             return false;

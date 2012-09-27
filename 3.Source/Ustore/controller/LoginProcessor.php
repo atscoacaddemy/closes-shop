@@ -20,11 +20,15 @@
 			 if ($result[5] == 1) 
 			 {
 				$contextPath =$_SESSION["contextPath"];
+				$strUrl =$_SESSION["strUrl"];
 				echo "contextPath=".$contextPath;
 			// $path=$contextPath."skirt.php"
 			 // echo "path=".$contextPath."view/user/skirt.php?id=";
 			 // echo "rs[1]=".$result[1];
-				header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
+			 
+			  echo "</br>url=".$strUrl;
+			  header("Location:".$contextPath.$strUrl);
+				//header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
 			 }
 			// else
 			// {

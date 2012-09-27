@@ -56,7 +56,7 @@
 				}
 				else{
 				?>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser["Name"] ?></a></td>
+				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser[1] ?></a></td>
 				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
 				<?php if( $question >1) { ?>
 				<td><a class="lnk" href="<?php echo $contextPath.$strUrl?>&do=logout">Đăng xuất</a></td>

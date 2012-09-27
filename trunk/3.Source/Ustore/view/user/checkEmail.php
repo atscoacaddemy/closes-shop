@@ -100,12 +100,7 @@ echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a commen
                                           });
                                         });
 			</script>";
-			// $cm = CommentController::GetCommentByID($rs);
 			
-			// echo " <div class='comment-item' >";
-			// echo "<div style='float:right' class='comment-info'> By ".$commentUser[1]." (".$cm[4].")</div>";
-			// echo "<div style='clear: both'></div>";
-			// echo "<div class='comment-detail'>".$txtComment."</div></div>";
 		}
 		else
 		{

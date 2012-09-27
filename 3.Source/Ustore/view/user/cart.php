@@ -15,80 +15,7 @@
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui.js"></script>
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 <script type="text/javascript">
-	$(function() 
-	{
-			$(".scrollable").scrollable();
-
-			$(".items img").click(function() {
-					// see if same thumb is being clicked
-					if($(this).hasClass("active")) {
-							return;
-					}
-
-					// calclulate large image's URL based on the thumbnail URL (flickr specific)
-					var url = $(this).attr("src").replace("_t", "");
-
-					// get handle to element that wraps the image and make it semi-transparent
-					var wrap = $("#image_wrap").fadeTo("medium", 0.5);
-
-					// the large image from www.flickr.com
-					var img = new Image();
-
-					// call this function after it's loaded
-					img.onload = function() {
-
-							// make wrapper fully visible
-							wrap.fadeTo("fast", 1);
-
-							// change the image
-							wrap.find("img").attr("src", url);
-
-							wrap.find("a").attr("href", url);
-					};
-					// begin loading the image from www.flickr.com
-					img.src = url;
-
-					// activate item
-					$(".items img").removeClass("active");
-					$(this).addClass("active");
-
-					// when page loads simulate a "click" on the first image
-			}).filter(":first").click();
-	});
-	function checkLoginToComment()
-	{
-		document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lơn hơn 5 kí tự!";
-		var strUsername = $("#idUser").attr("value");
-		var strProductID = $("#txtProductID").attr("value");
-		var strTextComment = $("#txtComment").attr("value");
-                var change="";
-	//	strTextComment=strTextComment.replace(/ /g,"_");
-		strTextComment=strTextComment.replace(/&/g," ");
-		strTextComment=strTextComment.replace(/#/g," ");
-		strTextComment=strTextComment.replace(/'/g," ");
-		strTextComment=strTextComment.replace(/"/g," ");
-		strTextComment=strTextComment.replace(/=/g," ");
-		strTextComment=strTextComment.replace(/\s+/g,"_");
-		
-		if(strUsername != "")
-		{
-			if(strTextComment != null){
-				//document.getElementById('messCommentAjax').innerHTML="";
-				var serverURL = "checkEmail.php?txtComment=" + strTextComment +"&userID="+strUsername+"&productID="+strProductID;
-				$("#messCommentAjax").load(serverURL);
-			}
-			else{
-				alert("Bạn hãy điền nội dung mới comment được!")
-			}
-		}
-		else
-		{
-			press_LoginToComment();
-		//alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
-		}
-		
-	}
-
+	
 </script>
         </head>
         <body class="body" >
@@ -145,135 +72,30 @@
 		
 
 	}
-	else
-	{
-		header("Location:product-list.php");
-	}
+	$productidx = $_POST["productidx"];
+	echo "productidx=".$productidx;
 	?>                    
 <div >
 	<div class="product-detail-picture">
-		<div id="image_wrap" >
-	
-			<div href='<?php echo $contextPath.$productImage[1];?>' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">		
-				<img src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;"/>
-			</div>
-		</div>
-		<div id="img_scroll" style="border:0px; background: white; margin-top: 10px;">
-			<!--scroll-->
-			<div style="margin:0 auto; width: 634px; height:100px;">
-				<!-- "previous page" action -->
-				<a class="prev browse left"></a>
-				<!-- root element for scrollable -->
-				<div class="scrollable" id="scrollable" style="border:0px; margin-top:10px;">
-					<!-- root element for the items -->
-					<div class="items">
-					
-						<?php //show detail image
-							for($i=1;$i<7;$i++)
-							{
-								if($productImage[$i] != null)
-								{ 
-						?>
-								<div style="width:102px">
-									<a href='<?php echo $contextPath.$productImage[$i];?>' class='cloud-zoom-gallery' title='Thumbnail 1' 
-									rel="useZoom: 'zoom1', smallImage: '<?php echo $contextPath.$productImage[$i];?>' "> 
-									<img src="<?php echo $contextPath.$productImage[$i];?>" alt = "Thumbnail 1"/></a>
-								</div>
-						<?php
-								}
-							}
-						?>							
-					</div>
-				</div>
-				<!-- "next page" action -->
-				<a class="next browse right"></a>
-			</div>
-				<!--end scroll-->
-		</div>
-		</div>
-	 <form action="cart.php?productidx=<?php echo $productid; ?>" method="POST" id="form">
-
-			<div class="product-description" id="product-description">
-				<div class="product-title" id="product-title">
-					<?php echo $product_detail[1];?>
-				</div>
-				<div>
-					<?php echo $product_detail[5];?>
-				</div>
-				
-				<div  class="product-price">
-					Giá: <span><?php echo $product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
-				</div>
-				<div class="stock-status">
-					<div>
-						Còn Hàng
-					</div>
-				</div>
-				<div>
-					<span class="action-button-left"></span>						
-					<input class="submitYellow" type="submit" value="Add to Cart" id="btAddToCard" name="btAddToCard" />
-					<span class="action-button-right"></span>
-				</div>
-			</div>
-		</form>
 		
-		<div style="float:left; width: 750px;">
-			<?php //show detail image
-			for($i=7;$i<17;$i++)
-			{
-				if($productImage[$i] != null)
-				{
-					echo "<img src='".$contextPath.$productImage[$i]."'/></br>";
-				}
-			}
-			?>
-		</div>
-	<!--start comment -->	
-		<div class="comment-content" >
-		<div id="messCommentAjax" name="messCommentAjax">
-		<!--begin ajax for div messCommentAjax -->
-					<?php 
-					echo "<label type='text' class='suggest_comment' value=''>Phần đánh giá sản phẩm của các bạn</label>";
-					echo "<div><a id='comment-toggle' href='javascript:;' >".count($productComment)." comment(s)</a></div>";
-					echo "<div id='comment' style='display: none'>";
-					echo "<div id= 'comment-list'>";
+		
+		
+		
+		
+	
+<!--start comment -->	
+					<div class="comment-content" >
 					
-					echo "count=".count($productComment);
+							
 					
-					for($i=0;$i<count($productComment);$i++)
-					{
-						if($productComment[$i] !=null)
-						{
-							echo "<div class='comment-item'>";
-							$commentUser=UserController::GetUserByID($productComment[$i][2]);
-								echo "<div style='float:right' class='comment-info'>";
-									echo $commentUser[1];
-									echo "(".$productComment[$i][4].")";
-								echo "</div>";
-								echo "<div style='clear: both'></div>";
-								echo "<div class='comment-detail'>";
-									echo $productComment[$i][3];
-								echo "</div>";
-							echo "</div>";			
-						}
-					}
-				echo "</div>";
-			
-				echo "<div>";
-echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
-				echo "</div>";
-			echo "</div>";
-					?>
-				<!--text area -->
-		<!--end ajax for div messCommentAjax -->
-		</div>
+					</div>
 
 <!--end comment -->				
 				
 					</br>
 					<div>
 						<span class="action-button-left"></span>						
-						<input class="submitYellow" type="button" value="Send comment" id="btSendComment" name="btSendComment" 
+						<input class="submitYellow" type="submit" value="Đặt hàng" id="btnDatHang" name="btnDatHang" 
 						onclick="checkLoginToComment();"/>
 						<span class="action-button-right"></span>
 <?php
@@ -281,7 +103,7 @@ echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a commen
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 ?>
 					</div>
-					</div>
+	</div>
 					</div>
 						<div style="clear: both;"></div>
 				</div>

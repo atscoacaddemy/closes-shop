@@ -9,7 +9,7 @@ function addProduct()
 		 var promotion_id = $("#promotion_id").val();
 		 var present_type = $("#present_type").val();
 		 var price = $("#price").val();
-		 alert(name+"_"+description+"_"+type+"_"+present_type);
+		 //alert(name+"_"+description+"_"+type+"_"+present_type);
 		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
 		$("#lightbox, #info-panel").fadeIn(300);
 		

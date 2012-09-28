@@ -198,7 +198,7 @@
 					<?php echo $product_detail[1];?>
 				</div>
 				<div>
-					<?php echo $product_detail[6];?>
+					<?php echo $product_detail[5];?>
 				</div>
 				
 				<div  class="product-price">

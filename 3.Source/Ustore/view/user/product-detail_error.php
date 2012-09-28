@@ -296,3 +296,40 @@
 			</script>
 	</body>
 </html>
+<?php
+$a=array("Dog","Cat");
+array_push($a,"Horse","Bird");
+print_r($a);
+?> 
+The output of the code above will be:
+Array ( [0] => Dog [1] => Cat [2] => Horse [3] => Bird ) 
+
+ <?php 
+ session_start(); 
+ 
+ // makes an array 
+ $colors=array('red', 'yellow', 'blue'); 
+ // adds it to our session 
+ $_SESSION['color']=$colors; 
+ $_SESSION['size']='small'; 
+ $_SESSION['shape']='round'; 
+ print "Done";
+ ?> 
+
+Now let's run this on mypage2.php to show our new information:
+
+ <?php 
+ session_start(); 
+ Print_r ($_SESSION);
+ echo "<p>";
+
+ //echo a single entry from the array
+ echo $_SESSION['color'][2];
+ ?> 
+ 
+ expire time use cookie
+ http://www.w3schools.com/php/php_cookies.asp
+ http://www.w3schools.com/php/php_ref_array.asp
+ array_push and array_pop
+ 
+ http://www.paulalady.com/Cart.aspx

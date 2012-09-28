@@ -67,6 +67,7 @@
 		include_once ($contextPath."controller/CommentController.php");
 	    include_once ($contextPath."controller/UserController.php");
 	    include_once ($contextPath."utility/Utils.php");
+	    include_once ("checkEmail.php");
 		
 		$productid = $_REQUEST['productid'];
 		//echo "</br>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
@@ -136,8 +137,8 @@
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:65px;">Thành Tiền</td>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:5px;">Xóa</td>				   
 			   </tr>
-<div id="messCommentAjax" name="messCommentAjax">
-<!--begin ajax for div messCommentAjax -->			  
+<div id="messDeleteCartAjax" name="messDeleteCartAjax">
+<!--begin ajax for div messDeleteCartAjax -->			  
 			<?php
 			if(count($_SESSION['cart']) > 0)
 			{		
@@ -159,28 +160,23 @@
 						echo "<tr style='background-color: rgb(255, 255, 255);'>";
 					}
 					
+					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'>
+						  <a href='' ><img  src='".$contextPath.$productImage[1]."' width='80px' /></a>
+						  </td>";
+				
+					echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
+						  <a href=''><b style='color:blue;'>". $product_detail[0]."</b></a>
+						  </td>";
+					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
+					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>1</td>";
+					echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
+					echo     "<input type='image' src='".$contextPath."data/delete.png'' name='image' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
+					echo "</td>";
+					echo "</tr>";
 				?>
-				
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align="center"><!-- Image-->
-						<a href='' ><img  src='<?php echo $contextPath.$productImage[1];?>' width='80px' /></a>
-					</td>
-				
-					<td  align="center" style='border-right:solid 1px #D3D3D3; padding:4px;' width="20px"><!-- ProductID-->
-						<a href=''><b style='color:blue;'><?php echo $product_detail[0];?></b></a>
-					</td>
 					
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'><?php echo $product_detail[1];?></td><!-- Product Name-->
-					
-					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width="10px" >1</td><!-- Quantity-->
-						<!--input type="text" width="10px" id="txtQuantity" name="txtQuantity" value="1"/-->
-					
-					
-					<td style='border-right:solid 1px #D3D3D3;padding:4px;'><?php echo Utils::convert_Money($product_detail[4]);?>(VND)</td><!-- Money-->
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'><?php echo Utils::convert_Money($product_detail[4]); ?>(VND)</td><!-- Money-->
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align="center"><!-- Delete-->
-						<input type="image" src="<?php echo $contextPath."data/delete.png";?>" name="image" width="15px" height="15px" onclick="DeleteCart();"/>
-					</td>
-				</tr>
 				<?php
 				}
 				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;' style='background-color: rgb(246,237,206);'>";
@@ -190,14 +186,9 @@
 					echo "<td></td>";
 				echo "</tr>";
 			}
-			else
-			{
-				//echo "<tr style='background-color: rgb(255, 255, 255);'><td>Hiện tại chưa có sản phẩm nào trong giỏ hàng của bạn!</td>";
-				
-				//echo "</tr>";
-			}
+			
 			?>  
-<!--end ajax for div messCommentAjax -->
+<!--end ajax for div messDeleteCartAjax -->
 </div>
 		
 				<tr>
@@ -241,7 +232,8 @@
 					<div>
 						
 <?php
-	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
+   // echo "<br>coutsesioon=".count($_SESSION['cart']);
+	echo "<input name='idSessionCart' id='idSessionCart' type='text' style='width:300px;display:none;' value='".$_SESSION['cart']."'>";
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 ?>
 					</div>
@@ -275,6 +267,18 @@
                                                 }
                                         });
                                 });
+								function DeleteCart(productDeleteID)
+								{
+									alert("delete="+productDeleteID);
+									var idSessionCart = new Array();
+									idSessionCart = $("#idSessionCart").attr("value");
+									if(productDeleteID != "")
+									{
+									alert("xxxxxxxxx="+<?php echo count($_SESSION['cart']);?>);
+										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
+										$("#messDeleteCartAjax").load(serverURL);
+									}
+								}
                         </script>
         </body>
 </html>

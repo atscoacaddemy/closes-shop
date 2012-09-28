@@ -4,8 +4,81 @@
 	$txtComment = $_REQUEST["txtComment"];
 	$userID = $_REQUEST["userID"];
 	$productID = $_REQUEST["productID"];
+	$productdeleteid = $_REQUEST["productdeleteid"];
+	$idSessionCart = $_REQUEST["idSessionCart"];
 	//echo "email=".$txtEmail;
 	//echo "<script>alert 'aaaa';</script>";
+
+	if(!empty($productdeleteid) && $productdeleteid>0)
+	{
+	
+	
+			echo "ssssssssssss=".count($_SESSION['cart']);
+	for($i=0;$i<count($_SESSION['cart']);$i++)
+		echo "</br>i=".$_SESSION['cart'][$i];
+		if(count($_SESSION['cart']) > 0)
+		{		
+			include_once ($contextPath."controller/ProductController.php");
+			include_once ($contextPath."controller/ProductImageController.php");
+			
+			//delet id from session['cart']
+			
+			//$flag = true;
+			for($i=0;$i<count($_SESSION['cart']);$i++)
+			{
+				if($_SESSION['cart'][$i] == $productid)
+				{
+					array_pop($_SESSION['cart'],$productid);
+					//$flag = false;
+					break;
+				}
+			}
+				
+			
+				
+			$totalmoney = 0;
+			for($i=0;$i<count($_SESSION['cart']);$i++)
+			{
+				//echo "</br>cart[".$i."]=".$_SESSION['cart'][$i];
+				$product_detail=ProductController::GetProductByID($_SESSION['cart'][$i]);
+				$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION['cart'][$i]);
+				$totalmoney +=$product_detail[4];
+				if($i % 2 == 0)
+				{
+					echo "<tr style='background-color: rgb(239, 239, 239);'>";
+				}
+				else
+				{
+					echo "<tr style='background-color: rgb(255, 255, 255);'>";
+				}
+				
+				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'>
+					  <a href='' ><img  src='".$contextPath.$productImage[1]."' width='80px' /></a>
+					  </td>";
+			
+				echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
+					  <a href=''><b style='color:blue;'>". $product_detail[0]."</b></a>
+					  </td>";
+				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
+				echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>1</td>";
+				echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
+				echo     "<input type='image' src='".$contextPath."data/delete.png'' name='image' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
+				echo "</td>";
+				echo "</tr>";
+			?>
+				
+			<?php
+			}
+			echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;' style='background-color: rgb(246,237,206);'>";
+				echo "<td style='padding:4px;' align='center' >Tổng tiền: </td>";
+				echo "<td></td><td></td><td></td><td></td>";
+				echo "<td>".Utils::convert_Money($totalmoney)."(VND)</td>";
+				echo "<td></td>";
+			echo "</tr>";
+		}
+	}
 	if(!empty($txtEmail))
 	{
 		$PATH_BASE = str_replace('//','/',dirname(__FILE__).'/');

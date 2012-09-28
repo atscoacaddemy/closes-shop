@@ -1,6 +1,25 @@
 <?php
 class Utils
 {
+	public static function convert_Money($money)
+	{
+		$money =(string) $money;
+		$first = "";
+		$second = "";
+		$dem =0;
+		for($i=strlen($money)-1;$i >= 0;$i--)
+		{
+			if($dem % 3 == 0 && $dem != 0)
+				$first.=",";
+			$first.=$money[$i];
+			$dem++;
+		}
+		for($i=strlen($first)-1;$i >= 0;$i--)
+		{
+			$second.=$first[$i];
+		}
+		return $second;
+	}
     public static function convert_time($time)
     {
     	$arrDate = explode ("-", $time);

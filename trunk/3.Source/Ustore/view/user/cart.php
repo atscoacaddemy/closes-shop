@@ -59,114 +59,155 @@
                                         </div>
                                 </div>
        	<?php 
-	if(isset($_REQUEST['productid']) && $_REQUEST['productid'] !=null) 
+		
+	if(isset($_REQUEST['productid']) && $_REQUEST['productid'] !=null)
 	{
 		include_once ($contextPath."controller/ProductController.php");
-		include_once ($contextPath."controller/CommentController.php");
 	    include_once ($contextPath."controller/ProductImageController.php");
+		include_once ($contextPath."controller/CommentController.php");
 	    include_once ($contextPath."controller/UserController.php");
+	    include_once ($contextPath."utility/Utils.php");
+		
 		$productid = $_REQUEST['productid'];
+		//echo "</br>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
+		
+		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
+		//echo "</br>product_detail=".$product_detail;
+	
+		if($product_detail != null)
+		{
+			if(!isset($_SESSION['cart']) && count($_SESSION['cart']) == 0 && $productid > 0)
+			{
+				$cart=array($productid);
+				$_SESSION['cart']=$cart;
+	
+			}
+			else
+			{
+				if( $productid > 0 )
+				{
+					$flag = true;
+					for($i=0;$i<count($_SESSION['cart']);$i++)
+					{
+						if($_SESSION['cart'][$i] == $productid)
+						{
+							$flag = false;
+							break;
+						}
+					}
+					if(isset($flag) && $flag == true){
+						array_push( $_SESSION['cart'],$productid);
+					}
+				}
+			}
+			//array_push( $_SESSION['cart'],$productid);
+			//echo "</br>count=".count($_SESSION['cart']);
+
+		}
+			
 		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
 		$productImage  =ProductImageController::GetImageOfProductFromProductID($productid);
 		$productComment=CommentController::GetCommentFromProductID($productid);
 		
 
 	}
-	$productidx = $_POST["productidx"];
+	//$productid = $_POST["productid"];
 	//echo "productidx=".$productidx;
 	?>                    
 <div >
 	
-<div style="width: 686px; padding-top:20px;float:left;">
+<div style="width: 686px; padding-top:5px;float:left;">
 	<div style="margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;"> Giỏ Hàng Của Bạn </div>
 	
 	<div class="product-detail-picture">
 		
-	<div style="width: 686px; padding-top:20px;float:left;">	
+	<div style="width: 686px; padding-top:5px;float:left;">	
 	
 		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
 		<div class="mid_content" id="loadAjax" name="loadAjax">	
 			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
-			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#8BC5F4;'>
-				   <td style='border-right:solid 1px #D3D3D3; padding:4px;' align='center'>Hình Ảnh</td>
-				   <td style='border-right:solid 1px #D3D3D3; padding:4px;'>Mô Tả</td>
-				   <td style='border-right:solid 1px #D3D3D3; padding:4px;width:65px;'>Loại Hình</td>
-				   <td style='border-right:solid 1px #D3D3D3; padding:4px;width:65px;'>Cập Nhật</td>
-				   <td style='padding:4px;' align='center'>Giá</td>
+			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#D3658A;'>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:35px;" align='center'>Hình Ảnh</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:25px;">Mã SP</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:60px;">Tên SP</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:10px;">Số Lượng</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:25px;" align='center'>Đơn Giá</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:65px;">Thành Tiền</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:5px;">Xóa</td>				   
 			   </tr>
-			  
+<div id="messCommentAjax" name="messCommentAjax">
+<!--begin ajax for div messCommentAjax -->			  
+			<?php
+			if(count($_SESSION['cart']) > 0)
+			{		
+				include_once ($contextPath."controller/ProductController.php");
+				include_once ($contextPath."controller/ProductImageController.php");
+				$totalmoney = 0;
+				for($i=0;$i<count($_SESSION['cart']);$i++)
+				{
+					//echo "</br>cart[".$i."]=".$_SESSION['cart'][$i];
+					$product_detail=ProductController::GetProductByID($_SESSION['cart'][$i]);
+					$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION['cart'][$i]);
+					$totalmoney +=$product_detail[4];
+					if($i % 2 == 0)
+					{
+						echo "<tr style='background-color: rgb(239, 239, 239);'>";
+					}
+					else
+					{
+						echo "<tr style='background-color: rgb(255, 255, 255);'>";
+					}
+					
+				?>
 				
-				<tr style="background-color: rgb(239, 239, 239);">
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
-						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align="center"><!-- Image-->
+						<a href='' ><img  src='<?php echo $contextPath.$productImage[1];?>' width='80px' /></a>
 					</td>
 				
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
-							Vị trí: xxxxxx<br>
-							Diện tích: <br>
-							Số phòng ngủ:XX<br>
-							Tầng: xxx<br><br>
+					<td  align="center" style='border-right:solid 1px #D3D3D3; padding:4px;' width="20px"><!-- ProductID-->
+						<a href=''><b style='color:blue;'><?php echo $product_detail[0];?></b></a>
 					</td>
 					
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'><?php echo $product_detail[1];?></td><!-- Product Name-->
 					
-					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<img src='../images/vip.gif'/></br>3/2/2010
+					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width="10px" >1</td><!-- Quantity-->
+						<!--input type="text" width="10px" id="txtQuantity" name="txtQuantity" value="1"/-->
+					
+					
+					<td style='border-right:solid 1px #D3D3D3;padding:4px;'><?php echo Utils::convert_Money($product_detail[4]);?>(VND)</td><!-- Money-->
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;'><?php echo Utils::convert_Money($product_detail[4]); ?>(VND)</td><!-- Money-->
+					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align="center"><!-- Delete-->
+						<input type="image" src="<?php echo $contextPath."data/delete.png";?>" name="image" width="15px" height="15px" onclick="DeleteCart();"/>
 					</td>
-					
-					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
 				</tr>
-				<tr style="background-color: rgb(255, 255, 255);">
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
-						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
-					</td>
+				<?php
+				}
+				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;' style='background-color: rgb(246,237,206);'>";
+					echo "<td style='padding:4px;' align='center' >Tổng tiền: </td>";
+					echo "<td></td><td></td><td></td><td></td>";
+					echo "<td>".Utils::convert_Money($totalmoney)."(VND)</td>";
+					echo "<td></td>";
+				echo "</tr>";
+			}
+			else
+			{
+				//echo "<tr style='background-color: rgb(255, 255, 255);'><td>Hiện tại chưa có sản phẩm nào trong giỏ hàng của bạn!</td>";
 				
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
-							Vị trí: xxxxxx<br>
-							Diện tích: <br>
-							Số phòng ngủ:XX<br>
-							Tầng: xxx<br><br>
-					</td>
-					
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
-					
-					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<img src='../images/vip.gif'/></br>3/2/2010
-					</td>
-					
-					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
-				</tr>
-				<tr style="background-color: rgb(239, 239, 239);">
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='150px'>
-						<a href=''><img src='../images/upload/minhhoa/minhhoa.png' width='150px' /></a>
-					</td>
-				
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<a href=''><b style='color:blue;'>tIEU DE</b></a><br>
-							Vị trí: xxxxxx<br>
-							Diện tích: <br>
-							Số phòng ngủ:XX<br>
-							Tầng: xxx<br><br>
-					</td>
-					
-					<td style='border-right:solid 1px #D3D3D3; padding:4px;'>Bán căn hộ the everich Q11 gia rẻ vào ở ngay</td>
-					
-					<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;'>
-						<img src='../images/vip.gif'/></br>3/2/2010
-					</td>
-					
-					<td style='padding:4px;'>ZZZZZZZZZZZZZ<br>ZZZZZZZZZZ</td>
-				</tr>
+				//echo "</tr>";
+			}
+			?>  
+<!--end ajax for div messCommentAjax -->
+</div>
 		
 				<tr>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
+					<td></td>
 					<td align="center" colspan="3">
+					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class="action-button-left"></span>						
 							<input class="submitYellow" type="submit" value="Đặt hàng" id="btnDatHang" name="btnDatHang" onclick="checkLoginToComment();"/>

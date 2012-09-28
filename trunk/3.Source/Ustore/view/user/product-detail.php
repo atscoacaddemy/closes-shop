@@ -191,7 +191,7 @@
 				<!--end scroll-->
 		</div>
 		</div>
-	 <form action="cart.php?productidx=<?php echo $productid; ?>" method="POST" id="form">
+	 <form action="cart.php?productid=<?php echo $productid; ?>" method="POST" id="form">
 
 			<div class="product-description" id="product-description">
 				<div class="product-title" id="product-title">
@@ -204,18 +204,35 @@
 				<div  class="product-price">
 					Giá: <span><?php echo $product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
 				</div>
-				<div class="stock-status">
-					<div>
-						Còn Hàng
+				<?php 
+				if($product_detail[7] > 0)
+				{
+				?>
+					<div class="stock-status">
+						<div>
+							Còn Hàng
+						</div>
 					</div>
-				</div>
+				<?php 
+				}
+				else
+				{
+				?>
+					<div class="stock-status">
+						<div>
+							Hết Hàng
+						</div>
+					</div>
+				<?php
+				}
+				?>
 				<div>
 					<span class="action-button-left"></span>						
 					<input class="submitYellow" type="submit" value="Add to Cart" id="btAddToCard" name="btAddToCard" />
 					<span class="action-button-right"></span>
 				</div>
 			</div>
-		</form>
+	</form>
 		
 		<div style="float:left; width: 750px;">
 			<?php //show detail image
@@ -260,7 +277,7 @@
 				echo "</div>";
 			
 				echo "<div>";
-echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
+				echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
 				echo "</div>";
 			echo "</div>";
 					?>

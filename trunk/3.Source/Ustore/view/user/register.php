@@ -331,7 +331,7 @@
 						<td style="padding: 10px;" valign="top">
 							<div style="width: 686px;">
 								<div style="margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;
-									font-weight: bold; color:#890C29; text-transform:uppercase;">
+									font-weight: bold; color:#D3658A; text-transform:uppercase;">
 									Đăng Ký Thành Viên</div>
 								<hr style="color: rgb(211, 232, 248);" width="680" size="1">	
 							<div style="padding:20px;" id="frmRegister" name="frmRegister">

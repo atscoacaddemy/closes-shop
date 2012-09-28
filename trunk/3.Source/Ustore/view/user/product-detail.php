@@ -57,7 +57,7 @@
 	});
 	function checkLoginToComment()
 	{
-		document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lơn hơn 5 kí tự!";
+		document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lớn hơn 5 kí tự!";
 		var strUsername = $("#idUser").attr("value");
 		var strProductID = $("#txtProductID").attr("value");
 		var strTextComment = $("#txtComment").attr("value");

@@ -10,23 +10,26 @@
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/menu.css"  media="screen">
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/main.css"  media="screen"/>
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery.min.js"></script>
-		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui.js"></script>
+		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui-1.8.23.custom.min.js"></script>
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 	</head>
 	<script type="text/javascript">
 		function doFilter(type) {
-			$('#action').val('filter');
+			$('#subtype').val(type);
 			$('#form').submit();
 		}
 	</script>
 	<body class="body">
  <?php include_once 'header.php';?>
  <?php
- require_once ("../../controller/ProductController.php");
- $type = 1;
- $subtypes=ProductController::getProductSubType($type);
- ?>
- <form action="../../controller/ProductAction.php" method="post" id="form">
+ require_once ("../../controller//ProductController.php");
+$type = 1;
+$subtypeList=ProductController::getProductSubType($type);
+$subtype = $_GET['subtype'];
+$productList = null;
+$productList = ProductController::getProducts($type, $subtype);
+?>
+ <form action="product-list.php" method="get" id="form">
  <input type="hidden" id="action" name="action"/>
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
@@ -35,11 +38,12 @@
 			</div>
 			<div class="left-menu">
 				<div class="sub-menu">
-					<div>
+					<div  onclick="doFilter()">
 						Tất cả sản phẩm
 					</div>
-				<?php foreach ($subtypes as $subtype) {?>
-					<div onclick="doFilter(<?php echo $subtype['Type_ID']?>)">
+				<?php foreach ($subtypeList as $subtype) {?>
+					
+					<div onclick="doFilter(<?php echo $subtype['ID']?>)">
 						<?php echo $subtype["Name"]?>
 					</div>
 					<?php }?>
@@ -64,6 +68,8 @@
 					</div>
 				</div>
 				<div >
+				<?php if (!empty($productList) && $productList != null ) {?>
+					<?php foreach ($productList as $product) {?>
 					<div class="product-cell">
 						<div class="product-picture">
 							<div class="product-label-new"></div>
@@ -71,16 +77,21 @@
 						</div>
 						<div>
 							<div class="product-id">
-								Vay Cong So V001
+								<?php echo $product['Name']?>
 							</div>
 							<div  class="product-price">
-								150.000<sup style="margin-left: 5px;">đ</sup>
+								<?php echo $product['Price']?><sup style="margin-left: 5px;">đ</sup>
 							</div>
 						</div>
 						<div class="cart-button">
 							Add to cart
 						</div>
 					</div>
+					
+				<?php } ?>
+				<?php } else { ?>
+				<div style="font-size: 14px;">Chua co san pham nao</div>
+				<?php } ?>
 				</div>
 				<div style="clear: both;"></div>
 			</div>

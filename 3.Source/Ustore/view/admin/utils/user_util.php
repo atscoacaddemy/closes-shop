@@ -99,5 +99,46 @@ public static function createFormInfo($user)
 		</form>';
 		return $str;
 	}
+public static function createSearchResult($users)
+{
+	$str = "";
+	$str.='<div id="box">';
+	$str.='	<h3>Users</h3>';
+	$str.='	<table width="100%">';
+	$str.='		<thead>';
+	$str.='			<tr>';
+	$str.='				<th width="40px"><a href="#">ID<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>';					
+	$str.='				<th><a href="#">Name</a></th>';
+	$str.='				<th><a href="#">Password</a></th>';
+	$str.='				<th width="90px"><a href="#">Phone</a></th>';
+	$str.='				<th><a href="#">Email</a></th>';
+	$str.='				<th width="90px"><a href="#">Created Date</a></th>';
+	$str.='				<th width="60px"><a href="#">Action</a></th>';
+	$str.='			</tr>';
+	$str.='		</thead>';
+	$str.='		<tbody>';
+
+		
+			if($users!=null)
+				foreach ($users as $user) {
+	
+	$str.='				<tr>';
+	$str.='				<td class="a-center">'.$user["ID"].'</td>';
+	$str.='				<td><a href="#">'.$user["Name"].'</a></td>';
+	$str.='				<td>'.$user["Password"].'</td>';
+	$str.='				<td>'.$user["Phone"].'</td>';
+	$str.='				<td><a href="#">'.$user["Email"].'</a></td>';
+	$str.='				<td>'.$user["Create_Date"].'</td>';
+	$str.='				<td><a href="#" onclick="showPopupInfo('.$user["ID"].')"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit('.$user["ID"].');" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete('.$user["ID"].');"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>';
+	$str.='				</tr>';
+					
+				}
+	$str.='	</tbody>';
+	$str.='	</table>';
+	
+			
+	$str.='	</div>';
+	return $str;
+}
 }
 ?>

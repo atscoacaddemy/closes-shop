@@ -2,15 +2,16 @@
 if(isset($_POST["btnAddUser"]))
 {   	
 		include_once("../../../controller/UserController.php");
+		$name=$_POST["name"];
 		$email=$_POST["email"];
 		$pass=$_POST["pass"];
 		$pass=md5($pass);
 		$phone=$_POST["phone"];
 		$role=$_POST["role"];
 		
-		$result = UserController::Add($pass, $email,$phone,$role);
+		$result = UserController::AddUser($name,$pass, $email,$phone,$role);
 		if($result)
-			header("Location:../user_index.php?id=".$result['id']);
+			header("Location:../user_index.php?id=".$result);
 }
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="showPopupEdit")
 {
@@ -69,6 +70,28 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="delete" )
 	else
 	{
 		echo UserUtil::createMessageBox("Delete does not complete!");
+	}
+
+	}
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search" )
+	{
+	require_once("../../../controller/UserController.php");
+	require_once ("../utils/user_util.php");
+	$name=$_REQUEST["name"];
+	$mail=$_REQUEST["email"];
+	$strSQL="select * from user where 1=1 ";
+	if(strlen($name)>0)
+		$strSQL.=" and Name LIKE '%$name%' ";
+	if(strlen($mail))
+		$strSQL.=" and Email LIKE '%$mail%' ";
+	$result = UserController::getAllBySql($strSQL);
+	if($result)
+	{
+	echo UserUtil::createSearchResult($result);
+	}
+	else
+	{
+		echo UserUtil::createSearchResult($result);
 	}
 
 	}

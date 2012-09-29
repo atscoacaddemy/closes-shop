@@ -16,10 +16,10 @@
 				<a href="#" class="group">User groups</a>
 			</li>
 			<li>
-				<a href="#" class="search">Find user</a>
+				<a href="?action=search" class="search">Find user</a>
 			</li>
 			<li>
-				<a href="#" class="online">Users online</a>
+				<a href="?action=search" class="online">Users online</a>
 			</li>
 		</ul>
 	</div>

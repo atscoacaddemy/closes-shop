@@ -6,21 +6,7 @@
 <?php
 	class UserController
 	{
-    	public static function Add ($password, $email,$phone,$role)
-        {
-            $strSQL = "Insert into user (Password,Phone,Email,Role,Create_Date) values ( '$password','$phone', '$email','$role', NOW() )";
-			$cn = DataProvider::Open ();
-			DataProvider::MoreQuery ($strSQL,$cn);
-			
-			if(mysql_affected_rows () == 0)
-				$result=false;
-			else
-				$result=mysql_insert_id ();
-				
-			DataProvider::Close ($cn);
-            return $result;
-        }
-		public static function AddUser ($name,$password, $email,$phone,$role)
+    	public static function AddUser ($name,$password, $email,$phone,$role)
         {
 			$password = trim($password);
 			$password = md5 ($password);
@@ -151,7 +137,15 @@
                 $return[]=$row;
 				return $return[0];
          }
-		 
+		 public static function getAllBySql($strSQL)
+		 {
+		 	 $result = DataProvider::Query($strSQL);
+                if(mysql_num_rows($result)==0)
+                    return null;
+                while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+                $return[]=$row;
+				return $return;
+		 }
 		 //end lam.hoson
 		 
 		 /*

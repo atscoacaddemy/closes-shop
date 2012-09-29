@@ -36,9 +36,8 @@ function deleteUser()
 }
 </script>
 <?php
+	include ("../../controller/config.php");
 	require_once("../../utility/Utils.php");
-	$maxItems = 1;
-	$maxPages = 5;
 	$curPage = "";
 	if (isset($_GET["page"]))
 		$curPage = (int) $_GET["page"];
@@ -53,10 +52,10 @@ function deleteUser()
 			<thead>
 				<tr>
 					<th width="40px"><a href="#">ID<img src="img/icons/arrow_down_mini.gif" width="16" height="16" align="absmiddle" /></a></th>					
-					<th><a href="#">Email</a></th>
+					<th><a href="#">Name</a></th>					
 					<th><a href="#">Password</a></th>
 					<th width="90px"><a href="#">Phone</a></th>
-					<th width="50px"><a href="#">Role</a></th>
+					<th><a href="#">Email</a></th>
 					<th width="90px"><a href="#">Created Date</a></th>
 					<th width="60px"><a href="#">Action</a></th>
 				</tr>
@@ -71,10 +70,10 @@ function deleteUser()
 					?>
 					<tr>
 					<td class="a-center"><?php echo $user["ID"]; ?></td>
-					<td><a href="#"><?php echo $user["Email"] ;?></a></td>
+					<td><?php echo $user["Name"] ;?></td>					
 					<td><?php echo $user["Password"] ;?></td>
 					<td><?php echo $user["Phone"] ;?></td>
-					<td><?php echo $user["Role"] ;?></td>
+					<td><a href="#"><?php echo $user["Email"] ;?></a></td>
 					<td><?php echo$user["Create_Date"] ;?></td>
 					<td><a href="#" onclick="showPopupInfo(<?php echo $user["ID"]; ?>)"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit(<?php echo $user["ID"]; ?>);" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $user["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
 					</tr>
@@ -118,6 +117,9 @@ function deleteUser()
 				<legend>
 					ADD NEW
 				</legend>
+				<label for="name">Name : </label>
+				<input name="name" id="name" type="text" tabindex="1" />
+				<br />
 				<label for="email">Email : </label>
 				<input name="email" id="email" type="text" tabindex="1" />
 				<br />
@@ -161,58 +163,7 @@ function deleteUser()
 				tabindex="2" />
 				<br />
 			</fieldset>
-			<!--
-			<fieldset id="address">
-							<legend>
-								Address
-							</legend>
-							<label for="street">Street address : </label>
-							<input name="street" id="street" type="text"
-							tabindex="1" />
-							<br />
-							<label for="city">City : </label>
-							<input name="city" id="city" type="text"
-							tabindex="2" />
-							<br />
-							<label for="country">Country : </label>
-							<input name="country" id="country" type="text"
-							tabindex="1" />
-							<br />
-							<label for="state">State/Province : </label>
-							<input name="state" id="state" type="text"
-							tabindex="2" />
-							<br />
-							<label for="zip">Zip/Postal Code : </label>
-							<input name="zip" id="zip" type="text"
-							tabindex="2" />
-							<br />
-							<label for="tel">Telephone : </label>
-							<input name="tel" id="tel" type="text"
-							tabindex="2" />
-						</fieldset>
-						<fieldset id="opt">
-							<legend>
-								OPTIONS
-							</legend>
-							<label for="choice">Group : </label>
-							<select name="choice">
-								<option selected="selected" label="none" value="none"> General </option>
-								<optgroup label="Group 1">
-									<option label="cg1a" value="val_1a">Selection group 1a </option>
-									<option label="cg1b" value="val_1b">Selection group 1b </option>
-									<option label="cg1c" value="val_1c">Selection group 1c </option>
-								</optgroup>
-								<optgroup label="Group 2">
-									<option label="cg2a" value="val_2a">Selection group 2a </option>
-									<option label="cg2b" value="val_2a">Selection group 2b </option>
-								</optgroup>
-								<optgroup label="Group 3">
-									<option label="cg3a" value="val_3a">Selection group 3a </option>
-									<option label="cg3a" value="val_3a">Selection group 3b </option>
-								</optgroup>
-							</select>
-						</fieldset>-->
-			
+		
 			<div align="center">
 				<input id="button1" type="submit" value="Save" name="btnAddUser"/>
 				<input id="button2" type="reset" />
@@ -227,6 +178,9 @@ function deleteUser()
 				<legend>
 					EDIT USER
 				</legend>
+				<label for="name">Name : </label>
+				<input name="name" id="nameEdit" type="text" tabindex="1" />
+				<br />
 				<label for="email">Email : </label>
 				<input name="email" id="emailEdit" type="text" tabindex="1" />
 				<br />

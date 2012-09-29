@@ -4,7 +4,7 @@
    	$username = "root";
    	$password = "";	
 	$maxPages = 5;
-	$maxItems = 1;
+	$maxItems = 10;
 	$amountDate = 30;
 	$nameFolder="Ustore";
 	$link = mysql_connect($hostName, $username, $password);

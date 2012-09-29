@@ -9,6 +9,8 @@ else if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="edit")
 	include 'product/product_edit.php';
 else if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="image")
 	include 'product/product_image.php';
+else if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
+	include 'product/product_search.php';
 else
 	include 'product/product_main.php';
 include 'footer.php';

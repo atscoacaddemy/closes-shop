@@ -16,7 +16,7 @@
 				<a href="#" class="group">Product groups</a>
 			</li>
 			<li>
-				<a href="#" class="search">Find product</a>
+				<a href="product_index.php?action=search" class="search">Find product</a>
 			</li>
 			
 		</ul>

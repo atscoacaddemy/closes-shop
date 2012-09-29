@@ -78,4 +78,38 @@ else if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="deleteImage")
 	echo ProductUtil::createMessageBox("DELETE IMAGE","Delete does not complete!");
 	
 }
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
+{
+	
+		$name=$_REQUEST["name"];
+		$type=$_REQUEST["type"];
+		$sub_type=$_REQUEST["sub_type"];
+		$pricefrom=$_REQUEST["pricefrom"];
+		$priceto=$_REQUEST["priceto"];
+		$promotion_id=$_REQUEST["promotion_id"];
+		$present_type=$_REQUEST["present_type"];
+		
+		$strSQL = "select * from product where 1=1 ";
+		if(strlen($name)>0)
+			$strSQL.=" and Name LIKE '%$name%' ";
+		if($type!=-1)
+			$strSQL.=" and Type = $type" ;
+		if($sub_type!=-1)
+			$strSQL.="and Sub_Type = $sub_type ";
+		if($present_type!=-1)
+			$strSQL.="and Present_Type = $present_type ";
+		if($pricefrom>0)
+			$strSQL.="and Price >= $pricefrom ";
+		if($priceto>0)
+			$strSQL.="and Price <= $priceto ";
+		//echo $strSQL;
+		$result = ProductController::GetAllBySQL($strSQL);
+		if($result)
+		{
+			echo ProductUtil::createSearchResult($result);
+
+		}
+					
+		
+}
 ?>

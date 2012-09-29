@@ -66,6 +66,7 @@ function deleteUser()
 				require_once ("../../controller/UserController.php");
 				$users=UserController::GetUsers($curItem,$maxItems);
 				$totalItems=UserController::Count();
+				if($users!=null)
 				foreach ($users as $user) {
 					?>
 					<tr>

@@ -1,18 +1,28 @@
 <?php require_once ("../../controller/ProductController.php");
 ?>
 <script>
-	function deleteImg(imageType,productId)
-	{
-		var doIt=confirm('Do you want to proceed?');
-	  if(doIt){
-	    $("#msgResult").load("action/action_product.php?action=deleteImage&imgType="+imageType+"&proId="+productId);
-		$("#msgResult").fadeIn(300);
-	  }
-	  
-		
+	function deleteImg(imageType, productId) {
+		var doIt = confirm('Do you want to proceed?');
+		if(doIt) {
+			$("#msgResult").load("action/action_product.php?action=deleteImage&imgType=" + imageType + "&proId=" + productId);
+			$("#msgResult").fadeIn(300);
+		}
+
 	}
+
 	function closePopupEdit() {
-  $("#msgResult").fadeOut(300);
+		$("#msgResult").fadeOut(300);
+	}
+
+	function show_image(src, width, height, alt) {
+		alert("fdsa");
+		var img = document.createElement("img");
+		img.src = src;
+		img.width = width;
+		img.height = height;
+		img.alt = alt;
+
+		document.body.appendChild(img);
 	}
 </script>
 <div id="wrapper">
@@ -24,8 +34,10 @@
 			<fieldset id="personal">
 				<legend>
 					EDIT IMAGE TO PRODUCT
-				</legend>
-				<label >Cover_Img : </label>		
+				</legend
+				<label >Cover_Img : </label>
+				<button onclick="show_image('../../data/15_Cover_Img.png',100,100,'');">ShowImage </button>
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('Cover_Img',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php    
 				  require_once "../../utility/phpfileuploader/phpuploader/include_phpuploader.php" ;
 			            $uploader=new PhpUploader();    
@@ -35,13 +47,14 @@
 			            $uploader->Render();    
         			?> 
 				
-		<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('Cover_Img',<?php echo $_REQUEST["proId"]; ?>)"> 
+		 
 					<?php
 				for($i=1;$i<6;$i++)
 				{
 				?>
 				<br/>
-				<label>Preview_Img_0<?php echo $i; ?> : </label>	
+				<label>Preview_Img_0<?php echo $i; ?> : </label>
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Preview_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)"> 	
 				<?php		
 				$uploader=new PhpUploader();    
 			            $uploader->Name="myuploader_Preview_Img_0".$i;    
@@ -49,7 +62,7 @@
 			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Preview_Img_0".$i."&proId=".$_REQUEST["proId"];    
 			            $uploader->Render();  
 						?>
-						<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Preview_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)"> 
+						
 				<?php
 				}
 				?>
@@ -58,7 +71,8 @@
 				{
 				?>
 				<br/>
-				<label>Detail_Img_0<?php echo $i; ?> : </label>			
+				<label>Detail_Img_0<?php echo $i; ?> : </label>		
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php		
 				$uploader=new PhpUploader();    
 			            $uploader->Name="myuploader_Detail_Img_0".$i;    
@@ -66,13 +80,14 @@
 			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_0".$i."&proId=".$_REQUEST["proId"];    
 			            $uploader->Render();  
 						?>
-						<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)">
+						
 				<?php
 				
 				}
 				?>
 				<br/>
-				<label>Detail_Img_10 : </label>			
+				<label>Detail_Img_10 : </label>		
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_10"; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php		
 				$uploader=new PhpUploader();    
 			            $uploader->Name="myuploader_Detail_Img_10";    
@@ -80,7 +95,7 @@
 			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_10".$i."&proId=".$_REQUEST["proId"];       
 			            $uploader->Render();  
 						?>
-				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_10"; ?>',<?php echo $_REQUEST["proId"]; ?>)">
+				
 			</fieldset>
 			
 			

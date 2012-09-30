@@ -165,7 +165,7 @@
 						  </td>";
 				
 					echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
-						  <a href=''><b style='color:blue;'>". $product_detail[0]."</b></a>
+						  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a>
 						  </td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
 					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>1</td>";

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 	session_start();
 	$_SESSION["contextPath"] = $contextPath;
 	include_once ($contextPath."controller/config.php");
@@ -41,25 +41,25 @@
 ?>
 <body class="body">
 	<div id="header" class="header">
-		<img src="<?php echo $contextPath?>template/images/banner.png" />
-		<div><table>
-			<tr>
-				<td width="800"></td>
+		<div>
+			<img src="<?php echo $contextPath?>template/images/banner.png" />
+		</div>
+		<div class='header-login-bar'>
 				<?php
 				if ($curUser == null)
 				{
 				?>
-				<td><a class="lnk"  onclick="return press_DangNhap();" href="">Đăng Nhập</a></td>
-				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/register.php">Đăng Ký</a></td>
+				<a class="lnk"  onclick="return press_DangNhap();" href="">Đăng Nhập</a>
+				<span style="color:#FFFFFF;font-weight:bold">|</span>
+				<a class="lnk" href="<?php echo $contextPath?>view/user/register.php">Đăng Ký</a>
 				<?php
 				}
 				else{
 				?>
-				<td><a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser[1] ?></a></td>
-				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
+				<a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser[1] ?></a>
+				<span style="color:#FFFFFF;font-weight:bold">|</span>
 				<?php if( $question >1) { ?>
-				<td><a class="lnk" href="<?php echo $contextPath.$strUrl?>&do=logout">Đăng xuất</a></td>
+				<a class="lnk" href="<?php echo $contextPath.$strUrl?>&do=logout">Đăng xuất</a>
 				<?php 
 					  }
 					  else{
@@ -68,11 +68,8 @@
 				}
 				?>
 				
-				<td><span style="color:#FFFFFF;font-weight:bold">|</span></td>
-				<td><a class="lnk" href="#">Giỏ hàng</a></td>
-			</tr>
-			<tr height="10"></tr>
-		</table>
+				<span style="color:#FFFFFF;font-weight:bold">|</span>
+				<a class="lnk" href="#">Giỏ hàng</a>
 		</div>
 	</div>
 	<div id="menu" class="menu">
@@ -81,13 +78,15 @@
 			</li>
 			<li><a href="#">Hot</a>
 			</li>
-			<li><a href="<?php echo $contextPath?>view/user/product-list.php">Tui Xach</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list.php">Túi Xách</a>
 			</li>
-			<li><a href="#">Khuyen Mai</a>
+			<li><a href="#">Hàng Order</a>
 			</li>
-			<li><a href="#">Huong Dan</a>
+			<li><a href="#">Hàng Sắp Về</a>
 			</li>
-			<li><a href="#">Lien He</a>
+			<li><a href="#">Khuyến Mãi</a>
+			</li>
+			<li><a href="#">Liên Hệ</a>
 			</li>
 		</ul>
 	</div>

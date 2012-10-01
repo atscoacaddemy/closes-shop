@@ -40,13 +40,16 @@ ul, li {
 	font-size: 14px;
 	font-family: helvetica, arial, sans-serif;
 	text-decoration: none;
-	padding: 14px 45px;
+	padding: 14px 35px;
 }
 .sub-menu {
 	font-family: Arial, Helvetica, sans-serif;
 	color: white;
 	background: url("../images/pattern-grey.png");
 	width: 200px;
+	background-color: lightSteelBlue;
+	padding: 10px 0px;
+	border-radius: 10px;
 	clear: both;
 }
 .sub-menu div {
@@ -64,7 +67,8 @@ ul, li {
 	padding: 20px;
 }
 .sub-menu-title {
-	background: url(../images/sub-menu-title-background.png) no-repeat;
+/*	background: url(../images/sub-menu-title-background.png) no-repeat;*/
+	background: url(../images/1_5.png) no-repeat;
 	height: 120px;
 	border-radius: 10px 10px 10px 10px;
 }
@@ -101,8 +105,6 @@ ul, li {
 	margin-left: 5px;
 }
 .left-menu #support .yahoo {
-	height: 25px;
-	background: url(../images/yahoo-icon.png) no-repeat;
 	margin-left: 5px;
 	
 }

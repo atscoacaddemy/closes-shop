@@ -111,7 +111,24 @@
 <div >
 	
 <div style="width: 686px; padding-top:5px;float:left;">
-	<div style="margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;"> Giỏ Hàng Của Bạn </div>
+<?php
+if(isset($_REQUEST["do"]) && $_REQUEST["do"]== "successful" )
+{
+	echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Bạn đã đặt hàng thành công! </div>";
+}
+else
+{
+	if(isset($_REQUEST["do"]) && $_REQUEST["do"] == "failed")
+	{
+		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Đặt hàng thất bại!</div>";
+	}
+	else
+	{
+		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Giỏ Hàng Của Bạn </div>";
+	}
+}
+?>
+	<!--div style="margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;"> Giỏ Hàng Của Bạn</div-->
 	
 	<div class="product-detail-picture">
 		
@@ -120,6 +137,7 @@
 		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
 		<div class="mid_content" id="loadAjax" name="loadAjax">	
+<form action="<?php echo $contextPath?>/controller/AddCartProcessor.php" method="POST" id="formAddCart" name="formAddCart">
 <div id="messDeleteCartAjax" name="messDeleteCartAjax">
 			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
 			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#D3658A;'>
@@ -167,7 +185,7 @@
 						  </td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
 					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-					 <input type='text' name='txtQuantity' id='txtQuantity' size='5' value='1' />
+					 <input type='text' name='txtQuantity".$i."' id='txtQuantity' size='5' value='1' />
 					</td>";
 					echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
@@ -228,6 +246,7 @@
 	</div>
 	<!--end ajax-->
 		</div>
+</form>	
 	</div>	
 		
         <script>
@@ -248,7 +267,7 @@
 <?php
 	
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
-	
+	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
 	
 ?>
 					</div>
@@ -295,34 +314,12 @@
 								}
 								function checkLoginToAddCart()
 								{
-									document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lớn hơn 5 kí tự!";
-									var strUsername = $("#idUser").attr("value");
-									var strProductID = $("#txtProductID").attr("value");
-									var strTextComment = $("#txtComment").attr("value");
-											var change="";
-							
-									strTextComment=strTextComment.replace(/&/g," ");
-									strTextComment=strTextComment.replace(/#/g," ");
-									strTextComment=strTextComment.replace(/'/g," ");
-									strTextComment=strTextComment.replace(/"/g," ");
-									strTextComment=strTextComment.replace(/=/g," ");
-									strTextComment=strTextComment.replace(/\s+/g,"_");
 									
-									if(strUsername != "")
-									{
-										if(strTextComment != null){
-											//document.getElementById('messCommentAjax').innerHTML="";
-											var serverURL = "checkEmail.php?txtComment=" + strTextComment +"&userID="+strUsername+"&productID="+strProductID;
-											$("#messCommentAjax").load(serverURL);
-										}
-										else{
-											alert("Bạn hãy điền nội dung mới comment được!")
-										}
-									}
-									else
-									{
-										press_LoginToComment();
-									//alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
+									var strUsername = $("#idUser").attr("value");
+								
+									if(strUsername == "")
+									{										
+											press_LoginToAddCart();									
 									}
 									
 								}

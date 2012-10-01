@@ -60,27 +60,24 @@
                                 </div>
        	<?php 
 		
-	if(isset($_REQUEST['productid']) && $_REQUEST['productid'] !=null)
+	if(isset($_POST['txtProductID']) && $_POST['txtProductID'] !=null && isset($_SESSION["addCart"]) && $_SESSION["addCart"] == "true")
 	{
+		$_SESSION["addCart"] = "false";
 		include_once ($contextPath."controller/ProductController.php");
 	    include_once ($contextPath."controller/ProductImageController.php");
 		include_once ($contextPath."controller/CommentController.php");
 	    include_once ($contextPath."controller/UserController.php");
-	    include_once ($contextPath."utility/Utils.php");
+	  
 	    include_once ("checkEmail.php");
-		
-		$productid = $_REQUEST['productid'];
-		//echo "</br>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx";
-		
-		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
-		//echo "</br>product_detail=".$product_detail;
+		$productid = $_POST['txtProductID'];
+		$product_detail=ProductController::GetProductByID($productid);
 	
 		if($product_detail != null)
 		{
-			if(!isset($_SESSION['cart']) && count($_SESSION['cart']) == 0 && $productid > 0)
+			if(!isset($_SESSION["cart"]) && count($_SESSION["cart"]) == 0 && $productid > 0)
 			{
 				$cart=array($productid);
-				$_SESSION['cart']=$cart;
+				$_SESSION["cart"]=$cart;
 	
 			}
 			else
@@ -88,32 +85,28 @@
 				if( $productid > 0 )
 				{
 					$flag = true;
-					for($i=0;$i<count($_SESSION['cart']);$i++)
+					for($i=0;$i<count($_SESSION["cart"]);$i++)
 					{
-						if($_SESSION['cart'][$i] == $productid)
+						if($_SESSION["cart"][$i] == $productid)
 						{
 							$flag = false;
 							break;
 						}
 					}
 					if(isset($flag) && $flag == true){
-						array_push( $_SESSION['cart'],$productid);
+						array_push( $_SESSION["cart"],$productid);
 					}
 				}
 			}
-			//array_push( $_SESSION['cart'],$productid);
-			//echo "</br>count=".count($_SESSION['cart']);
-
 		}
 			
-		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
+		$product_detail=ProductController::GetProductByID($productid);
 		$productImage  =ProductImageController::GetImageOfProductFromProductID($productid);
 		$productComment=CommentController::GetCommentFromProductID($productid);
 		
 
 	}
-	//$productid = $_POST["productid"];
-	//echo "productidx=".$productidx;
+
 	?>                    
 <div >
 	
@@ -127,6 +120,7 @@
 		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
 		<div class="mid_content" id="loadAjax" name="loadAjax">	
+<div id="messDeleteCartAjax" name="messDeleteCartAjax">
 			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
 			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#D3658A;'>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:35px;" align='center'>Hình Ảnh</td>
@@ -137,19 +131,23 @@
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:65px;">Thành Tiền</td>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:5px;">Xóa</td>				   
 			   </tr>
-<div id="messDeleteCartAjax" name="messDeleteCartAjax">
+
 <!--begin ajax for div messDeleteCartAjax -->			  
 			<?php
-			if(count($_SESSION['cart']) > 0)
+		
+			if(count($_SESSION["cart"]) > 0)
 			{		
 				include_once ($contextPath."controller/ProductController.php");
 				include_once ($contextPath."controller/ProductImageController.php");
+				include_once ($contextPath."utility/Utils.php");
 				$totalmoney = 0;
-				for($i=0;$i<count($_SESSION['cart']);$i++)
+				for($i=0;$i<count($_SESSION["cart"]);$i++)
 				{
-					//echo "</br>cart[".$i."]=".$_SESSION['cart'][$i];
-					$product_detail=ProductController::GetProductByID($_SESSION['cart'][$i]);
-					$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION['cart'][$i]);
+					
+					$product_detail=ProductController::GetProductByID($_SESSION["cart"][$i]);
+					$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION["cart"][$i]);
+				
+					
 					$totalmoney +=$product_detail[4];
 					if($i % 2 == 0)
 					{
@@ -168,7 +166,9 @@
 						  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a>
 						  </td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
-					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>1</td>";
+					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+					 <input type='text' name='txtQuantity' id='txtQuantity' size='5' value='1' />
+					</td>";
 					echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
@@ -185,24 +185,18 @@
 					echo "<td>".Utils::convert_Money($totalmoney)."(VND)</td>";
 					echo "<td></td>";
 				echo "</tr>";
-			}
-			
-			?>  
-<!--end ajax for div messDeleteCartAjax -->
-</div>
-		
-				<tr>
+				echo "<tr>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
 					<td></td>
-					<td align="center" colspan="3">
+					<td align='center' colspan='3'>
 					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
-							<span class="action-button-left"></span>						
-							<input class="submitYellow" type="submit" value="Đặt hàng" id="btnDatHang" name="btnDatHang" onclick="checkLoginToComment();"/>
-							<span class="action-button-right"></span>
+							<span class='action-button-left'></span>						
+							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang' onclick='checkLoginToComment();'/>
+							<span class='action-button-right'></span>
 						</h3>
 					</td>
 				</tr>
@@ -210,7 +204,29 @@
 				<tr>
 					<td></td>
 				</tr>
-			</table>
+			</table>";
+			}
+			else
+			{
+				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;'>";
+				echo "<td style='padding:4px;' align='center'>Bạn chưa chọn sản phẩm</td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>
+					  <td></td>";
+				echo "</tr>";
+				echo "</table>";
+			}
+			
+			?>  
+<!--end ajax for div messDeleteCartAjax -->
+
+		
+				
+	</div>
+	<!--end ajax-->
 		</div>
 	</div>	
 		
@@ -232,9 +248,10 @@
 					<div>
 						
 <?php
-   // echo "<br>coutsesioon=".count($_SESSION['cart']);
-	echo "<input name='idSessionCart' id='idSessionCart' type='text' style='width:300px;display:none;' value='".$_SESSION['cart']."'>";
+	echo "<input name='idSessionCart' id='idSessionCart' type='text' style='width:300px;display:none;' value='".$_SESSION["cart"]."'>";
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
+	echo "<input name='txtSession' id='txtSession' type='text' style='width:10px;display:none;' value='".$_SESSION["cart1"]."'>";
+	
 ?>
 					</div>
 	</div>
@@ -269,13 +286,26 @@
                                 });
 								function DeleteCart(productDeleteID)
 								{
-									alert("delete="+productDeleteID);
-									var idSessionCart = new Array();
-									idSessionCart = $("#idSessionCart").attr("value");
+									
+									var idSessionCart = new Array(100);
+									idSessionCart = <?php echo $_SESSION["cart"];?>;
+								
+									var str="&amount="+<?php echo count($_SESSION["cart"]);?>;
+									
+									<?php
+									for($i=0 ; $i < count($_SESSION["cart"]) ; $i++)
+									{
+									
+									?>
+								
+									str+=  "&array" + <?php echo $i; ?> + "=" + <?php echo $_SESSION["cart"][$i]; ?> ;
+									<?php 
+									}
+									?>
+									
 									if(productDeleteID != "")
 									{
-									alert("xxxxxxxxx="+<?php echo count($_SESSION['cart']);?>);
-										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
+										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID + str;
 										$("#messDeleteCartAjax").load(serverURL);
 									}
 								}

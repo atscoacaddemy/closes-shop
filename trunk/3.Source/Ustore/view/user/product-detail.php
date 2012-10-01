@@ -142,6 +142,7 @@
 		$product_detail=ProductController::GetProductByID($_REQUEST['productid']);
 		$productImage  =ProductImageController::GetImageOfProductFromProductID($productid);
 		$productComment=CommentController::GetCommentFromProductID($productid);
+		$_SESSION["addCart"]="true";
 		
 
 	}
@@ -191,7 +192,8 @@
 				<!--end scroll-->
 		</div>
 		</div>
-	 <form action="cart.php?productid=<?php echo $productid; ?>" method="POST" id="form">
+	 <!--form action="cart.php?productid=<?php //echo $productid; ?>" method="POST" id="form"-->
+	 <form action="cart.php" method="POST" id="form">
 
 			<div class="product-description" id="product-description">
 				<div class="product-title" id="product-title">
@@ -225,6 +227,7 @@
 					</div>
 				<?php
 				}
+				echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 				?>
 				<div>
 					<span class="action-button-left"></span>						
@@ -295,7 +298,7 @@
 						<span class="action-button-right"></span>
 <?php
 	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
-	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
+	//echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 ?>
 					</div>
 					</div>

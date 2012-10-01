@@ -14,10 +14,12 @@
 			 $fLogin=false;
 		 else
 		 {
+		 for($i=0;$i<count($_SESSION['cart']);$i++)
+			echo "</br>i=".$_SESSION['cart'][$i]."</br>";
 			 $_SESSION["curUser"] = $result;
 			 // echo "rs=".$result;
 			 // echo "role=".$result[5];
-			 if ($result[5] == 1) 
+			 if ($result[5] == 1 && $result[7] == 0) 
 			 {
 				$contextPath =$_SESSION["contextPath"];
 				$strUrl =$_SESSION["strUrl"];
@@ -27,7 +29,7 @@
 			 // echo "rs[1]=".$result[1];
 			 
 			  echo "</br>url=".$strUrl;
-			  header("Location:".$contextPath.$strUrl);
+			  //header("Location:".$contextPath.$strUrl);
 				//header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
 			 }
 			// else

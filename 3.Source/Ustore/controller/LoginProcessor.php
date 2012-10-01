@@ -29,7 +29,7 @@
 			 // echo "rs[1]=".$result[1];
 			 
 			  echo "</br>url=".$strUrl;
-			  //header("Location:".$contextPath.$strUrl);
+			  header("Location:".$contextPath.$strUrl);
 				//header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
 			 }
 			// else

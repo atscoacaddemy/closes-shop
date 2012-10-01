@@ -94,7 +94,7 @@
 					  </td>";
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
 				echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-				 <input type='text' name='txtQuantity' id='txtQuantity' size='5' value='1' />
+				 <input type='text' name='txtQuantity' id='txtQuantity".$i."' size='5' value='1' />
 				</td>";
 				echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";

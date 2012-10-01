@@ -67,17 +67,23 @@
 				}
 				?>
 				<?php
-				for($i=1;$i<10;$i++)
+				for($i=1;$i<21;$i++)
 				{
 				?>
 				<br/>
-				<label>Detail_Img_0<?php echo $i; ?> : </label>		
-				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
+				<label>Detail_Img_<?php if($i<10)echo "0".$i; else echo $i; ?> : </label>		
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php if($i<10) echo "Detail_Img_0".$i; else echo "Detail_Img_".$i ?>',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php		
-				$uploader=new PhpUploader();    
-			            $uploader->Name="myuploader_Detail_Img_0".$i;    
+				$uploader=new PhpUploader(); 
+						$uploadName="";
+						if($i<10)   
+							$uploadName.="0".$i;
+						else {
+							$uploadName.=$i;
+						}
+			            $uploader->Name="myuploader_Detail_Img_".$uploadName;    
 			            //Create a new file upload handler    
-			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_0".$i."&proId=".$_REQUEST["proId"];    
+			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_".$uploadName."&proId=".$_REQUEST["proId"];    
 			            $uploader->Render();  
 						?>
 						
@@ -85,16 +91,18 @@
 				
 				}
 				?>
+				<!--
 				<br/>
-				<label>Detail_Img_10 : </label>		
-				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_10"; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
-				<?php		
-				$uploader=new PhpUploader();    
-			            $uploader->Name="myuploader_Detail_Img_10";    
-			            //Create a new file upload handler    
-			            $uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_10".$i."&proId=".$_REQUEST["proId"];       
-			            $uploader->Render();  
-						?>
+								<label>Detail_Img_10 : </label>		
+								<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Detail_Img_10"; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
+								<?php		
+								$uploader=new PhpUploader();    
+										$uploader->Name="myuploader_Detail_Img_10";    
+										//Create a new file upload handler    
+										$uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_10".$i."&proId=".$_REQUEST["proId"];       
+										$uploader->Render();  
+										?>-->
+				
 				
 			</fieldset>
 			

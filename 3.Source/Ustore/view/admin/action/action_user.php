@@ -5,7 +5,6 @@ if(isset($_POST["btnAddUser"]))
 		$name=$_POST["name"];
 		$email=$_POST["email"];
 		$pass=$_POST["pass"];
-		$pass=md5($pass);
 		$phone=$_POST["phone"];
 		$role=$_POST["role"];
 		

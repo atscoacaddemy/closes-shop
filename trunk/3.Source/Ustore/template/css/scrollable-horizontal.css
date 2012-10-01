@@ -8,7 +8,8 @@
     /* required settings */
     position:relative;
     overflow:hidden;
-    width:291px; /*width: 550px;*/
+    /*width:291px;*/ 
+    width: 600px;
     height: 118px;  /*height:300px;*/
 
     /* custom decorations */

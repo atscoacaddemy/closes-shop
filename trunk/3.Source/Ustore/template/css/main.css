@@ -94,7 +94,8 @@
 .body {
 	margin: auto;
 	/*	background: url('../images/body_background_sweet.jpg')*/
-	background: url('../images/body_back_ground_pink.jpg');
+	/*background: url('../images/body_back_ground_pink.jpg');*/
+	background: #C9C8CC
 }
 .contain {
 	width: 980px;
@@ -158,8 +159,7 @@
 	font-size: 18px;
 	font-weight: 600;
 }
-.product-label {
-	background:url("../images/badge.png") no-repeat scroll -27px 0 transparent;
+.product-label-normal {
 	position: absolute;
 	right: -1px;
 	z-index: 999;
@@ -183,9 +183,9 @@
 	height: 60px;
 	width: 60px;
 }
+/*
 a.lnk:link, a.lnk:active, a.lnk:visited {
     color: #FFFFFF;
-    font-weight: bold;
     text-decoration: none;
 }
 a.lnk:hover {
@@ -197,6 +197,7 @@ a:link {text-decoration:none;}
 a:visited {text-decoration:none;}
 a:hover {text-decoration:underline;}
 a:active {text-decoration:underline;}
+*/
 .comment-content {
 	float: left; width: 500px;
 	margin-left: 200px;
@@ -233,3 +234,19 @@ div #comment-toggle{
     font-size: 17px;
 	color: #333333;
 } 
+.header-login-bar {
+	position: absolute;
+	top:50px;
+	left:900px;
+}
+.header-login-bar a{
+	color: white;
+	text-decoration: none;
+}
+.header-login-bar a:hover{
+	color: blue;
+	text-decoration: underline;
+}
+body {
+	font-family: Arial,Helvetica,sans-serif;
+}

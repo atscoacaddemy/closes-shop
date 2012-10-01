@@ -16,8 +16,8 @@
                      thumb_opacity: 0.7,
                      animate_first_image: false,
                      animation_speed: 800,
-                     width: false,
-                     height: false,
+                     width: 900,
+                     height: 500,
                      display_next_and_prev: true,
                      display_back_and_forward: true,
                      scroll_jump: 0, // If 0, it jumps the width of the container

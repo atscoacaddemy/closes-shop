@@ -81,13 +81,23 @@
 				return $return[0];
          }
 
-         public static function getProducts($type, $subtype) {
+         public static function getProducts($type, $subtype, $presentType) {
          	$strSQL = "select *
-         	from product
-         	where Type=".$type;
-         	if ($subtype != null) {
-         		$strSQL.=" and Sub_Type = ".$subtype;
+         	from product,product_image";
+         	if ($type != null || $subtype != null || $presentType != null) {
+         		$strSQL.= " where product.ID = product_image.Product_ID";
          	}
+         	if ($type != null) {
+         		$strSQL.=" and product.Type = ".$type;
+         	}
+         	
+         	if ($subtype != null) {
+         		$strSQL.=" and product.Sub_Type = ".$subtype;
+         	}
+         	if ($presentType != null) {
+         		$strSQL.=" and product.Present_Type = ".$presentType;
+         	}
+         	
          	$result = DataProvider::Query($strSQL);
          	if(mysql_num_rows($result)==0)
          		return null;
@@ -95,6 +105,7 @@
          		$return[]=$row;
          	return $return;
          }
+ 
          public static function getProductSubType($type) {
          	$strSQL = "select *
          	from product_subtype

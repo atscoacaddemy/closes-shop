@@ -24,56 +24,28 @@
  <?php
  require_once ("../../controller//ProductController.php");
 $type = 1;
-$subtypeList=ProductController::getProductSubType($type);
 $subtype = $_GET['subtype'];
 $productList = null;
-$productList = ProductController::getProducts($type, $subtype);
+$productList = ProductController::getProducts($type, $subtype,null);
 ?>
  <form action="product-list.php" method="get" id="form">
  <input type="hidden" id="action" name="action"/>
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
-			<div class="sub-menu-title">
-				<h1 style="top:20px">Túi Xách</h1>
-			</div>
-			<div class="left-menu">
-				<div class="sub-menu">
-					<div  onclick="doFilter()">
-						Tất cả sản phẩm
-					</div>
-				<?php foreach ($subtypeList as $subtype) {?>
-					
-					<div onclick="doFilter(<?php echo $subtype['ID']?>)">
-						<?php echo $subtype["Name"]?>
-					</div>
-					<?php }?>
-				</div>
-				<div id="support">
-					<h1>Hỗ Trợ</h1>
-					<div class="phone">
-						09123456789
-					</div>
-					<div class="phone">
-						09123456789
-					</div>
-					<div class="yahoo">
-						<a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-						</div >
-						<div class="yahoo">
-							<a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-						</div>
-					</div>
-					<div>
-<!-- 						<iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fustore.vn&amp;width=292&amp;height=590&amp;colorscheme=light&amp;show_faces=true&amp;border_color=blue&amp;stream=true&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:590px;" allowTransparency="true"></iframe> -->
-					</div>
-				</div>
+			<?php require_once 'left-menu.php';?>
 				<div >
 				<?php if (!empty($productList) && $productList != null ) {?>
 					<?php foreach ($productList as $product) {?>
 					<div class="product-cell">
 						<div class="product-picture">
+							<?php if ($product['Present_Type'] == '1'){?>
+							<div class="product-label-hot"></div>
+							<?php } elseif ($product['Present_Type'] == '2') {?>
 							<div class="product-label-new"></div>
-							<a href="product-detail.php?productid=<?php echo $productid; ?>"> <img src="temp/002-10.png" /> </a>
+							<?php } else {?>
+							<div class="product-label-nornal"></div>
+							<?php } ?>
+							<a href="product-detail.php?productid=<?php echo $productid; ?>"> <img src="<?php echo $contextPath.$product['Preview_Img_01']; ?>" /> </a>
 						</div>
 						<div>
 							<div class="product-id">

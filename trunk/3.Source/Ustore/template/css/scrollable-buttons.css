@@ -6,7 +6,7 @@
 
 /* prev, next, prevPage and nextPage buttons */
 a.browse {
-    background:url("../images/hori_large.png") no-repeat;
+    /*background:url("../images/hori_large.png") no-repeat;
     display:block;
     width:30px;
     height:30px;
@@ -14,6 +14,7 @@ a.browse {
     margin:25px 10px;
     cursor:pointer;
     font-size:1px;
+    */
 }
 
 /* right */

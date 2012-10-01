@@ -5,8 +5,6 @@
 		include_once("UserController.php");
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
-		 // echo "user=".$email."</br>";
-		 // echo "pass=".$pass."</br>";
 		
 		$result=UserController::CheckLogin($email,$pass);
 		 // echo "result[0] =".$result[0]."</br>";
@@ -24,22 +22,11 @@
 				$contextPath =$_SESSION["contextPath"];
 				$strUrl =$_SESSION["strUrl"];
 				echo "contextPath=".$contextPath;
-			// $path=$contextPath."skirt.php"
-			 // echo "path=".$contextPath."view/user/skirt.php?id=";
-			 // echo "rs[1]=".$result[1];
-			 
-			  echo "</br>url=".$strUrl;
-			  header("Location:".$contextPath.$strUrl);
-				//header("Location:".$contextPath."view/user/product-list.php?id=".$result[0]);
+			    echo "</br>url=".$strUrl;
+			    header("Location:".$contextPath.$strUrl);
+			
 			 }
-			// else
-			// {
-				
-				// $_SESSION["time_start"]=time();
-				// $_SESSION["flag"]=true;
-				// header("Location:index.php?id=".$result['id']);
-				// header("Location:../index.php");
-			// }
+			
 		 }  
 	}                    
 	if(isset($fLogin)&&$fLogin==false)

@@ -69,7 +69,7 @@
 				?>
 				
 				<span style="color:#FFFFFF;font-weight:bold">|</span>
-				<a class="lnk" href="#">Giỏ hàng</a>
+				<a class="lnk" href="<?php echo $contextPath?>view/user/cart.php">Giỏ hàng (<?php echo count($_SESSION["cart"]);?>)</a>
 		</div>
 	</div>
 	<div id="menu" class="menu">

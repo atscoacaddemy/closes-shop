@@ -195,7 +195,7 @@
 					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class='action-button-left'></span>						
-							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang' onclick='checkLoginToComment();'/>
+							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang' onclick='checkLoginToAddCart();'/>
 							<span class='action-button-right'></span>
 						</h3>
 					</td>
@@ -236,9 +236,7 @@
 		
 	
 <!--start comment -->	
-					<div class="comment-content" >
-					
-							
+					<div class="comment-content" >	
 					
 					</div>
 
@@ -248,9 +246,9 @@
 					<div>
 						
 <?php
-	echo "<input name='idSessionCart' id='idSessionCart' type='text' style='width:300px;display:none;' value='".$_SESSION["cart"]."'>";
+	
 	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
-	echo "<input name='txtSession' id='txtSession' type='text' style='width:10px;display:none;' value='".$_SESSION["cart1"]."'>";
+	
 	
 ?>
 					</div>
@@ -285,29 +283,48 @@
                                         });
                                 });
 								function DeleteCart(productDeleteID)
-								{
-									
+								{									
 									var idSessionCart = new Array(100);
-									idSessionCart = <?php echo $_SESSION["cart"];?>;
-								
+									idSessionCart = <?php echo $_SESSION["cart"];?>;								
 									var str="&amount="+<?php echo count($_SESSION["cart"]);?>;
-									
-									<?php
-									for($i=0 ; $i < count($_SESSION["cart"]) ; $i++)
-									{
-									
-									?>
-								
-									str+=  "&array" + <?php echo $i; ?> + "=" + <?php echo $_SESSION["cart"][$i]; ?> ;
-									<?php 
-									}
-									?>
-									
 									if(productDeleteID != "")
 									{
-										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID + str;
+										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
 										$("#messDeleteCartAjax").load(serverURL);
 									}
+								}
+								function checkLoginToAddCart()
+								{
+									document.getElementById('idUser').innerHTML=" Phải nhập lại password mới và lớn hơn 5 kí tự!";
+									var strUsername = $("#idUser").attr("value");
+									var strProductID = $("#txtProductID").attr("value");
+									var strTextComment = $("#txtComment").attr("value");
+											var change="";
+							
+									strTextComment=strTextComment.replace(/&/g," ");
+									strTextComment=strTextComment.replace(/#/g," ");
+									strTextComment=strTextComment.replace(/'/g," ");
+									strTextComment=strTextComment.replace(/"/g," ");
+									strTextComment=strTextComment.replace(/=/g," ");
+									strTextComment=strTextComment.replace(/\s+/g,"_");
+									
+									if(strUsername != "")
+									{
+										if(strTextComment != null){
+											//document.getElementById('messCommentAjax').innerHTML="";
+											var serverURL = "checkEmail.php?txtComment=" + strTextComment +"&userID="+strUsername+"&productID="+strProductID;
+											$("#messCommentAjax").load(serverURL);
+										}
+										else{
+											alert("Bạn hãy điền nội dung mới comment được!")
+										}
+									}
+									else
+									{
+										press_LoginToComment();
+									//alert("Bạn phải đăng nhập mới comment sản phẩm này được!")
+									}
+									
 								}
                         </script>
         </body>

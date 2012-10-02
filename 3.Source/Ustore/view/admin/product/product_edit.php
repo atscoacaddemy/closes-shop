@@ -14,9 +14,12 @@
 				<label for="name">Name : </label>
 				<input name="name" id="name" type="text" tabindex="1" value="<?php echo $product["Name"] ?>"/>
 				<br />
+				
+				<!--
 				<label for="description">Description : </label>
-				<textarea name="description" id="description"><?php echo $product["Description"] ?></textarea>
-				<br />
+								<textarea name="description" id="description"><?php echo $product["Description"] ?></textarea>
+								<br />-->
+				
 				<!--
 				<input name="role" id="role" type="text"
 								tabindex="2" />-->				
@@ -80,7 +83,15 @@
 				<br />
 				<label for="price">Price : </label>			
 				<input name="price" id="price" type="text" value="<?php echo $product["Price"] ?>"/>
-				
+				<?php
+												//$path = rtrim($_SERVER['PHP_SELF'],"ce/module/dangtindichvu.php/")."/library/fckeditor/";
+												include("../../library/fckeditor/fckeditor.php");
+												$description = new FCKeditor("description");
+												$description->BasePath = "../../library/fckeditor/";
+												$description->Height=300;
+												$description->Value = "";
+												$description->Create();
+											?>
 			</fieldset>
 			
 			<div align="center">

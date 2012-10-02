@@ -5,47 +5,11 @@
 	$userID = $_REQUEST["userID"];
 	$productID = $_REQUEST["productID"];
 	$productdeleteid = $_REQUEST["productdeleteid"];
-	//echo "<br>zzzzz=".$productdeleteid;
 	
 	if(!empty($productdeleteid) && $productdeleteid>0 )
 	{
 		session_start();
-		//check login to change product in session ($_SESSION["cart"])
-			// if(isset($_SESSION["curUser"])&& $_SESSION["curUser"] != null )
-			// {
-			// echo "<br>zzzzz=".$_SESSION["curUser"][1];
-			// echo "<br>user id=".$_SESSION["curUser"][0];
-				// include_once ($contextPath."controller/CartController.php");
-				// $cartInDB = CartController::GetCartByUserID($_SESSION["curUser"][0]);
-				// echo "<br>count cartIndatabase=".count($cartInDB);				
-				// for($j=0;$j<count($cartInDB);$j++)
-				// {
-					// $flag_check= "true";
-					// for($i=0;$i<count($_SESSION["cart"]);$i++)
-					// {
-						// if($_SESSION["cart"][$i] == $cartInDB[$j][2])
-						// {
-							// $flag_check = "false";
-						// }
-					// }
-					// if($flag_check == "true")
-					// {
-						// if(!isset($_SESSION["cart"]) && count($_SESSION["cart"]) == 0 )
-						// {
-							// $cart=array($cartInDB[$j][2]);
-							// $_SESSION["cart"]=$cart;
-				
-						// }
-						// else
-						// {	
-							// echo "<br>them vao product id=".$cartInDB[$j][2];
-							// array_push($_SESSION["cart"],$cartInDB[$j][2]);
-						// }
-					// }
-					
-				// }
-			// }
-			//end check
+		
 		for($i=0 ; $i < count($_SESSION["cart"]) ; $i++)
 		{
 			if($_SESSION["cart"][$i] != $productdeleteid )
@@ -346,8 +310,6 @@ echo "</form>";
 		$replace = array(' ');
 		$order   = array('_');
 		$txtComment = str_replace($order, $replace, $txtComment);
-		//echo "userID=".$userID;
-		//echo "</br>productID=".$productID;
 		
 		$commentUser=UserController::GetUserByID($userID);
 		
@@ -386,50 +348,42 @@ echo "</form>";
 				echo "<div>";
 echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
 				echo "</div>";
-			echo "</div>";
-			echo "<script type='text/javascript'>
-					$(document).ready(function() 
-					{
-						$('#frmCheckOut').submit(function()
-						{
-							var flag = true;
-							var strUsername = $('#idUser').attr('value');
-					
-							if(strUsername == '')
-							{										
-								press_LoginToAddCart();
-								flag= false;
-							}
-							return flag;
-						});
-						$('#btnDelete').click(function()
-						{
-							return false;
-						});						
-					});
-					function DeleteCart(productDeleteID)
-					{									
-						if(productDeleteID != '')
-						{
-							var serverURL = 'checkEmail.php?productdeleteid=' + productDeleteID;
-							 $('#messDeleteCartAjax').load(serverURL);
-						}
-						return false;
-					}
-					function press_LoginToAddCart()
-					{
-						document.getElementById('popup').style.visibility = 'visible';
-						document.getElementById('txtUsernameLogin').value = '';
-						document.getElementById('txtPasswordLogin').value = '';
-						document.getElementById('txtUsernameLogin').focus();
-						document.getElementById('messRegister').innerHTML='Hãy đăng nhập để đặt hàng!';
-						$('#messRegister').css('color','blue');
-						return false;
-					}
-								
-								
-			</script>";
 			
+			echo "<div>
+						<span class='action-button-left'></span>						
+						<input class='submitYellow' type='button' value='Send comment' id='btSendComment' name='btSendComment' onclick='checkLoginToComment();'/>
+						<span class='action-button-right'></span></div>";
+			echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$userID."'>";
+			echo "</div>";
+			echo "</div>";
+				
+			echo "<script type='text/javascript'>
+						$('#nav').spasticNav();
+						$('#comment-toggle').click(function() 
+						{
+								  $('#comment').toggle('slow', function()
+								  {
+									// Animation complete.
+								  });
+						});
+					   
+						$(document).ready(function() 
+						{
+								$('#txtComment').css('background-color', '#EDEDED'); 
+								$('#txtComment').bind('focusin', function() {
+										if ($('#txtComment').val() == 'Write a comment') {
+												$('#txtComment').val('');
+										}
+								});
+								$('#txtComment').bind('focusout', function() {
+								
+										if ($('#txtComment').val() == '') {
+												$('#txtComment').val('Write a comment');
+										}
+								});
+						});
+				  </script>";
+			 
 		}
 		else
 		{

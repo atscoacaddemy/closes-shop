@@ -247,7 +247,13 @@
 				echo "<div>";
 				echo "<textarea id='txtComment' name='txtComment' rows='3' title='Write a comment' cols='85' class='comment-textarea'>Write a comment</textarea>";
 				echo "</div>";
-			echo "</div>";
+				
+				echo "<div>
+						<span class='action-button-left'></span>						
+						<input class='submitYellow' type='button' value='Send comment' id='btSendComment' name='btSendComment' onclick='checkLoginToComment();'/>
+						<span class='action-button-right'></span></div>";
+			    echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
+			    echo "</div>";
 					?>
 				<!--text area -->
 		<!--end ajax for div messCommentAjax -->
@@ -255,17 +261,13 @@
 
 <!--end comment -->				
 				
-					</br>
-					<div>
-						<span class="action-button-left"></span>						
-						<input class="submitYellow" type="button" value="Send comment" id="btSendComment" name="btSendComment" 
-						onclick="checkLoginToComment();"/>
-						<span class="action-button-right"></span>
+					
+				
 <?php
-	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
-	//echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
+	// echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
+	
 ?>
-					</div>
+					
 					</div>
 					</div>
 						<div style="clear: both;"></div>

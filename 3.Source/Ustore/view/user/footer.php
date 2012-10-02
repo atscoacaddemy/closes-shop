@@ -124,18 +124,17 @@
 			
             return false;
         }
-		function press_LoginToAddCart()
-        {
-            document.getElementById("popup").style.visibility = "visible";
-            document.getElementById("txtUsernameLogin").value = "";
-            document.getElementById("txtPasswordLogin").value = "";
-            document.getElementById("txtUsernameLogin").focus();
-			//$("#messRegister").attr("innerHTML","Đăng ký thành công.Mời bạn đăng nhập!");
-			document.getElementById('messRegister').innerHTML="Hãy đăng nhập để đặt hàng!";
-			$("#messRegister").css("color","blue");
+		// function press_LoginToAddCart()
+        // {
+            // document.getElementById("popup").style.visibility = "visible";
+            // document.getElementById("txtUsernameLogin").value = "";
+            // document.getElementById("txtPasswordLogin").value = "";
+            // document.getElementById("txtUsernameLogin").focus();
+			// document.getElementById('messRegister').innerHTML="Hãy đăng nhập để đặt hàng!";
+			// $("#messRegister").css("color","blue");
 			
-            return false;
-        }
+            // return false;
+        // }
         function press_closeLogIn()
         {
             document.getElementById("popup").style.visibility = "hidden";

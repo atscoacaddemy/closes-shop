@@ -69,7 +69,19 @@
 				?>
 				
 				<span style="color:#FFFFFF;font-weight:bold">|</span>
-				<a class="lnk" href="<?php echo $contextPath?>view/user/cart.php">Giỏ hàng (<?php echo count($_SESSION["cart"]);?>)</a>
+				<a class="lnk" href="<?php echo $contextPath?>view/user/cart.php">Giỏ hàng(<?php 
+					include_once($contextPath."controller/CartController.php");
+					$check = CartController::CountProductID_Of_CartByUserID($_SESSION["curUser"][0]);
+					if($check != null)
+					{
+						echo $check;
+					}
+					else
+					{
+						echo "0";
+					}
+					?>)
+				</a>
 		</div>
 	</div>
 	<div id="menu" class="menu">

@@ -45,7 +45,7 @@ $productList = ProductController::getProducts($type, $subtype,null);
 							<?php } else {?>
 							<div class="product-label-nornal"></div>
 							<?php } ?>
-							<a href="product-detail.php?productid=<?php echo $productid; ?>"> <img src="<?php echo $contextPath.$product['Preview_Img_01']; ?>" /> </a>
+							<a href="product-detail.php?productid=<?php echo $product[0]; ?>"> <img src="<?php echo $contextPath.$product['Preview_Img_01']; ?>" /> </a>
 						</div>
 						<div>
 							<div class="product-id">

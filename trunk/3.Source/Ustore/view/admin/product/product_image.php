@@ -1,4 +1,6 @@
-<?php require_once ("../../controller/ProductController.php");
+<?php 
+require_once ("../../controller/ProductController.php");
+require_once ("../../controller/ProductImageController.php");
 ?>
 <script>
 	function deleteImg(imageType, productId) {
@@ -12,17 +14,12 @@
 
 	function closePopupEdit() {
 		$("#msgResult").fadeOut(300);
+		$("#dvImgResult").fadeOut(300);
 	}
 
-	function show_image(src, width, height, alt) {
-		alert("fdsa");
-		var img = document.createElement("img");
-		img.src = src;
-		img.width = width;
-		img.height = height;
-		img.alt = alt;
-
-		document.body.appendChild(img);
+	function show_image(src) {
+		$("#imgResult").attr('src',src);
+		$("#dvImgResult").fadeIn(300);
 	}
 </script>
 <div id="wrapper">
@@ -30,13 +27,15 @@
 <div id="box">
 		<h3 id="adduser">PRODUCT</h3>
 		<!--<form id="form" action="" method="post">-->
-		
+		<?php
+		$image =  ProductImageController::GetImageOfProductFromProductID($_REQUEST['proId']);
+		?>
 			<fieldset id="personal">
 				<legend>
 					EDIT IMAGE TO PRODUCT
 				</legend
 				<label >Cover_Img : </label>
-				<button onclick="show_image('../../data/15_Cover_Img.png',100,100,'');">ShowImage </button>
+				<a href="#" onclick="show_image('<?php echo "../../".$image['Cover_Img']; ?>');"><?php echo $image['Cover_Img']; ?> </a>
 				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('Cover_Img',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php    
 				  require_once "../../utility/phpfileuploader/phpuploader/include_phpuploader.php" ;
@@ -54,6 +53,7 @@
 				?>
 				<br/>
 				<label>Preview_Img_0<?php echo $i; ?> : </label>
+				<a href="#" onclick="show_image('<?php echo "../../".$image['Preview_Img_0'.$i]; ?>');"><?php echo $image['Preview_Img_0'.$i]; ?> </a>
 				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo "Preview_Img_0".$i; ?>',<?php echo $_REQUEST["proId"]; ?>)"> 	
 				<?php		
 				$uploader=new PhpUploader();    
@@ -69,10 +69,14 @@
 				<?php
 				for($i=1;$i<21;$i++)
 				{
+					$imgName="Detail_Img_";
+					if($i<10)
+						$imgName=$imgName."0".$i;
 				?>
 				<br/>
-				<label>Detail_Img_<?php if($i<10)echo "0".$i; else echo $i; ?> : </label>		
-				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php if($i<10) echo "Detail_Img_0".$i; else echo "Detail_Img_".$i ?>',<?php echo $_REQUEST["proId"]; ?>)">	
+				<label>Detail_Img_<?php echo $imgName; ?> : </label>
+					<a href="#" onclick="show_image('<?php echo "../../".$image[$imgName]; ?>');"><?php echo $image[$imgName]; ?> </a>		
+				<img src="img/icons/user_delete.png"	style="cursor:pointer;"	onclick="deleteImg('<?php echo $imgName; ?>',<?php echo $_REQUEST["proId"]; ?>)">	
 				<?php		
 				$uploader=new PhpUploader(); 
 						$uploadName="";
@@ -111,4 +115,9 @@
 	</div>
 	</div>
 	<div class="lightbox-panel" id="msgResult"></div>
+	<div class="lightbox-panel" id="dvImgResult">
+		<img id="imgResult" width="200" height="200"/>
+		<br/>
+		<input type="button" id="button1" onclick="closePopupEdit();" value="Close"/>
+	</div>
 </div>

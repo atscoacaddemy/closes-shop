@@ -371,7 +371,7 @@ echo "<form action='../../controller/AddCartProcessor.php' method='POST' id='frm
 					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class='action-button-left'></span>						
-							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang'/>
+							<input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/>
 							<span class='action-button-right'></span>
 						</h3>
 					</td>

@@ -162,7 +162,7 @@ echo "<form action='../../controller/AddCartProcessor.php' method='post' id='frm
 					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class='action-button-left'></span>						
-							<input class='submitYellow' type='submit' value='Checkout' id='btnDatHang' name='btnDatHang'/>
+							<input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/>
 							<span class='action-button-right'></span>
 						</h3>
 					</td>
@@ -196,7 +196,7 @@ echo "<form action='../../controller/AddCartProcessor.php' method='POST' id='frm
 					<td align='center' colspan='3'>
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class='action-button-left'></span>						
-							<input class='submitYellow' type='submit' value='Checkout' id='btnDatHang' name='btnDatHang'/>
+							<input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/>
 							<span class='action-button-right'></span>
 						</h3>
 					</td>

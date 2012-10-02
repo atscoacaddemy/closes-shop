@@ -3,9 +3,39 @@
 	$_SESSION["contextPath"] = $contextPath;
 	include_once ($contextPath."controller/config.php");
 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+	
 	// echo "url=".$url;
-//	echo "</br>nameFolder=".$nameFolder;
-
+	// echo "</br>php=".$nameFolder;
+	//start
+		// $posPHP = strpos($url,"php");
+		// $posVIEW = strpos($url,"view");
+		// echo "</br>posPHP=".$posPHP;
+		// $posDAUSAC=0;
+		// $stringURLneed="";
+		// for($i=39;$i>0;$i--)
+		// {
+			// if($url[$i] == "/")
+			// {
+				// $posDAUSAC=$i;
+				// break;
+			// }
+		// }
+		// echo "</br>posPHP=".$posPHP;
+		// echo "</br>posVIEW=".$posVIEW;
+		// if($posVIEW>0)
+		// {
+			// $stringURLneed=substr($url,$posVIEW,(($posPHP +3) -$posVIEW)); 
+			
+		// }
+		// else
+		// {
+			// $stringURLneed=substr($url,$posDAUSAC+1,(($posPHP +3) - ($posDAUSAC+1))); 
+		// }
+		// echo "<br>stringURLneed=".$stringURLneed;
+		//$_SESSION["strUrl"] = $stringURLneed;
+	//end
+	
+	
 	$removeLogOut ="?do=logout";
 	$posLogOut = strpos($url,"logout");
 	$pos = strpos($url,$nameFolder);
@@ -20,6 +50,8 @@
 		$strUrl = substr($url,$pos+7); 
 	}
 	$_SESSION["strUrl"] = $strUrl;
+	
+	
 	// $posAddCart = strpos($url,"addcart");
 	// if($posAddCart > 1)
 	// {

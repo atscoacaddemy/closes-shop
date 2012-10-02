@@ -6,34 +6,35 @@
 		session_start();
 		//include_once("UserController.php");
 		include_once("CartController.php");
-		echo "<br>add to cart processpor";
+		//echo "<br>add to cart processpor";
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
-		echo "<br>amount product in cart = ".count($_SESSION["cart"]);
+		//echo "<br>amount product in cart = ".count($_SESSION["cart"]);/
 		echo "<br>amount product in cart[0] = ".$_SESSION["cart"][0];
-		echo "<br>curUser= ".$_SESSION["curUser"][0];
+	//	echo "<br>curUser= ".$_SESSION["curUser"][0];
 		//$result=CartController::AddCart($email,$pass);
 		echo "<br>url=".$_SESSION["contextPath"].$_SESSION["strUrl"];
 		$flag = "true";
 		if(count($_SESSION['cart']) > 0)
 		{
 			$allcart_of_userid=CartController::GetCartByUserID($_SESSION["curUser"][0]);
-			echo "<br>***********user id=".$_SESSION["curUser"][0];
-			echo "<br>***********allcart_of_userid=".count($allcart_of_userid);
+			echo "<br>***********user id=".$_SESSION["curUser"][1];
+			echo "<br>***********so luong cart trong DB of user=".count($allcart_of_userid);
+			echo "<br>***********so luong cart trong session of user=".count($_SESSION['cart']);
 			//delete all cart of user not in $_SESSION['cart'][0]
 			for($i=0;$i<count($allcart_of_userid);$i++)
 			{
 				$flag_delete="false";
 				for($j=0;$j<count($_SESSION['cart']);$j++)
 				{
-				 echo "<br>***********allcart_of_userid=".$allcart_of_userid[$i][2];
-				 echo "<br>***********SESSION= ".$_SESSION['cart'][$j];
+				 echo "<br>++++ propduct_id cart in DB of userid=".$allcart_of_userid[$i][2];
+				 echo "<br>++++ product_id cart  in SS          = ".$_SESSION['cart'][$j];
 					if($allcart_of_userid[$i][2] == $_SESSION['cart'][$j])
 					{
-						$flag = "true";
+						$flag_delete = "true";
 					}
 				}
-				if($flag == "false")
+				if($flag_delete == "false")
 				{
 					echo "<br>***********delete id=".$allcart_of_userid[$i][0];
 					$rs = CartController::Delete($allcart_of_userid[$i][0]);
@@ -82,11 +83,11 @@
 		}
 	    if($flag == "false")
 	    {
-			//header("Location:../view/user/cart.php?addcart=failed");
+			header("Location:../view/user/cart.php?addcart=failed");
 	    }
 	    else
 	    {
-			//header("Location:../view/user/cart.php?addcart=successful");
+			header("Location:../view/user/cart.php?addcart=successful");
 	    }
 			
 		  

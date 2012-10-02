@@ -19,9 +19,22 @@
 	{
 		$strUrl = substr($url,$pos+7); 
 	}
-//echo "</br>subString=".$strUrl;
 	$_SESSION["strUrl"] = $strUrl;
-
+	// $posAddCart = strpos($url,"addcart");
+	// if($posAddCart > 1)
+	// {
+		// echo "</br>posAddCart=".$posAddCart;
+		// $strUrl = substr($url,$pos+7,strlen($url) - 7- ($pos+15)); 
+	// }
+	// else
+	// {
+		// $strUrl = substr($url,$pos+7); 
+	// }
+	// echo "</br>subString=".$strUrl;
+	
+	//$_SESSION["strUrl"] = $strUrl;
+	
+	
 	if(isset($_GET["do"])&& $_GET["do"]=="logout")
 	{
         unset($_SESSION["curUser"]);

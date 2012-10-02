@@ -7,49 +7,72 @@
 	// echo "url=".$url;
 	// echo "</br>php=".$nameFolder;
 	//start
-		// $posPHP = strpos($url,"php");
-		// $posVIEW = strpos($url,"view");
-		// echo "</br>posPHP=".$posPHP;
-		// $posDAUSAC=0;
-		// $stringURLneed="";
-		// for($i=39;$i>0;$i--)
+		$posPHP = strpos($url,"php");
+		$posLogOut = strpos($url,"logout");
+		$posVIEW = strpos($url,"view");
+		$question=strpos($url,"?");
+	//	echo "</br>posPHP=".$posPHP;
+		$posDAUSAC=0;
+		$strUrl="";
+		$flag = "false";
+		for($i=$posPHP; $i>0; $i--)
+		{
+			if($url[$i] == "/")
+			{
+				$posDAUSAC = $i;
+				break;
+			}
+		}
+		// if($url[$posLogOut -4] == "&")
 		// {
-			// if($url[$i] == "/")
-			// {
-				// $posDAUSAC=$i;
-				// break;
-			// }
+			// $flag = "true";
 		// }
-		// echo "</br>posPHP=".$posPHP;
-		// echo "</br>posVIEW=".$posVIEW;
-		// if($posVIEW>0)
-		// {
-			// $stringURLneed=substr($url,$posVIEW,(($posPHP +3) -$posVIEW)); 
+		
+	//	echo "</br>posPHP=".$posPHP;
+	//	echo "</br>posVIEW=".$posVIEW;
+		if($posVIEW>0)
+		{
+			if($posLogOut >0)
+			{
+				// if($flag == "true")
+					// $strUrl=substr($url,$posVIEW,(($posLogOut -4) -$posVIEW));
+				// else
+				// {
+					$strUrl=substr($url,$posVIEW,(($posLogOut -4) -$posVIEW));
+				// }
+			}
+			else
+			{
+				$strUrl=substr($url,$posVIEW,strlen($url));
 			
-		// }
-		// else
-		// {
-			// $stringURLneed=substr($url,$posDAUSAC+1,(($posPHP +3) - ($posDAUSAC+1))); 
-		// }
-		// echo "<br>stringURLneed=".$stringURLneed;
-		//$_SESSION["strUrl"] = $stringURLneed;
+			}
+			
+			
+		}
+		else
+		{
+			$strUrl=substr($url,$posDAUSAC+1,(($posPHP +3) - ($posDAUSAC+1))); 
+		}
+		//echo "<br>strUrl=".$strUrl;
+		$_SESSION["strUrl"] = $strUrl;
+		
 	//end
 	
 	
-	$removeLogOut ="?do=logout";
-	$posLogOut = strpos($url,"logout");
-	$pos = strpos($url,$nameFolder);
-	$question=strpos($url,"?");
-	if($posLogOut > 1)
-	{
-		echo "</br>posLogout=".$posLogOut;
-		$strUrl = substr($url,$pos+7,strlen($url) - 10- ($pos+7)); 
-	}
-	else
-	{
-		$strUrl = substr($url,$pos+7); 
-	}
-	$_SESSION["strUrl"] = $strUrl;
+	// $removeLogOut ="?do=logout";
+	// $posLogOut = strpos($url,"logout");
+	// $pos = strpos($url,$nameFolder);
+	// $question=strpos($url,"?");
+	// if($posLogOut > 1)
+	// {
+		// echo "</br>posLogout=".$posLogOut;
+		// $strUrl = substr($url,$pos+7,strlen($url) - 10- ($pos+7)); 
+	// }
+	// else
+	// {
+		// $strUrl = substr($url,$pos+7); 
+	// }
+	// $_SESSION["strUrl"] = $strUrl;
 	
 	
 	// $posAddCart = strpos($url,"addcart");

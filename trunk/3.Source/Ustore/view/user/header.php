@@ -90,7 +90,7 @@
 			</li>
 			<li><a href="#">Hot</a>
 			</li>
-			<li><a href="<?php echo $contextPath?>view/user/product-list.php">Túi Xách</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list.php?type=1">Túi Xách</a>
 			</li>
 			<li><a href="#">Hàng Order</a>
 			</li>

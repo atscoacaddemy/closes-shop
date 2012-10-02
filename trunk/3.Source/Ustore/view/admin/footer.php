@@ -1,8 +1,5 @@
       <!-- footer -->
         <div id="footer">
-        <div id="credits">
-					Template by <a href="http://www.bloganje.com">Bloganje</a>
-        </div>
         <div id="styleswitcher">
             <ul>
                 <li><a href="javascript: document.cookie='theme='; window.location.reload();" title="Default" id="defswitch">d</a></li>

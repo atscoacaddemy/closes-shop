@@ -8,7 +8,7 @@ function addProduct()
 		 var sub_type = $("#sub_type").val();
 		 var promotion_id = $("#promotion_id").val();
 		 var present_type = $("#present_type").val();
-		 var price = $("#price").val();
+		 var price = $("#price").val()+ '000';
 		 //alert(name+"_"+description+"_"+type+"_"+present_type);
 		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
 		$("#lightbox, #info-panel").fadeIn(300);
@@ -33,8 +33,7 @@ function deleteProduct()
 </script>
 <?php
 	require_once("../../utility/Utils.php");
-	$maxItems = 1;
-	$maxPages = 5;
+	include_once ("../../controller/config.php");
 	$curPage = "";
 	if (isset($_GET["page"]))
 		$curPage = (int) $_GET["page"];
@@ -44,7 +43,7 @@ function deleteProduct()
 <div id="wrapper">
 <div id="content">
 	<div id="box">
-		<h3>Users</h3>
+		<h3>Products List</h3>
 		<table width="100%">
 			<thead>
 				<tr>
@@ -52,7 +51,7 @@ function deleteProduct()
 					<th><a href="#">Name</a></th>
 					<th><a href="#">Description</a></th>
 					<th width="90px"><a href="#">Type</a></th>
-					<th width="50px"><a href="#">Sub_Type</a></th>
+					<th width="70px"><a href="#">Sub_Type</a></th>
 					<th width="90px"><a href="#">Price</a></th>
 					<th width="60px"><a href="#">Action</a></th>
 				</tr>
@@ -69,9 +68,9 @@ function deleteProduct()
 					<td><a href="?action=view&<?php echo "id=".$product["ID"]; ?>"><?php echo $product["Name"] ;?></a></td>
 					<td><?php echo $product["Description"] ;?></td>
 					<td><?php echo $product["Type"] ;?></td>
-					<td><?php echo $product["Sub_Type"] ;?></td>
-					<td><?php echo $product["Price"] ;?></td>
-					<td><a href="?action=view&<?php echo "id=".$product["ID"]; ?>" ><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a href="<?php echo "?action=edit&id=".$product["ID"]; ?>"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $product["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
+					<td><?php echo $product["Subtype_Name"] ;?></td>
+					<td><?php echo number_format($product["Price"], 0, ',', ',');?></td>
+					<td><a href="?action=view&<?php echo "id=".$product["ID"]; ?>" ><img src="img/icons/user.png" title="Detail" width="16" height="16" /></a><a href="<?php echo "?action=edit&id=".$product["ID"]; ?>"><img src="img/icons/user_edit.png" title="Edit" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $product["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete" width="16" height="16" /></a></td>
 					</tr>
 					<?php
 				}
@@ -117,14 +116,14 @@ function deleteProduct()
 				<input name="name" id="name" type="text" tabindex="1" />
 				<br />
 				<label for="description">Description : </label>
-				<textarea name="description" id="description"></textarea>
+				<textarea name="description" id="description" tabindex="1"></textarea>
 				<br />
 				<!--
 				<input name="role" id="role" type="text"
 								tabindex="2" />-->				
 				
 				<label for="type">Type : </label>	
-				<select name="type" id="type">
+				<select name="type" id="type" tabindex="1">
 				<?php
 					$roles=ProductController::GetProductTypes();
 					for ($i=0;$i<count($roles);$i++) {
@@ -138,14 +137,14 @@ function deleteProduct()
 				</select>		
 				<br />
 				<label for="sub_type">Sub_Type : </label>	
-				<select name="sub_type" id="sub_type">
+				<select name="sub_type" id="sub_type" tabindex="1">
 					<?php
 					$roles=ProductController::GetProductSubTypes();
 					for ($i=0;$i<count($roles);$i++) {
 						if($i==0)//select first option
-							echo "<option  selected='selected' value='".$roles[$i]["Type_ID"]."'>".$roles[$i]["Name"]."</option>";
+							echo "<option  selected='selected' value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
 						else {
-							echo "<option  value='".$roles[$i]["Type_ID"]."'>".$roles[$i]["Name"]."</option>";
+							echo "<option  value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
 						}
 					}
 				?>	
@@ -153,7 +152,7 @@ function deleteProduct()
 				<br/>
 			
 				<label for="promotion_id">Promotion_ID : </label>		
-				<select name="promotion_id" id="promotion_id">
+				<select name="promotion_id" id="promotion_id" tabindex="1">
 					<?php
 					$roles=ProductController::GetProductPromotions();
 					for ($i=0;$i<count($roles);$i++) {
@@ -167,7 +166,7 @@ function deleteProduct()
 				</select>		
 				</br>
 				<label for="present_type">Present_Type : </label>		
-				<select name="present_type" id="present_type">
+				<select name="present_type" id="present_type" tabindex="1">
 					<?php
 					$roles=ProductController::GetProductPresentTypes();
 					for ($i=0;$i<count($roles);$i++) {
@@ -180,15 +179,15 @@ function deleteProduct()
 				?>	
 				</select>		
 				<br />
-				<label for="price">Price : </label>			
-				<input name="price" id="price" type="text"/>
+				<label for="price">Price : </label>	
+				<input name="price" id="price" type="text"/ tabindex="1"> <span style="font-size: 20px; color: red">,000</span>		
 				
 
 			</fieldset>
 		
 			<div align="center">
-				<input id="button1" type="button" value="Save" name="btnAddProduct" onclick="addProduct();"/>
-				<input id="button2" type="reset" />
+				<input id="button1" type="button" value="Save" name="btnAddProduct" onclick="addProduct();" tabindex="1"/>
+				<input id="button2" type="reset" tabindex="1"/>
 			</div>
 		</form>
 	

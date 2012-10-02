@@ -68,7 +68,7 @@ ul, li {
 }
 .sub-menu-title {
 /*	background: url(../images/sub-menu-title-background.png) no-repeat;*/
-	background: url(../images/1_5.png) no-repeat;
+	background: url(../images/1_7.png) no-repeat;
 	height: 120px;
 	border-radius: 10px 10px 10px 10px;
 }
@@ -93,7 +93,7 @@ ul, li {
 }
 .left-menu #support {
 	padding-top: 20px;
-	text-align: center;
+	text-align: center;\
 	font-family: Arial, Helvetica, sans-serif;
 	background: url("../images/pattern-grey.png");
 	clear: both;

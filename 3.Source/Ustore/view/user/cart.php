@@ -34,18 +34,18 @@
 			$("#btnDelete0").click(function()
 			{	
 				flag = false;
-				alert("btnDelete0");
+			//	alert("btnDelete0");
 				return flag;
 			});
 			$("#btnDelete1").click(function()
 			{	
-				alert("btnDelete1");
+			//	alert("btnDelete1");
 				flag = false;
 				return flag;
 			});
 			$("#btnDelete2").click(function()
 			{	
-				alert("btnDelete2");
+			//	alert("btnDelete2");
 				flag = false;
 				return flag;
 			});
@@ -60,6 +60,31 @@
 				return flag;
 			});
 			$("#btnDelete5").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete6").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete7").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete8").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete9").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete10").click(function()
 			{	
 				flag = false;
 				return flag;
@@ -84,13 +109,13 @@
 		
 		if(productDeleteID != "" && productDeleteID>0)
 		{
-			alert("product id "+productDeleteID);
+			//alert("product id "+productDeleteID);
 			var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
 			 $("#messDeleteCartAjax").load(serverURL);
 		}
 		else
 		{
-			alert("product id ko hop le");
+			alert("Sản phẩm không hợp lệ!");
 		}
 		return flag;
 	}
@@ -217,7 +242,7 @@ else
 	
 		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
-		<div class="mid_content" id="loadAjax" name="loadAjax">	
+		<!--div class="mid_content" id="loadAjax" name="loadAjax"-->	
 
 <div id="messDeleteCartAjax" name="messDeleteCartAjax">
 <div style="padding:20px;" id="frmCheckOut" name="frmCheckOut">
@@ -228,7 +253,7 @@ else
 			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
 			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#D3658A;'>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:35px;" align='center'>Hình Ảnh</td>
-				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:25px;">Mã SP</td>
+				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:35px;" >Mã SP</td>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:60px;">Tên SP</td>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:10px;">Số Lượng</td>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:25px;" align='center'>Đơn Giá</td>
@@ -240,12 +265,12 @@ else
 			<?php
 			//check login to change product in session ($_SESSION["cart"]) && isset($_REQUEST["usercart"]) && $_REQUEST["usercart"] == "1" 
 			echo "<input name='ischeckout' id='ischeckout' type='text' style='width:300px;display:none;' value='0'>";
-			echo "<br>is session=".$_SESSION["ischeckout"];
+			//echo "<br>is session=".$_SESSION["ischeckout"];
 			if(isset($_SESSION["curUser"])&& $_SESSION["curUser"] != null && $_SESSION["ischeckout"] != "1")
 			{
 				include_once ($contextPath."controller/CartController.php");
 				$cartInDB = CartController::GetCartByUserID($_SESSION["curUser"][0]);				
-				echo "<br>count session cart1=".count($_SESSION["cart"]);				
+			//	echo "<br>count session cart1=".count($_SESSION["cart"]);				
 				for($j=0;$j<count($cartInDB);$j++)
 				{
 					$flag_check= "true";
@@ -266,13 +291,13 @@ else
 						}
 						else
 						{	
-							echo "<br>them vao product id=".$cartInDB[$j][2];
+						//	echo "<br>them vao product id=".$cartInDB[$j][2];
 							array_push($_SESSION["cart"],$cartInDB[$j][2]);
 						}
 					}
 					
 				}
-				echo "<br>count session cart2=".count($_SESSION["cart"]);	
+				//echo "<br>count session cart2=".count($_SESSION["cart"]);	
 			}
 			//end check
 			if(count($_SESSION["cart"]) > 0)
@@ -306,12 +331,12 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 						echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
 							  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a></td>";
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
-						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' />"."txtQuantity".$i."</td>";
+						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
 						echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
 						$btn = "btnDelete".$i;
-						echo "<bt>btn=".$btn;
+						//echo "<bt>btn=".$btn;
 						echo     "<input type='image' src='".$contextPath."data/delete.png'' name='".$btn."' id='".$btn."' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
 						echo "</td>";
 						echo "</tr>";
@@ -325,7 +350,7 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 				echo "</tr>";
 
 	
-				 echo "<tr><td></td><td></td><td></td><td></td><td></td><td align='center' colspan='3'><h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'><span class='action-button-left'></span><input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/><span class='action-button-right'></span></h3></td></tr>";
+				 echo "<tr style='background-color: rgb(239, 239, 239);'><td></td><td></td><td></td><td></td><td></td><td align='center' colspan='3'><h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'><span class='action-button-left'></span><input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/><span class='action-button-right'></span></h3></td></tr>";
 echo "</form>";			
 			echo"<tr><td></td></tr></table>";
 			}
@@ -364,7 +389,7 @@ echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:no
 </div>
 <!--/form-->	
 	<!--end ajax-->
-</div>
+
 	</div>	
 
 					<div>					

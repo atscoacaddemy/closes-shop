@@ -5,7 +5,7 @@
 	$userID = $_REQUEST["userID"];
 	$productID = $_REQUEST["productID"];
 	$productdeleteid = $_REQUEST["productdeleteid"];
-	echo "<br>zzzzz=".$productdeleteid;
+	//echo "<br>zzzzz=".$productdeleteid;
 	
 	if(!empty($productdeleteid) && $productdeleteid>0 )
 	{
@@ -91,8 +91,8 @@
 			   <td style='border-right:solid 1px #D3D3D3; padding:4px; width:5px;'>Xóa</td>				   
 		   </tr>";
 	
-			echo "<br>session user=".$_SESSION["curUser"][1];
-			echo "<br>count session cart=".count($_SESSION["cart"]);
+		//	echo "<br>session user=".$_SESSION["curUser"][1];
+		//	echo "<br>count session cart=".count($_SESSION["cart"]);
 		if(count($_SESSION["cart"]) > 0)
 		{		
 		
@@ -215,7 +215,7 @@ echo "</form>";
 				
 				var flag = true;
 				var strUsername = $('#idUser').attr('value');
-		alert('strUsername='+strUsername);
+		
 				if(strUsername == '')
 				{										
 					press_LoginToAddCart();
@@ -227,18 +227,18 @@ echo "</form>";
 			$('#btnDelete0').click(function()
 			{	
 				flag = false;
-				alert('btnDelete0');
+			
 				return flag;
 			});
 			$('#btnDelete1').click(function()
 			{	
-				alert('btnDelete1');
+				
 				flag = false;
 				return flag;
 			});
 			$('#btnDelete2').click(function()
 			{	
-				alert('btnDelete2');
+				
 				flag = false;
 				return flag;
 			});
@@ -253,6 +253,31 @@ echo "</form>";
 				return flag;
 			});
 			$('#btnDelete5').click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$('#btnDelete6').click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$('#btnDelete7').click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$('#btnDelete8').click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$('#btnDelete9').click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$('#btnDelete10').click(function()
 			{	
 				flag = false;
 				return flag;

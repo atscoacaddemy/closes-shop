@@ -26,7 +26,7 @@
 				<?php
 					$roles=ProductController::GetProductTypes();
 					for ($i=0;$i<count($roles);$i++) {
-						if($i==$product["Type"])//select first option
+						if($roles[$i]['ID']==$product["Type"])//select first option
 							echo "<option  selected='selected' value='".$roles[$i]["ID"]."'>".$roles[$i]["Type"]."</option>";
 						else {
 							echo "<option  value='".$roles[$i]["ID"]."'>".$roles[$i]["Type"]."</option>";
@@ -40,10 +40,10 @@
 					<?php
 					$roles=ProductController::GetProductSubTypes();
 					for ($i=0;$i<count($roles);$i++) {
-						if($i==$product["Sub_Type"])//select first option
-							echo "<option  selected='selected' value='".$roles[$i]["Type_ID"]."'>".$roles[$i]["Name"]."</option>";
+						if($roles[$i]['ID']==$product["Sub_Type"])//select first option
+							echo "<option  selected='selected' value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
 						else {
-							echo "<option  value='".$roles[$i]["Type_ID"]."'>".$roles[$i]["Name"]."</option>";
+							echo "<option  value='".$roles[$i]["ID"]."'>".$roles[$i]["Name"]."</option>";
 						}
 					}
 				?>	

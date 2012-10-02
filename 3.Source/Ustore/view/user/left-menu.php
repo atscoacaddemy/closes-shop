@@ -1,5 +1,10 @@
+	<script type="text/javascript">
+		function doFilter(type,subtype) {
+			window.location='product-list.php?type=' + type + '&subtype=' + subtype;
+		}
+	</script>
 			<?php 
-			$type = 1;
+			$type = $_GET['type'];
 			$subtypeList=ProductController::getProductSubType($type);
 			?>
 			<div class="sub-menu-title">
@@ -7,12 +12,12 @@
 			</div>
 			<div class="left-menu">
 				<div class="sub-menu">
-					<div  onclick="doFilter()">
+					<div  onclick="doFilter(<?php echo $type.','.'0'?>)">
 						Tất cả sản phẩm
 					</div>
 				<?php foreach ($subtypeList as $subtype) {?>
 					
-					<div onclick="doFilter(<?php echo $subtype['ID']?>)">
+					<div onclick="doFilter(<?php echo $type.','. $subtype['ID']?>)">
 						<?php echo $subtype["Name"]?>
 					</div>
 					<?php }?>
@@ -21,16 +26,16 @@
 					<h1>Hỗ Trợ</h1>
 					<div style="font-weight: bold;">Thành phố Hồ Chí Minh</div>
 					<div class="yahoo">
-						<a href="ymsgr:SendIM?luckyluc1988" title="mr Nhut"> <img  border="0" src="http://opi.yahoo.com/online?u=luckyluc1988&amp;m=g&amp;t=16"> </a>
+						<a href="ymsgr:SendIM?luckyluc1988" title="Mr Nhật"> <img  border="0" src="http://opi.yahoo.com/online?u=luckyluc1988&amp;m=g&amp;t=16"> </a>
 						<div>Mr Nhật - 0984669938</div>
 					</div >
 					<div class="yahoo">
-						<a href="ymsgr:SendIM?goodking2403" title="mr Nhut"> <img  border="0" src="http://opi.yahoo.com/online?u=goodking2403&amp;m=g&amp;t=22"> </a>
+						<a href="ymsgr:SendIM?goodking2403" title="mr Quân"> <img  border="0" src="http://opi.yahoo.com/online?u=goodking2403&amp;m=g&amp;t=22"> </a>
 						<div>Mr Quân - 0906622190</div>
 					</div>
 					<div style="font-weight: bold; padding-top: 10px;">Mỹ Tho</div>
 					<div class="yahoo">
-						<a href="ymsgr:SendIM?boolep_1188" title="mr Nhut"> <img  border="0" src="http://opi.yahoo.com/online?u=boolep_1188&amp;m=g&amp;t=13"> </a>
+						<a href="ymsgr:SendIM?boolep_1188" title="mr Xuân"> <img  border="0" src="http://opi.yahoo.com/online?u=boolep_1188&amp;m=g&amp;t=13"> </a>
 						<div>Ms Xuân - 0972150979</div>
 					</div>
 					</div>

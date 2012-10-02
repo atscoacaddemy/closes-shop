@@ -87,7 +87,7 @@
 		 public static function GetUsers($offset,$count)
 		 {
 		 	$strSQL = "	select * 
-						from user 				
+						from user where Delete_Flag = '0'				
 						limit $offset, $count";
             $result = DataProvider::Query($strSQL);
 			 if(mysql_num_rows($result)==0)

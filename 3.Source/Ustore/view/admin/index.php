@@ -1,4 +1,5 @@
 <?php
+$isIndex = true;
 require_once 'header.php';
 ?>
 <div id="wrapper">
@@ -11,7 +12,7 @@ require_once 'header.php';
 			echo '<h3 style="color: red">Dang nhap ko thanh cong</h3>';
 		}
 		?>
-		<form name="frmLogin" action="action/action_login.php?action=login" method="post">
+		<form class="loginForm" name="frmLogin" action="action/action_login.php?action=login" method="post">
 			
 			<label for="txtMail">Email: </label>
 			<input type="text" name="txtMail" id="txtMail" />
@@ -19,7 +20,7 @@ require_once 'header.php';
 			<label for="txtPass">Password: </label>
 			<input type="password" name="txtPass" id="txtPass" />
 			<br />
-			<input type="submit" value="Login" name="btnLogin"/>
+			<input style="cursor: pointer;" type="submit" value="Login" name="btnLogin"/>
 		</form>
 		
 	</div>

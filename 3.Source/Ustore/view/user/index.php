@@ -2,7 +2,7 @@
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
 		<title>U Store</title>
 		<link rel="stylesheet" type="text/css" href="template/AD Gallery 1.2.7/lib/jquery.ad-gallery.css">
-		<link rel="stylesheet" href="template/css/main.css" type="template/text/css" media="screen"/>
+		<link rel="stylesheet" href="template/css/main.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="template/css/menu.css" type="text/css" media="screen">
 		<script type="text/javascript" src="template/js/jquery.min.js"></script>
 		<script type="text/javascript" src="template/AD Gallery 1.2.7/lib/jquery.ad-gallery.js"></script>

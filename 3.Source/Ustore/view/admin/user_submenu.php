@@ -10,7 +10,7 @@
 	<div id="panel">
 		<ul>
 			<li>
-				<a href="#adduser" class="useradd">Add user</a>
+				<a href="user_index.php" class="useradd">Add user</a>
 			</li>
 			<li>
 				<a href="#" class="group">User groups</a>

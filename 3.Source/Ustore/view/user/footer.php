@@ -1,4 +1,4 @@
-﻿<link rel="stylesheet" href="<?php echo $contextPath?>template/css/default.css" type="text/css" media="screen">
+<link rel="stylesheet" href="<?php echo $contextPath?>template/css/default.css" type="text/css" media="screen">
 <script type="text/javascript" src="<?php echo $contextPath?>template/js/utilities.js"></script>
 <script type="text/javascript" src="<?php echo $contextPath?>template/js/common.js"></script>
 

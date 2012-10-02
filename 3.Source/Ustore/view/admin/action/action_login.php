@@ -22,4 +22,11 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="login")
 		}
 	
 }
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="logout")
+{	
+	session_start();
+	unset($_SESSION['admin']);
+	header("Location:../index.php");
+	
+}
 ?>

@@ -75,7 +75,7 @@ function deleteUser()
 					<td><?php echo $user["Phone"] ;?></td>
 					<td><a href="#"><?php echo $user["Email"] ;?></a></td>
 					<td><?php echo$user["Create_Date"] ;?></td>
-					<td><a href="#" onclick="showPopupInfo(<?php echo $user["ID"]; ?>)"><img src="img/icons/user.png" title="Show profile" width="16" height="16" /></a><a onclick="showPopupEdit(<?php echo $user["ID"]; ?>);" href="#"><img src="img/icons/user_edit.png" title="Edit user" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $user["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete user" width="16" height="16" /></a></td>
+					<td><a href="#" onclick="showPopupInfo(<?php echo $user["ID"]; ?>)"><img src="img/icons/user.png" title="Detail" width="16" height="16" /></a><a onclick="showPopupEdit(<?php echo $user["ID"]; ?>);" href="#"><img src="img/icons/user_edit.png" title="Edit" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $user["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete" width="16" height="16" /></a></td>
 					</tr>
 					<?php
 				}

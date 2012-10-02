@@ -2,7 +2,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml" >
  <?php  
   $contextPath="../../";
-  $productid="1";
  ?>
 	<head>
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
@@ -13,18 +12,14 @@
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui-1.8.23.custom.min.js"></script>
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 	</head>
-	<script type="text/javascript">
-		function doFilter(type) {
-			$('#subtype').val(type);
-			$('#form').submit();
-		}
-	</script>
 	<body class="body">
  <?php include_once 'header.php';?>
  <?php
  require_once ("../../controller//ProductController.php");
-$type = 1;
-$subtype = $_GET['subtype'];
+$type = $_GET['type'];
+if (!$_GET['subtype'] == '0') {
+	$subtype = $_GET['subtype'];
+}
 $productList = null;
 $productList = ProductController::getProducts($type, $subtype,null);
 ?>
@@ -45,14 +40,15 @@ $productList = ProductController::getProducts($type, $subtype,null);
 							<?php } else {?>
 							<div class="product-label-nornal"></div>
 							<?php } ?>
-							<a href="product-detail.php?productid=<?php echo $product[0]; ?>"> <img src="<?php echo $contextPath.$product['Preview_Img_01']; ?>" /> </a>
+							<a href="product-detail.php?productid=<?php echo $product['ID']; ?>&type=1"> <img src="<?php echo $contextPath.$product['Preview_Img_01']; ?>" /> </a>
+
 						</div>
 						<div>
 							<div class="product-id">
 								<?php echo $product['Name']?>
 							</div>
 							<div  class="product-price">
-								<?php echo $product['Price']?><sup style="margin-left: 5px;">đ</sup>
+								<?php echo number_format($product["Price"], 0, ',', ',');?><sup style="margin-left: 5px;">đ</sup>
 							</div>
 						</div>
 						<div class="cart-button">

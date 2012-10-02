@@ -2,23 +2,27 @@
 	include_once("DataProvider.php");
 ?>
 <?php
-	class ProductController
+class ProductController
+{
+	public static function GetAll($offset,$count)
 	{
-		public static function GetAll($offset,$count)
-		{
-			$strSQL = "	select * 
-						from product 				
-						limit $offset, $count";
-            $result = DataProvider::Query($strSQL);
-			$return[]=null;
-            while($row= mysql_fetch_array ($result,MYSQL_BOTH))
-                $return[]=$row;
+		$strSQL = "	select product.ID, product.Name as Name, product.Description, product_type.`Type`, product_subtype.Name as Subtype_Name, product.Price
+		from product,product_type, product_subtype
+			where product.Delete_Flag = '0' and product.Type =  product_type.ID
+							and product.sub_type = product_subtype.ID
+		limit $offset, $count";
+		$result = DataProvider::Query($strSQL);
+		while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+			$return[]=$row;
 			
-			return $return;
-		}
+		return $return;
+	}
 		public static function Count()
 		 {
-			 $strSQL = "select count(*) from product";
+			$strSQL = "	select count(*)
+			from product,product_type, product_subtype
+			where product.Delete_Flag = '0' and product.Type =  product_type.ID
+							and product.sub_type = product_subtype.ID";
             $result = DataProvider::Query($strSQL);
 			$temp = mysql_fetch_array($result);
             return $temp[0];

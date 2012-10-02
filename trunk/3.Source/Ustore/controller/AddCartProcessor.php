@@ -1,10 +1,12 @@
 ﻿<?php
 	//xu ly dang nhap
+	echo "<br>add to cart processpor";
 	if(isset($_POST["btnDatHang"]))
 	{   
-	session_start();
+		session_start();
 		//include_once("UserController.php");
 		include_once("CartController.php");
+		echo "<br>add to cart processpor";
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
 		echo "<br>amount product in cart = ".count($_SESSION["cart"]);
@@ -12,45 +14,80 @@
 		echo "<br>curUser= ".$_SESSION["curUser"][0];
 		//$result=CartController::AddCart($email,$pass);
 		echo "<br>url=".$_SESSION["contextPath"].$_SESSION["strUrl"];
-		$flag = true;
-		 for($i=0;$i<count($_SESSION['cart']);$i++)
-		  {
-				//
-				// $str="txtQuantity".$i;
-				// echo "<br>quantity=".$_POST[$str];
-				// if($_POST[$str] > 0)
-				// {
-					// $rs=CartController::AddCart($_SESSION["curUser"][0],$_SESSION["cart"][0],$_POST[$str]);
-					// if($rs == null) 
-						// $flag=false;
-				// }
-		  }
-		  if($flag == false)
-		  {
-			//echo "<script language='javascript' type='text/javascript'>
-			//document.getElementById('messAfterAddCart').innerHTML='Bạn đặt hàng thất bại!';
-			//</script>";
-			//header("Location:".$_SESSION["contextPath"].$_SESSION["strUrl"]."?addcart=successful");
-		  }
-		  else
-		  {
-			//echo "<script language='javascript' type='text/javascript'>
-			//document.getElementById('messAfterAddCart').innerHTML='Bạn đặt hàng thành công!';
-			//</script>";
-			//header("Location:".$_SESSION["contextPath"].$_SESSION["strUrl"]."?addcart=failed");
-		  }
-			// echo "</br>i=".$_SESSION['cart'][$i]."</br>";
-			 // $_SESSION["curUser"] = $result;
-			 
-			 // if ($result[5] == 1 && $result[7] == 0) 
-			 // {
-				// $contextPath =$_SESSION["contextPath"];
-				// $strUrl =$_SESSION["strUrl"];
-				// echo "contextPath=".$contextPath;
-			    // echo "</br>url=".$strUrl;
-			    // header("Location:".$contextPath.$strUrl);
+		$flag = "true";
+		if(count($_SESSION['cart']) > 0)
+		{
+			$allcart_of_userid=CartController::GetCartByUserID($_SESSION["curUser"][0]);
+			echo "<br>***********user id=".$_SESSION["curUser"][0];
+			echo "<br>***********allcart_of_userid=".count($allcart_of_userid);
+			//delete all cart of user not in $_SESSION['cart'][0]
+			for($i=0;$i<count($allcart_of_userid);$i++)
+			{
+				$flag_delete="false";
+				for($j=0;$j<count($_SESSION['cart']);$j++)
+				{
+				 echo "<br>***********allcart_of_userid=".$allcart_of_userid[$i][2];
+				 echo "<br>***********SESSION= ".$_SESSION['cart'][$j];
+					if($allcart_of_userid[$i][2] == $_SESSION['cart'][$j])
+					{
+						$flag = "true";
+					}
+				}
+				if($flag == "false")
+				{
+					echo "<br>***********delete id=".$allcart_of_userid[$i][0];
+					$rs = CartController::Delete($allcart_of_userid[$i][0]);
+				}
+			}
 			
-			 // }
+			for($i=0;$i<count($_SESSION['cart']);$i++)
+			{
+				
+				 //$str="txtQuantity1";
+				$str="txtQuantity".$i;
+				 echo "<br>str quantity=".$str;
+				 echo "<br>quantity=".$_POST[$str];
+				if($_POST[$str] > 0)
+				{
+					echo "<br>************product id =".$_SESSION["cart"][$i];
+					echo "<br>************user id =".$_SESSION["curUser"][0];
+					$check = CartController::GetCartByUserIDAndProductId($_SESSION["curUser"][0],$_SESSION["cart"][$i]);
+					echo "<br>************cart id =".$check[0];
+					if($check != null)
+					{
+						echo "<br>********amount cart of userid productid=".$check[3];
+						$rs=CartController::UpdateCart($_SESSION["curUser"][0],$_SESSION["cart"][$i],($check[3]+$_POST[$str]));
+					}
+					else
+					{
+						$rs=CartController::AddCart($_SESSION["curUser"][0],$_SESSION["cart"][$i],$_POST[$str]);
+					}
+					if($rs == null)
+					{
+						 $flag="false";
+						 echo "<br>flag=".$flag;
+					}
+				}
+			}
+		}
+		else
+		{
+			$deleteAllCart = CartController::GetCartByUserID($_SESSION["curUser"][0]);
+			for($i=0; $i< count($deleteAllCart) ;$i++)
+			{
+				$rs = CartController::Delete($deleteAllCart[$i][0]);
+				if($rs == null )
+					$flag = "false";
+			}
+		}
+	    if($flag == "false")
+	    {
+			//header("Location:../view/user/cart.php?addcart=failed");
+	    }
+	    else
+	    {
+			//header("Location:../view/user/cart.php?addcart=successful");
+	    }
 			
 		  
 	}                    

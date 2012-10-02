@@ -15,7 +15,87 @@
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui.js"></script>
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 <script type="text/javascript">
+    $(document).ready(function()
+	{
+			$("#frmCheckOut").submit(function()
+			{
+				
+				var flag = true;
+				var strUsername = $("#idUser").attr("value");
+		
+				if(strUsername == "")
+				{										
+					press_LoginToAddCart();
+					flag= false;
+				}
+	//			alert("aa");
+				return flag;
+			});
+			$("#btnDelete0").click(function()
+			{	
+				flag = false;
+				alert("btnDelete0");
+				return flag;
+			});
+			$("#btnDelete1").click(function()
+			{	
+				alert("btnDelete1");
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete2").click(function()
+			{	
+				alert("btnDelete2");
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete3").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete4").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			$("#btnDelete5").click(function()
+			{	
+				flag = false;
+				return flag;
+			});
+			
+	});
 	
+	function press_LoginToAddCart()
+	{
+		document.getElementById("popup").style.visibility = "visible";
+		document.getElementById("txtUsernameLogin").value = "";
+		document.getElementById("txtPasswordLogin").value = "";
+		document.getElementById("txtUsernameLogin").focus();
+		document.getElementById('messRegister').innerHTML="Hãy đăng nhập để đặt hàng!";
+		$("#messRegister").css("color","blue");
+		return false;
+	}
+	function DeleteCart(productDeleteID)
+	{	
+		flag = false;
+		
+		
+		if(productDeleteID != "" && productDeleteID>0)
+		{
+			alert("product id "+productDeleteID);
+			var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
+			 $("#messDeleteCartAjax").load(serverURL);
+		}
+		else
+		{
+			alert("product id ko hop le");
+		}
+		return flag;
+	}
+	
+									
 </script>
         </head>
         <body class="body" >
@@ -55,7 +135,7 @@
                                                 </div>
                                         </div>
                                         <div>
-<!--                                            <iframe src="//www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Fustore.vn&amp;width=292&amp;height=590&amp;colorscheme=light&amp;show_faces=true&amp;border_color=blue&amp;stream=true&amp;header=true" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:292px; height:590px;" allowTransparency="true"></iframe> -->
+
                                         </div>
                                 </div>
        	<?php 
@@ -78,7 +158,8 @@
 			{
 				$cart=array($productid);
 				$_SESSION["cart"]=$cart;
-	
+				//multidimentail
+				//$cart=array(array($productid,1));
 			}
 			else
 			{
@@ -112,13 +193,13 @@
 	
 <div style="width: 686px; padding-top:5px;float:left;">
 <?php
-if(isset($_REQUEST["do"]) && $_REQUEST["do"]== "successful" )
+if(isset($_REQUEST["addcart"]) && $_REQUEST["addcart"]== "successful")
 {
 	echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Bạn đã đặt hàng thành công! </div>";
 }
 else
 {
-	if(isset($_REQUEST["do"]) && $_REQUEST["do"] == "failed")
+	if(isset($_REQUEST["addcart"]) && $_REQUEST["addcart"] == "failed")
 	{
 		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Đặt hàng thất bại!</div>";
 	}
@@ -137,8 +218,13 @@ else
 		<hr width="680" size="1" style="color: rgb(211, 232, 248);">
 		
 		<div class="mid_content" id="loadAjax" name="loadAjax">	
-<form action="<?php echo $contextPath?>/controller/AddCartProcessor.php" method="POST" id="formAddCart" name="formAddCart">
+
 <div id="messDeleteCartAjax" name="messDeleteCartAjax">
+<div style="padding:20px;" id="frmCheckOut" name="frmCheckOut">
+<!--form action="<?php //echo $contextPath?>controller/AddCartProcessor.php" method="post" id="frmCheckOut" name="frmCheckOut"-->
+<!--form action="" method="post" id="frmCheckOut" name="frmCheckOut"-->
+
+
 			<table id="tblist" width='100%' border='0' style='border:solid 1px #D3D3D3;' cellpadding='0' cellspacing='0'>   
 			   <tr style='height:36px; font-weight:bold; font-size:13px; background:#D3658A;'>
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:35px;" align='center'>Hình Ảnh</td>
@@ -150,60 +236,107 @@ else
 				   <td style="border-right:solid 1px #D3D3D3; padding:4px; width:5px;">Xóa</td>				   
 			   </tr>
 
-<!--begin ajax for div messDeleteCartAjax -->			  
+	  
 			<?php
-		
+			//check login to change product in session ($_SESSION["cart"]) && isset($_REQUEST["usercart"]) && $_REQUEST["usercart"] == "1" 
+			echo "<input name='ischeckout' id='ischeckout' type='text' style='width:300px;display:none;' value='0'>";
+			echo "<br>is session=".$_SESSION["ischeckout"];
+			if(isset($_SESSION["curUser"])&& $_SESSION["curUser"] != null && $_SESSION["ischeckout"] != "1")
+			{
+				include_once ($contextPath."controller/CartController.php");
+				$cartInDB = CartController::GetCartByUserID($_SESSION["curUser"][0]);				
+				echo "<br>count session cart1=".count($_SESSION["cart"]);				
+				for($j=0;$j<count($cartInDB);$j++)
+				{
+					$flag_check= "true";
+					for($i=0;$i<count($_SESSION["cart"]);$i++)
+					{
+						if($_SESSION["cart"][$i] == $cartInDB[$j][2])
+						{
+							$flag_check = "false";
+						}
+					}
+					if($flag_check == "true")
+					{
+						if(!isset($_SESSION["cart"]) && count($_SESSION["cart"]) == 0 )
+						{
+							$cart=array($cartInDB[$j][2]);
+							$_SESSION["cart"]=$cart;
+				
+						}
+						else
+						{	
+							echo "<br>them vao product id=".$cartInDB[$j][2];
+							array_push($_SESSION["cart"],$cartInDB[$j][2]);
+						}
+					}
+					
+				}
+				echo "<br>count session cart2=".count($_SESSION["cart"]);	
+			}
+			//end check
 			if(count($_SESSION["cart"]) > 0)
-			{		
+			{	
+		
 				include_once ($contextPath."controller/ProductController.php");
 				include_once ($contextPath."controller/ProductImageController.php");
 				include_once ($contextPath."utility/Utils.php");
 				$totalmoney = 0;
-				for($i=0;$i<count($_SESSION["cart"]);$i++)
-				{
-					
-					$product_detail=ProductController::GetProductByID($_SESSION["cart"][$i]);
-					$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION["cart"][$i]);
+echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='post' id='frmCheckOut' name='frmCheckOut'>";
 				
-					
-					$totalmoney +=$product_detail[4];
-					if($i % 2 == 0)
+					for($i=0;$i<count($_SESSION["cart"]);$i++)
 					{
-						echo "<tr style='background-color: rgb(239, 239, 239);'>";
-					}
-					else
-					{
-						echo "<tr style='background-color: rgb(255, 255, 255);'>";
-					}
+						
+						$product_detail=ProductController::GetProductByID($_SESSION["cart"][$i]);
+						$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION["cart"][$i]);
 					
-					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'>
-						  <a href='' ><img  src='".$contextPath.$productImage[1]."' width='80px' /></a>
-						  </td>";
+						
+						$totalmoney +=$product_detail[4];
+						if($i % 2 == 0)
+						{
+							echo "<tr style='background-color: rgb(239, 239, 239);'>";
+						}
+						else
+						{
+							echo "<tr style='background-color: rgb(255, 255, 255);'>";
+						}
+						
+						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'><a href='' ><img  src='".$contextPath.$productImage[1]."'width='80px'/></a></td>";
+					
+						echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
+							  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a></td>";
+						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
+						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' />"."txtQuantity".$i."</td>";
+						echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
+						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
+						$btn = "btnDelete".$i;
+						echo "<bt>btn=".$btn;
+						echo     "<input type='image' src='".$contextPath."data/delete.png'' name='".$btn."' id='".$btn."' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
+						echo "</td>";
+						echo "</tr>";
+					}
 				
-					echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
-						  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a>
-						  </td>";
-					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
-					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-					 <input type='text' name='txtQuantity".$i."' id='txtQuantity' size='5' value='1' />
-					</td>";
-					echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
-					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
-					echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
-					echo     "<input type='image' src='".$contextPath."data/delete.png'' name='image' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
-					echo "</td>";
-					echo "</tr>";
-				?>
-					
-				<?php
-				}
 				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;' style='background-color: rgb(246,237,206);'>";
 					echo "<td style='padding:4px;' align='center' >Tổng tiền: </td>";
 					echo "<td></td><td></td><td></td><td></td>";
 					echo "<td>".Utils::convert_Money($totalmoney)."(VND)</td>";
 					echo "<td></td>";
 				echo "</tr>";
-				echo "<tr>
+
+	
+				 echo "<tr><td></td><td></td><td></td><td></td><td></td><td align='center' colspan='3'><h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'><span class='action-button-left'></span><input class='submitYellow' type='submit' value='Check out' id='btnDatHang' name='btnDatHang'/><span class='action-button-right'></span></h3></td></tr>";
+echo "</form>";			
+			echo"<tr><td></td></tr></table>";
+			}
+			else
+			{
+				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;'>";
+				echo "<td style='padding:4px;' align='center'>Bạn chưa chọn sản phẩm</td><td></td><td></td><td></td><td></td> <td></td><td></td>";
+				echo "</tr>";
+echo "<form action='../../controller/AddCartProcessor.php' method='POST' id='frmCheckOut' name='frmCheckOut'>";
+//echo "<form action='../../controller/AddCartProcessor.php' method='POST' id='frmCheckOut' name='frmCheckOut'>";
+			echo "<tr style='background-color: rgb(239, 239, 239);'>
 					<td></td>
 					<td></td>
 					<td></td>
@@ -213,61 +346,30 @@ else
 					
 						<h3 style='color: #336699; font-size: 14px;margin: 0;padding: 0;'>
 							<span class='action-button-left'></span>						
-							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang' onclick='checkLoginToAddCart();'/>
+							<input class='submitYellow' type='submit' value='Đặt hàng' id='btnDatHang' name='btnDatHang'/>
 							<span class='action-button-right'></span>
 						</h3>
 					</td>
-				</tr>
-				
-				<tr>
-					<td></td>
-				</tr>
-			</table>";
+
+				</tr>";
+echo "</form>";	
+				 echo "</table>";
 			}
-			else
-			{
-				echo "<tr style='height:36px; font-weight:bold; font-size:13px; background:#FFFFFF;'>";
-				echo "<td style='padding:4px;' align='center'>Bạn chưa chọn sản phẩm</td>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					  <td></td>
-					  <td></td>";
-				echo "</tr>";
-				echo "</table>";
-			}
-			
+echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
+echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
 			?>  
-<!--end ajax for div messDeleteCartAjax -->
-
-		
-				
-	</div>
+			
+<!--/form-->
+</div>
+</div>
+<!--/form-->	
 	<!--end ajax-->
-		</div>
-</form>	
+</div>
 	</div>	
-		
-        <script>
-		$("table[id='tblist'] tr:odd").css('background-color', '#EFEFEF');
-		</script>
-		
-	
-<!--start comment -->	
-					<div class="comment-content" >	
-					
-					</div>
 
-<!--end comment -->				
-				
-					</br>
-					<div>
-						
+					<div>					
 <?php
-	
-	echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
-	echo "<input name='idUser' id='idUser' type='text' style='width:300px;display:none;' value='".$curUser[0]."'>";
+
 	
 ?>
 					</div>
@@ -277,53 +379,8 @@ else
 				</div>
 				<div style="clear: both;"></div>
 			</div>
-			
-                         <?php include_once 'footer.php';?>
-                         <script type="text/javascript">
-                                $('#nav').spasticNav();
-                                $('#comment-toggle').click(function() {
-                                          $('#comment').toggle('slow', function() {
-                                            // Animation complete.
-                                          });
-                                        });
-                               
-                                $(document).ready(function() {
-                                        $("#txtComment").css("background-color", "#EDEDED"); 
-                                        $("#txtComment").bind("focusin", function() {
-                                                if ($("#txtComment").val() == 'Write a comment') {
-                                                        $("#txtComment").val("");
-                                                }
-                                        });
-                                        $("#txtComment").bind("focusout", function() {
-										
-                                                if ($("#txtComment").val() == '') {
-                                                        $("#txtComment").val("Write a comment");
-                                                }
-                                        });
-                                });
-								function DeleteCart(productDeleteID)
-								{									
-									var idSessionCart = new Array(100);
-									idSessionCart = <?php echo $_SESSION["cart"];?>;								
-									var str="&amount="+<?php echo count($_SESSION["cart"]);?>;
-									if(productDeleteID != "")
-									{
-										var serverURL = "checkEmail.php?productdeleteid=" + productDeleteID;
-										$("#messDeleteCartAjax").load(serverURL);
-									}
-								}
-								function checkLoginToAddCart()
-								{
-									
-									var strUsername = $("#idUser").attr("value");
-								
-									if(strUsername == "")
-									{										
-											press_LoginToAddCart();									
-									}
-									
-								}
-                        </script>
+			 <?php include_once 'footer.php';?>
+                        
         </body>
 </html>
 

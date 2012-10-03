@@ -3,7 +3,7 @@
 -- Server version:               5.5.24-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
 -- HeidiSQL version:             7.0.0.4053
--- Date/time:                    2012-10-02 23:07:30
+-- Date/time:                    2012-10-03 21:48:21
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,10 +25,12 @@ CREATE TABLE IF NOT EXISTS `cart` (
   `Quantity` int(11) NOT NULL,
   `Delete_Flag` int(10) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`,`User_ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table ustorevn_ustore.cart: ~0 rows (approximately)
+-- Dumping data for table ustorevn_ustore.cart: ~1 rows (approximately)
 /*!40000 ALTER TABLE `cart` DISABLE KEYS */;
+REPLACE INTO `cart` (`ID`, `User_ID`, `Product_ID`, `Quantity`, `Delete_Flag`) VALUES
+	(3, 1, 13, 8, 0);
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 
 
@@ -42,10 +44,14 @@ CREATE TABLE IF NOT EXISTS `comment` (
   `Create_Date` datetime NOT NULL,
   `Delete_Flag` int(11) NOT NULL DEFAULT '0',
   PRIMARY KEY (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
--- Dumping data for table ustorevn_ustore.comment: ~0 rows (approximately)
+-- Dumping data for table ustorevn_ustore.comment: ~3 rows (approximately)
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+REPLACE INTO `comment` (`ID`, `Product_ID`, `User_ID`, `Detail`, `Create_Date`, `Delete_Flag`) VALUES
+	(10, 12, 1, '123', '2012-10-03 00:08:20', 0),
+	(11, 12, 1, '152', '2012-10-03 00:08:23', 0),
+	(12, 12, 1, '222222', '2012-10-03 00:08:25', 0);
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 
 
@@ -84,8 +90,8 @@ CREATE TABLE IF NOT EXISTS `product` (
 -- Dumping data for table ustorevn_ustore.product: ~2 rows (approximately)
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
 REPLACE INTO `product` (`ID`, `Name`, `Type`, `Sub_Type`, `Price`, `Present_Type`, `Description`, `Promotion_ID`, `Quantity`, `Delete_Flag`) VALUES
-	(12, '12', 1, 1, 0, 0, '', 0, 0, 0),
-	(13, '', 1, 1, 0, 0, '', 0, 0, 0);
+	(12, '12', 1, 1, 0, 0, '<p>111</p>\r\n<p>1213</p>\r\n<p>123</p>\r\n<p>15423654</p>\r\n<p>&nbsp;</p>\r\n<p>123546</p>', 0, 1, 0),
+	(13, '123', 1, 1, 0, 0, 'yyyyy', 0, 1, 0);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 
 
@@ -126,8 +132,8 @@ CREATE TABLE IF NOT EXISTS `product_image` (
 -- Dumping data for table ustorevn_ustore.product_image: ~2 rows (approximately)
 /*!40000 ALTER TABLE `product_image` DISABLE KEYS */;
 REPLACE INTO `product_image` (`Product_ID`, `Cover_Img`, `Preview_Img_01`, `Preview_Img_02`, `Preview_Img_03`, `Preview_Img_04`, `Preview_Img_05`, `Detail_Img_01`, `Detail_Img_02`, `Detail_Img_03`, `Detail_Img_04`, `Detail_Img_05`, `Detail_Img_06`, `Detail_Img_07`, `Detail_Img_08`, `Detail_Img_09`, `Detail_Img_10`, `Detail_Img_11`, `Detail_Img_12`, `Detail_Img_13`, `Detail_Img_14`, `Detail_Img_15`, `Detail_Img_16`, `Detail_Img_17`, `Detail_Img_18`, `Detail_Img_19`, `Detail_Img_20`, `Delete_Flag`) VALUES
-	(12, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
-	(13, '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
+	(12, 'data/12_Cover_Img.png', 'data/12_Preview_Img_01.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0),
+	(13, 'data/12_Cover_Img.png', 'data/12_Cover_Img.png', '', '', '', '', '', '', '', '', '', '', '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0);
 /*!40000 ALTER TABLE `product_image` ENABLE KEYS */;
 
 
@@ -170,6 +176,9 @@ CREATE TABLE IF NOT EXISTS `promotion` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
   `Name` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
   `Detail` text COLLATE utf8_unicode_ci,
+  `Apply_Date_Start` datetime DEFAULT NULL,
+  `Apply_Date_End` datetime DEFAULT NULL,
+  `Delete_Flag` int(11) DEFAULT '0',
   PRIMARY KEY (`ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 

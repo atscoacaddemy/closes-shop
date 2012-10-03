@@ -52,7 +52,8 @@ $productList = ProductController::getProducts($type, $subtype,null);
 							</div>
 						</div>
 						<div class="cart-button">
-							Add to cart
+<a href="cart.php?productid=<?php echo $product['ID']; ?>"> Add to cart </a>
+							
 						</div>
 					</div>
 					

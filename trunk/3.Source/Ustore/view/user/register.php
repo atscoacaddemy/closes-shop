@@ -71,14 +71,14 @@
 			{				
 				flag=false;
 				//$("#messUsername").attr("innerHTML","Tên đăng nhập từ 6-50 ký tự");
-				document.getElementById('messUsername').innerHTML="Tên đăng nhập từ 6-50 ký tự";
+				document.getElementById('messUsername').innerHTML="Tên đăng nhập phải nhiều hơn 5 ký tự";
 				$("#messUsername").css("color","red");
 				
 			}
 			if(strPassword.length <6 || strPassword.length > 50)
 			{				
 				flag=false;
-				document.getElementById('messPassword').innerHTML="5< Password <50";				
+				document.getElementById('messPassword').innerHTML="Password nhiều hơn 5 kí tự!";				
 				$("#messPassword").css("color","red");
 			}
 			else if(HaveSpecialChar(strPassword))
@@ -90,7 +90,7 @@
 			if(strPassword != strRePassword)
 			{
 				flag=false;
-				document.getElementById('messRePassword').innerHTML="Mật khẩu nhập không khớp";
+				document.getElementById('messRePassword').innerHTML=" Mật khẩu nhập không khớp";
 				$("#messRePassword").css("color","red");
 			}			
 			else
@@ -101,7 +101,7 @@
 			if(IsEmail(strEmail)==false)
 			{
 				flag=false;
-				document.getElementById('messEmail').innerHTML="Email không hợp lệ";
+				document.getElementById('messEmail').innerHTML=" Email không hợp lệ";
 				$("#messEmail").css("color","red");
 				
 			}
@@ -145,7 +145,7 @@
 			{				
 				flag=false;
 				//$("#messPassword").attr("innerHTML","5< Password <50");
-				document.getElementById('messPassword').innerHTML="5< Password <50";				
+				document.getElementById('messPassword').innerHTML=" Password nhiều hơn 5 kí tự!";				
 				$("#messPassword").css("color","red");
 			}
 			
@@ -190,7 +190,7 @@
 			{
 				flag=false;
 				//$("#messEmail").attr("innerHTML","Email không hợp lệ");
-				document.getElementById('messEmail').innerHTML=" Email không hợp lệ";
+				document.getElementById('messEmail').innerHTML=" Email không hợp lệ!";
 				$("#messEmail").css("color","red");
 			}
 			else
@@ -357,8 +357,8 @@
 										<div style="float:left;">
 										<input type="text" style="width:280px;" name="txtUsername" id="txtUsername" onkeyup="javascript:this.value=this.value.toUpperCase();"></div>
 										<div id="messUsername" name="messUsername" class="mess"></div>
-										<div style="float:left;">
-												<span style="font-size:10px;">Họ tên phải lớn hơn 3 và nhỏ hơn 50 ký tự</span>
+										<div style="float:left;width:300px;">
+												<span style="font-size:10px;">Họ tên phải lớn hơn 5 ký tự</span>
 											</div>
 										</td>
 									</tr>
@@ -420,8 +420,8 @@
 											</div>
 											<div id="messPassword" name="messPassword" style="width:140px;float:left;" class="mess"></div>
 											<br>
-											<div style="float:left;">
-												<span style="font-size:10px;">Mật khẩu truy cập phải lớn hơn 5 và nhỏ hơn 50 ký tự</span>
+											<div style="float:left;width:300px;">
+												<span style="font-size:10px;">Mật khẩu truy cập phải lớn hơn 5 ký tự</span>
 											</div>
 										</td>
 										
@@ -453,7 +453,7 @@
 									<tr>
 										<td colspan="2">&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
 										<input type="checkbox" name="cbAgree" id="cbAgree">
-										Tôi đồng ý với các quy định của ustore.com 
+										Tôi đồng ý với các quy định của ustore.vn 
 										</td>
 									</tr>
 									<?php  unset($_SESSION["register"]); ?>

@@ -82,14 +82,21 @@
 				</select>		
 				<br />
 				<label for="price">Price : </label>			
-				<input name="price" id="price" type="text" value="<?php echo $product["Price"] ?>"/>
+				<input name="price" id="price" type="text" value="<?php echo $product["Price"] ?>" 
+				onkeydown="return ( event.ctrlKey || event.altKey 
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                    || (95<event.keyCode && event.keyCode<106)
+                    || (event.keyCode==8) || (event.keyCode==9) 
+                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==46) )" 
+				/>
 				<?php
 												//$path = rtrim($_SERVER['PHP_SELF'],"ce/module/dangtindichvu.php/")."/library/fckeditor/";
 												include("../../library/fckeditor/fckeditor.php");
 												$description = new FCKeditor("description");
 												$description->BasePath = "../../library/fckeditor/";
 												$description->Height=300;
-												$description->Value = "";
+												$description->Value = $product['Description'];
 												$description->Create();
 											?>
 			</fieldset>

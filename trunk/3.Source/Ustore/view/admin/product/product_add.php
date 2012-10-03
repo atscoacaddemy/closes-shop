@@ -10,6 +10,16 @@ function addProduct()
 		 var promotion_id = $("#promotion_id").val();
 		 var present_type = $("#present_type").val();
 		 var price = $("#price").val();
+		  if(name.length<=0 )
+		 	{
+		 		alert("Must input product name");
+		 		return;
+		 	}
+		 if( $("#price").val().length<=0) 
+		 {
+		 		alert("Must input price");
+		 		return;
+		 }
 		 //alert(name+"_"+description+"_"+type+"_"+present_type);
 		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
 		$("#lightbox, #info-panel").fadeIn(300);
@@ -31,9 +41,11 @@ function closePopupEdit() {
 				</legend>
 				<label for="name">Name : </label>
 				<input name="name" id="name" type="text" tabindex="1" />
+				<!--
 				<br />
-				<label for="description">Description : </label>
-				<textarea name="description" id="description"></textarea>
+								<label for="description">Description : </label>
+								<textarea name="description" id="description"></textarea>-->
+				
 				<br />
 				<!--
 				<input name="role" id="role" type="text"
@@ -97,8 +109,24 @@ function closePopupEdit() {
 				</select>		
 				<br />
 				<label for="price">Price : </label>			
-				<input name="price" id="price" type="text"/>
-				
+				<input name="price" id="price" type="text"
+				onkeydown="return ( event.ctrlKey || event.altKey 
+                    || (47<event.keyCode && event.keyCode<58 && event.shiftKey==false) 
+                    || (95<event.keyCode && event.keyCode<106)
+                    || (event.keyCode==8) || (event.keyCode==9) 
+                    || (event.keyCode>34 && event.keyCode<40) 
+                    || (event.keyCode==46) )" 
+				/>
+				<br/>
+				<?php
+												//$path = rtrim($_SERVER['PHP_SELF'],"ce/module/dangtindichvu.php/")."/library/fckeditor/";
+												include("../../library/fckeditor/fckeditor.php");
+												$description = new FCKeditor("description");
+												$description->BasePath = "../../library/fckeditor/";
+												$description->Height=300;
+												$description->Value = "";
+												$description->Create();
+											?>
 			</fieldset>
 			
 			<div align="center">

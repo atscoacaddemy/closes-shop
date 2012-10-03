@@ -125,7 +125,17 @@ FCKConfig.ToolbarSets["Default"] = [
 FCKConfig.ToolbarSets["Basic"] = [
 	['Bold','Italic','-','OrderedList','UnorderedList','-','Link','Unlink','-','About']
 ] ;
-
+FCKConfig.ToolbarSets["MyTool"] = [
+	['Bold','Italic','Underline','StrikeThrough','-','Subscript','Superscript'],
+	['JustifyLeft','JustifyCenter','JustifyRight','JustifyFull'],
+	['FontName','FontSize'],
+	['TextColor','BGColor'],
+	['Image','Flash','Table','Rule','Smiley','SpecialChar','PageBreak'],
+	['Source','DocProps','-','Save','NewPage','Preview','-','Templates'],
+	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
+	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
+	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField'],
+] ;
 FCKConfig.EnterMode = 'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br
 

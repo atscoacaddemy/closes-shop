@@ -62,6 +62,7 @@
 		
 			include_once ("../../controller/ProductController.php");
 			include_once ("../../controller/ProductImageController.php");
+			include_once ("../../controller/CartController.php");
 			include_once ("../../utility/Utils.php");
 			
 			
@@ -85,19 +86,42 @@ echo "<form action='../../controller/AddCartProcessor.php' method='post' id='frm
 				{
 					echo "<tr style='background-color: rgb(255, 255, 255);'>";
 				}
-				
+				//image
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'>
 					  <a href='' ><img  src='../../".$productImage[1]."' width='80px' /></a>
 					  </td>";
-			
+				//productID
 				echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
 					  <a href=''><b style='color:blue;'>". $product_detail[0]."</b></a>
 					  </td>";
+				//product Name
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
+				//quantity
 				$quantity_product="txtQuantity".$i;
-				echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-				 <input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' />
-				</td>";
+				if(isset($_SESSION["curUser"]) && $_SESSION["curUser"][0]> 0 )
+				{
+					$quantityofUser = CartController::GetCartByUserIDAndProductId($_SESSION["curUser"][0],$product_detail[0]);
+					if($quantityofUser[3] >0)
+					{
+						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+						<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='".($quantityofUser[3] +1)."' /></td>";
+					}
+					else
+					{
+						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+						<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' /></td>";
+					}
+				}
+				else
+				{
+					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+					<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' /></td>";
+				}
+						
+				//$quantity_product="txtQuantity".$i;
+				//echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+				// <input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' />
+				//</td>";
 				echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 				echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
@@ -196,7 +220,6 @@ echo "</form>";
 			});
 			$('#btnDelete1').click(function()
 			{	
-				
 				flag = false;
 				return flag;
 			});
@@ -265,7 +288,7 @@ echo "</form>";
 		
 		if(productDeleteID != '' && productDeleteID>0)
 		{
-			alert('product id '+productDeleteID);
+			//alert('product id '+productDeleteID);
 			var serverURL = 'checkEmail.php?productdeleteid=' + productDeleteID;
 			 $('#messDeleteCartAjax').load(serverURL);
 		}

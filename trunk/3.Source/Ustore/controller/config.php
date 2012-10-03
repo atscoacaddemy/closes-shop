@@ -1,8 +1,8 @@
 <?php
 	$hostName = "localhost";
-   	$databaseName = "ustore";
+   	$databaseName = "ustorevn_ustore";
    	$username = "root";
-   	$password = "";	
+   	$password = "root";	
 	$maxPages = 5;
 	$maxItems = 10;
 	$amountDate = 30;

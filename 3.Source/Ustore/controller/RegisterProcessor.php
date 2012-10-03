@@ -159,7 +159,7 @@
 				$fRegister="true";
 				//echo "suceess";
 			//$_SESSION["register"] = "true";
-				header("Location:../view/user/product-list.php?do=login");
+				header("Location:../view/user/product-list.php?type=1&do=login");
 			}
 			else
 			{

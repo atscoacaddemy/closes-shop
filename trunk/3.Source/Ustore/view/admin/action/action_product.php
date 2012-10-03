@@ -32,7 +32,7 @@ else if(isset($_POST["btnUpdateProduct"]))
 	$type=$_REQUEST["type"];
 	$sub_type=$_REQUEST["sub_type"];
 	$description=$_REQUEST["description"];
-	$price=$_REQUEST["price"];
+	$price=$_REQUEST["price"].'000';
 	$promotion_id=$_REQUEST["promotion_id"];
 	$present_type=$_REQUEST["present_type"];
 	$result = ProductController::Update($id,$name,$type,$sub_type,$price,$description,$promotion_id,$present_type);

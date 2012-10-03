@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include 'header.php';
 include 'product/product_submenu.php';
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="view")

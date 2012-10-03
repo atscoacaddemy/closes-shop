@@ -121,12 +121,18 @@
 	line-height: 49px;
 	padding: 0 18px;
 }
-.product-description .product-price span, sup {
+.product-description .product-price span {
 	color: #FF6600;
-	font: italic small-caps bold 23px/20px "Arial,Helvetica,sans-serif";
+	font: italic small-caps bold 50px/20px "Arial,Helvetica,sans-serif";
+}
+.product-description .product-price{
+	margin: 20px 0;
+}
+.product-description .product-price sup {
+	color: #FF6600;
+	font: italic small-caps bold 50px/20px "Arial,Helvetica,sans-serif";
 }
 .stock-status {
-	background-color: #FFFFFF;
 	background-image: -moz-linear-gradient(center top , #BAFD39 1%, #1C8B20 100%);
 	background-image: -webkit-gradient(linear, 0 0, 0 bottom, from(#BAFD39), to(#1C8B20));
 	border: 1px solid #99FF66;

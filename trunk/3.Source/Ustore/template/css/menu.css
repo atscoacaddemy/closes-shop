@@ -71,6 +71,7 @@ ul, li {
 	background: url(../images/1_7.png) no-repeat;
 	height: 120px;
 	border-radius: 10px 10px 10px 10px;
+	margin-left: 15px;
 }
 .sub-menu-title h1 {
 	font-family: Arial, sans-serif;
@@ -106,6 +107,10 @@ ul, li {
 }
 .left-menu #support .yahoo {
 	margin-left: 5px;
+	
+}
+.left-menu #support .yahoo img{
+	width: 50px;
 	
 }
 .left-menu div{

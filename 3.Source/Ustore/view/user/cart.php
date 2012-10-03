@@ -166,7 +166,7 @@
                                 </div>
        	<?php 
 		
-	if(isset($_POST['txtProductID']) && $_POST['txtProductID'] !=null && isset($_SESSION["addCart"]) && $_SESSION["addCart"] == "true")
+	if((isset($_POST['txtProductID']) && $_POST['txtProductID'] !=null && isset($_SESSION["addCart"]) && $_SESSION["addCart"] == "true") || (isset($_REQUEST["productid"]) && $_REQUEST["productid"] >0))
 	{
 		$_SESSION["addCart"] = "false";
 		include_once ($contextPath."controller/ProductController.php");
@@ -175,7 +175,21 @@
 	    include_once ($contextPath."controller/UserController.php");
 	  
 	    include_once ("checkEmail.php");
-		$productid = $_POST['txtProductID'];
+		
+		if (isset($_REQUEST["productid"]) && $_REQUEST["productid"] >0)
+		{
+			echo "<br>product id=".$_REQUEST["productid"];
+			$product_detail=ProductController::GetProductByID($_REQUEST["productid"]);
+			if($product_detail != null)
+			{
+				$productid = $_REQUEST["productid"];
+			}
+		}
+		else
+		{
+			$productid = $_POST['txtProductID'];
+		}
+		
 		$product_detail=ProductController::GetProductByID($productid);
 	
 		if($product_detail != null)

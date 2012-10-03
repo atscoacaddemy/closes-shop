@@ -442,7 +442,7 @@
 											<div style="float:left;">
 												<input type="password" style="width:280px;" maxlength="50" name="txtRePassword" id="txtRePassword">
 											</div>
-											<div id="messRePassword" name="messRePassword" style="width:140px;float:left;" class="mess"></div>
+											<div id="messRePassword" name="messRePassword" style="width:160px;float:left;" class="mess"></div>
 											<br>
 											<div style="float:left;width:300px;">
 												<span style="font-size:10px;">Nhập lại mật khẩu như đã điền ở ô trên</span>

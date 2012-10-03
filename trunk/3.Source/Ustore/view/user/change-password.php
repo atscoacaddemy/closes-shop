@@ -67,8 +67,8 @@ $(document).ready(function()
 <!--end script for private information -->
 	<body class="body">
  <?php include_once 'header.php';
-	echo "curUser=".$curUser."</br>";
-	echo "curUser[1]=".$curUser[1]."</br>";
+	// echo "curUser=".$curUser."</br>";
+	// echo "curUser[1]=".$curUser[1]."</br>";
 	if(!isset($curUser) && $curUser[1] == null)
 	{
 		header("Location:product-list.php");

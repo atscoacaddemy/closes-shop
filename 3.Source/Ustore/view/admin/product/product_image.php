@@ -72,6 +72,9 @@ require_once ("../../controller/ProductImageController.php");
 					$imgName="Detail_Img_";
 					if($i<10)
 						$imgName=$imgName."0".$i;
+					else {
+						$imgName=$imgName.$i;
+					}
 				?>
 				<br/>
 				<label>Detail_Img_<?php echo $imgName; ?> : </label>

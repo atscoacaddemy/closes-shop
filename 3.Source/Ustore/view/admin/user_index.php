@@ -1,4 +1,5 @@
 <?php
+ob_start();
 require_once 'header.php';
 require_once 'user_submenu.php';
 if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")

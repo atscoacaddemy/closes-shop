@@ -119,44 +119,31 @@
 <div >
 	<div class="product-detail-picture">
 		<div id="image_wrap" >
-	
 			<div href='<?php echo $contextPath.$productImage[1];?>' class = 'cloud-zoom' id='zoom1' rel="adjustX: 10, adjustY:-4">		
 				<img src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;"/>
 			</div>
 		</div>
-		<div id="img_scroll" style="border:0px; background: white; margin-top: 10px;">
-			<!--scroll-->
-			<div style="margin:0 auto; width: 634px; height:100px;">
-				<!-- "previous page" action -->
-				<a class="prev browse left"></a>
-				<!-- root element for scrollable -->
-				<div class="scrollable" id="scrollable" style="border:0px; margin-top:10px;">
-					<!-- root element for the items -->
-					<div class="items">
+		<div>
 					
 						<?php //show detail image
-							for($i=1;$i<7;$i++)
+							for($i=2;$i<7;$i++)
 							{
 								if($productImage[$i] != null)
 								{ 
 						?>
-								<div style="width:102px">
+								<div style="float: left">
 									<a href='<?php echo $contextPath.$productImage[$i];?>' class='cloud-zoom-gallery' title='Thumbnail 1' 
 									rel="useZoom: 'zoom1', smallImage: '<?php echo $contextPath.$productImage[$i];?>' "> 
-									<img src="<?php echo $contextPath.$productImage[$i];?>" alt = "Thumbnail 1"/></a>
+									<img width="60px" height="60px;" src="<?php echo $contextPath.$productImage[$i];?>" alt = "Thumbnail 1"/></a>
 								</div>
 						<?php
 								}
 							}
 						?>							
-					</div>
-				</div>
 				<!-- "next page" action -->
 				<a class="next browse right"></a>
-			</div>
-				<!--end scroll-->
 		</div>
-		</div>
+	</div>
 	 <!--form action="cart.php?productid=<?php //echo $productid; ?>" method="POST" id="form"-->
 	 <form action="cart.php" method="POST" id="form">
 
@@ -164,40 +151,18 @@
 				<div class="product-title" id="product-title">
 					<?php echo $product_detail[1];?>
 				</div>
-				<div>
+				<div style="height: 200px; overflow: hidden;">
 					<?php echo $product_detail[6];?>
 				</div>
 				
 				<div  class="product-price">
-					Giá: <span><?php echo $product_detail[4];?></span><sup style="margin-left: 5px;">đ</sup>
+					<span><?php echo number_format($product_detail[4], 0, ',', ',');;?></span> 
 				</div>
-				<?php 
-				if($product_detail[7] > 0)
-				{
-				?>
-					<div class="stock-status">
-						<div>
-							Còn Hàng
-						</div>
-					</div>
-				<?php 
-				}
-				else
-				{
-				?>
-					<div class="stock-status">
-						<div>
-							Hết Hàng
-						</div>
-					</div>
 				<?php
-				}
 				echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 				?>
 				<div>
-					<span class="action-button-left"></span>						
-					<input class="submitYellow" type="submit" value="Add to Cart" id="btAddToCard" name="btAddToCard" />
-					<span class="action-button-right"></span>
+					<input class="stock-status" type="submit" value="Thêm vào giở hàng" id="btAddToCard" name="btAddToCard" />
 				</div>
 			</div>
 	</form>

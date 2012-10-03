@@ -89,7 +89,7 @@
                     || (event.keyCode==8) || (event.keyCode==9) 
                     || (event.keyCode>34 && event.keyCode<40) 
                     || (event.keyCode==46) )" 
-				/>
+				/> <span style="font-size: 20px; color: red">,000</span>		
 				<?php
 												//$path = rtrim($_SERVER['PHP_SELF'],"ce/module/dangtindichvu.php/")."/library/fckeditor/";
 												include("../../library/fckeditor/fckeditor.php");

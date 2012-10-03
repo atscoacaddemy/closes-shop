@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include_once("../../../controller/UserController.php");
 ?>
 
@@ -7,9 +8,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="login")
 {
 	$mail = $_REQUEST["txtMail"];
 	$pass = $_REQUEST["txtPass"];
-	echo $mail.$pass;
 	$user = UserController::CheckLogin($mail,$pass);
-	
 	if($user!=null && $user["Role"]==1)
 		{
 			session_start();

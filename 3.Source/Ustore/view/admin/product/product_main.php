@@ -71,6 +71,7 @@ function deleteProduct()
 				require_once ("../../controller/ProductController.php");
 				$products=ProductController::GetAll($curItem,$maxItems);
 				$totalItems=ProductController::Count();
+				if ($totalItems != 0) {
 				foreach ($products as $product) {
 					?>
 					<tr>
@@ -83,6 +84,9 @@ function deleteProduct()
 					<td><a href="?action=view&<?php echo "id=".$product["ID"]; ?>" ><img src="img/icons/user.png" title="Detail" width="16" height="16" /></a><a href="<?php echo "?action=edit&id=".$product["ID"]; ?>"><img src="img/icons/user_edit.png" title="Edit" width="16" height="16" /></a><a href="#" onclick="showConfirmDelete(<?php echo $product["ID"]; ?>);"><img src="img/icons/user_delete.png" title="Delete" width="16" height="16" /></a></td>
 					</tr>
 					<?php
+					}
+				} else {
+					echo 'chua co san pham nao';
 				}
 				?>
 				

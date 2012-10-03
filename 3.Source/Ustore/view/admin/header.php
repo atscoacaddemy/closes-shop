@@ -1,14 +1,15 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
+<?php
+//ini_set('display_errors', 1); // change to 0 for production version
+//error_reporting(E_ALL);?>
 <?php
 	session_start();
 	if (isset($_SESSION["admin"]) && $isIndex){
-		echo 'dd';
 	}
 	if (!isset($_SESSION["admin"]) && !$isIndex){
-		header("Location:index.php");
+		header("Location: index.php");
 	}
 ?>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />

@@ -14,6 +14,7 @@
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery.tools.min.js" ></script>
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery-ui.js"></script>
                 <script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
+				
 <script type="text/javascript">
     $(document).ready(function()
 	{
@@ -226,7 +227,7 @@ else
 {
 	if(isset($_REQUEST["addcart"]) && $_REQUEST["addcart"] == "failed")
 	{
-		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Giỏ hàng cập nhật thất bại!</div>";
+		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Giỏ hàng của bạn đã cập nhật!</div>";
 	}
 	else
 	{
@@ -336,16 +337,19 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 							$quantityofUser = CartController::GetCartByUserIDAndProductId($_SESSION["curUser"][0],$product_detail[0]);
 							if($quantityofUser[3] >0)
 							{
-								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='".$quantityofUser[3]."' /></td>";
+								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+								<input type='text' onkeypress='return keypress(event);' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='".$quantityofUser[3]."' /></td>";
 							}
 							else
 							{
-								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
+								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+								<input type='text' onkeypress='return keypress(event);' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
 							}
 						}
 						else
 						{
-							echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
+							echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+							<input type='text' onkeypress='return keypress(event);' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
 						}
 						
 						//money

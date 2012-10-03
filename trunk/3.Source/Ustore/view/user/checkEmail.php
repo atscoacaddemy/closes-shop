@@ -104,17 +104,17 @@ echo "<form action='../../controller/AddCartProcessor.php' method='post' id='frm
 					if($quantityofUser[3] >0)
 					{
 						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-						<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='".($quantityofUser[3] +1)."' /></td>";
+						<input type='text' onkeypress='return keypress(event);' name='".$quantity_product."' id='".$quantity_product."' size='5' value='".($quantityofUser[3] +1)."' /></td>";
 					}
 					else
 					{
 						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
-						<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' /></td>";
+						<input type='text' onkeypress='return keypress(event);' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' /></td>";
 					}
 				}
 				else
 				{
-					echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
+					echo "<td align='center' onkeypress='return keypress(event);' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'>
 					<input type='text' name='".$quantity_product."' id='".$quantity_product."' size='5' value='1' /></td>";
 				}
 						

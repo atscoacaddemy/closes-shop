@@ -336,7 +336,7 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 							$quantityofUser = CartController::GetCartByUserIDAndProductId($_SESSION["curUser"][0],$product_detail[0]);
 							if($quantityofUser[3] >0)
 							{
-								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='".($quantityofUser[3] +1)."' /></td>";
+								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='".$quantityofUser[3]."' /></td>";
 							}
 							else
 							{

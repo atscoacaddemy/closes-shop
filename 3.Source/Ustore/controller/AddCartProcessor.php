@@ -57,7 +57,8 @@
 					if($check != null)
 					{
 						echo "<br>********amount cart of userid productid=".$check[3];
-						$rs=CartController::UpdateCart($_SESSION["curUser"][0],$_SESSION["cart"][$i],($check[3]+$_POST[$str]));
+						//$rs=CartController::UpdateCart($_SESSION["curUser"][0],$_SESSION["cart"][$i],($check[3]+$_POST[$str]));
+						$rs=CartController::UpdateCart($_SESSION["curUser"][0],$_SESSION["cart"][$i],($_POST[$str]));
 					}
 					else
 					{

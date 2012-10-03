@@ -220,13 +220,13 @@
 <?php
 if(isset($_REQUEST["addcart"]) && $_REQUEST["addcart"]== "successful")
 {
-	echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Bạn đã đặt hàng thành công! </div>";
+	echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Giỏ hàng của bạn đã cập nhật! </div>";
 }
 else
 {
 	if(isset($_REQUEST["addcart"]) && $_REQUEST["addcart"] == "failed")
 	{
-		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Đặt hàng thất bại!</div>";
+		echo "<div style='margin-left: 10px; margin-top: 10px; font-family: tahoma; font-size: 18px;font-weight: bold; color:#890C29;'> Giỏ hàng cập nhật thất bại!</div>";
 	}
 	else
 	{
@@ -305,17 +305,15 @@ else
 		
 				include_once ($contextPath."controller/ProductController.php");
 				include_once ($contextPath."controller/ProductImageController.php");
+				include_once ($contextPath."controller/CartController.php");
 				include_once ($contextPath."utility/Utils.php");
 				$totalmoney = 0;
 echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='post' id='frmCheckOut' name='frmCheckOut'>";
 				
 					for($i=0;$i<count($_SESSION["cart"]);$i++)
 					{
-						
 						$product_detail=ProductController::GetProductByID($_SESSION["cart"][$i]);
 						$productImage  =ProductImageController::GetImageOfProductFromProductID($_SESSION["cart"][$i]);
-					
-						
 						$totalmoney +=$product_detail[4];
 						if($i % 2 == 0)
 						{
@@ -325,13 +323,32 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 						{
 							echo "<tr style='background-color: rgb(255, 255, 255);'>";
 						}
-						
+						//Image
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='35px' align='center'><a href='' ><img  src='".$contextPath.$productImage[1]."'width='80px'/></a></td>";
-					
+						//productID
 						echo "<td  align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='20px'>
-							  <a href='product-detail.php?productid=".$product_detail[0]."'><b style='color:blue;'>".$product_detail[0]."</b></a></td>";
+							  <a href='product-detail.php?productid=".$product_detail[0]."&type=".$product_detail[2]."'><b style='color:blue;'>".$product_detail[0]."</b></a></td>";
+						//product Name
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".$product_detail[1]."</td>";
-						echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
+						//Quantity
+						if(isset($_SESSION["curUser"]) && $_SESSION["curUser"][0]> 0 )
+						{
+							$quantityofUser = CartController::GetCartByUserIDAndProductId($_SESSION["curUser"][0],$product_detail[0]);
+							if($quantityofUser[3] >0)
+							{
+								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='".($quantityofUser[3] +1)."' /></td>";
+							}
+							else
+							{
+								echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
+							}
+						}
+						else
+						{
+							echo "<td align='center' style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px'><input type='text' name='txtQuantity".$i."' id='txtQuantity".$i."' size='5' value='1' /></td>";
+						}
+						
+						//money
 						echo "<td style='border-right:solid 1px #D3D3D3;padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;'>".Utils::convert_Money($product_detail[4])."(VND)</td>";
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";

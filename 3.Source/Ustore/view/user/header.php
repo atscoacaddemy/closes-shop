@@ -23,10 +23,7 @@
 				break;
 			}
 		}
-		// if($url[$posLogOut -4] == "&")
-		// {
-			// $flag = "true";
-		// }
+		
 		
 	//	echo "</br>posPHP=".$posPHP;
 	//	echo "</br>posVIEW=".$posVIEW;
@@ -34,20 +31,12 @@
 		{
 			if($posLogOut >0)
 			{
-				// if($flag == "true")
-					// $strUrl=substr($url,$posVIEW,(($posLogOut -4) -$posVIEW));
-				// else
-				// {
 					$strUrl=substr($url,$posVIEW,(($posLogOut -4) -$posVIEW));
-				// }
 			}
 			else
 			{
 				$strUrl=substr($url,$posVIEW,strlen($url));
-			
 			}
-			
-			
 		}
 		else
 		{
@@ -57,42 +46,12 @@
 		$_SESSION["strUrl"] = $strUrl;
 		
 	//end
-	
-	
-	// $removeLogOut ="?do=logout";
-	// $posLogOut = strpos($url,"logout");
-	// $pos = strpos($url,$nameFolder);
-	// $question=strpos($url,"?");
-	// if($posLogOut > 1)
-	// {
-		// echo "</br>posLogout=".$posLogOut;
-		// $strUrl = substr($url,$pos+7,strlen($url) - 10- ($pos+7)); 
-	// }
-	// else
-	// {
-		// $strUrl = substr($url,$pos+7); 
-	// }
-	// $_SESSION["strUrl"] = $strUrl;
-	
-	
-	// $posAddCart = strpos($url,"addcart");
-	// if($posAddCart > 1)
-	// {
-		// echo "</br>posAddCart=".$posAddCart;
-		// $strUrl = substr($url,$pos+7,strlen($url) - 7- ($pos+15)); 
-	// }
-	// else
-	// {
-		// $strUrl = substr($url,$pos+7); 
-	// }
-	// echo "</br>subString=".$strUrl;
-	
-	//$_SESSION["strUrl"] = $strUrl;
-	
+
 	
 	if(isset($_GET["do"])&& $_GET["do"]=="logout")
 	{
         unset($_SESSION["curUser"]);
+        unset($_SESSION["cart"]);
 		$curUser=null;
 		header("Location:".$contextPath.$strUrl);
 	}
@@ -123,8 +82,19 @@
 				<?php
 				}
 				else{
+					$posBlank=0;
+					for($i=strlen($curUser[1]);$i>=0;$i--)
+					{
+						if($curUser[1][$i] == " " && $posBlank<$i)
+						{
+							$posBlank=$i;
+						}
+						
+					}
+					$name=substr($curUser[1],$posBlank,strlen($curUser[1]));
 				?>
-				<a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php echo $curUser[1] ?></a>
+				<a class="lnk" href="<?php echo $contextPath?>view/user/private-information.php">Hello <?php //echo $curUser[1];
+				echo $name; ?></a>
 				<span style="color:#FFFFFF;font-weight:bold">|</span>
 				<?php if( $question >1) { ?>
 				<a class="lnk" href="<?php echo $contextPath.$strUrl?>&do=logout">Đăng xuất</a>

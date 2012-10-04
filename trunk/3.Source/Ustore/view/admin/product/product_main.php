@@ -3,25 +3,19 @@
 function addProduct()
 	{		
 		 var name = $("#name").val();
-		 var description = $("#description").val();
-		 var type = $("#type").val();
-		 var sub_type = $("#sub_type").val();
-		 var promotion_id = $("#promotion_id").val();
-		 var present_type = $("#present_type").val();
 		 var price = $("#price").val()+ '000';
 		 if(name.length<=0 )
 		 	{
 		 		alert("Must input product name");
-		 		return;
+		 		return false;
 		 	}
 		 if( $("#price").val().length<=0) 
 		 {
 		 		alert("Must input price");
-		 		return;
+		 		return false;
 		 }
 		 //alert(name+"_"+description+"_"+type+"_"+present_type);
-		$("#info-panel").load("action/action_product.php?action=addNew",{'name':name,'description':description,'type':type,'sub_type':sub_type,'promotion_id':promotion_id,'present_type':present_type,'price':price});
-		$("#lightbox, #info-panel").fadeIn(300);
+		return true;
 		
 	}
 function closePopupEdit() {
@@ -121,7 +115,7 @@ function deleteProduct()
 	<br />
 	<div id="box">
 		<h3 id="adduser">PRODUCT</h3>
-		<form id="form" action="action/action_product.php" method="post">
+		<form id="form" action="action/action_product.php?action=addNew" method="post" onsubmit="return addProduct();">
 			<fieldset id="personal">
 				<legend>
 					ADD PRODUCT
@@ -218,7 +212,7 @@ function deleteProduct()
 			</fieldset>
 		
 			<div align="center">
-				<input id="button1" type="button" value="Save" name="btnAddProduct" onclick="addProduct();" tabindex="1"/>
+				<input id="button1" type="submit" value="Save" name="btnAddProduct"  tabindex="1"/>
 				<input id="button2" type="reset" tabindex="1"/>
 			</div>
 		</form>
@@ -249,5 +243,38 @@ function deleteProduct()
 <!-- -->
 <!-- Confirm Messagebox -->
 <div class="lightbox-panel" id="info-panel"></div>
-
+<div class="lightbox-panel" id="info-addOk">
+		<form id="form" action="" method="post">
+			<fieldset id="personal">
+				<legend>
+					MESSAGE
+				</legend>
+				<h4>Add completed</h4>
+				</fieldset>
+				<div align="center">				
+				<input  type="button" id="close-panel" value="Close" onclick="closePopupEdit();"/>
+			</div>
+		</form>
+	</div>
+	<?php
+if(isset($_REQUEST['result']) && $_REQUEST["result"]=='ok')
+	echo "<script> showMessageOk(); </script>";
+?>
+	<div class="lightbox-panel" id="info-addFail">
+		<form id="form" action="" method="post">
+			<fieldset id="personal">
+				<legend>
+					MESSAGE
+				</legend>
+				<h4>Add fail!</h4>
+				</fieldset>
+				<div align="center">				
+				<input  type="button" id="close-panel" value="Close" onclick="closePopupEdit();"/>
+			</div>
+		</form>
+	</div>
+	<?php
+	if(isset($_REQUEST['result']) && $_REQUEST["result"]=='fail')
+	echo "<script> showMessageOk(); </script>";
+?>
 </div>

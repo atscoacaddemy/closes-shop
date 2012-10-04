@@ -135,6 +135,9 @@ FCKConfig.ToolbarSets["MyTool"] = [
 	['Cut','Copy','Paste','PasteText','PasteWord','-','Print','SpellCheck'],
 	['Undo','Redo','-','Find','Replace','-','SelectAll','RemoveFormat'],
 	['Form','Checkbox','Radio','TextField','Textarea','Select','Button','ImageButton','HiddenField'],
+	['FitWindow','ShowBlocks','-','About'],
+	['Style','FontFormat','FontName','FontSize'],
+	['Link','Unlink','Anchor']
 ] ;
 FCKConfig.EnterMode = 'p' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br

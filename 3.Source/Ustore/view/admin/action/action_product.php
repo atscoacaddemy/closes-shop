@@ -18,8 +18,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="addNew")
 		{
 			//create empty product image
 			ProductImageController::Add($result,"","","","","","","","","","","","","","","","");
-			//header("Location:../product_index.php?action=image&proId=$result");
-			echo ProductUtil::createMessageBox("ADD PRODUCT","Add completed!");
+			header("Location:../product_index.php?action=add&result=ok");
+			//echo ProductUtil::createMessageBox("ADD PRODUCT","Add completed!");
 		}
 					
 		

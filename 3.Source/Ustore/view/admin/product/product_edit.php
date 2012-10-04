@@ -97,6 +97,7 @@
 												$description->BasePath = "../../library/fckeditor/";
 												$description->Height=300;
 												$description->Value = $product['Description'];
+												$description->ToolbarSet = 'MyTool';
 												$description->Create();
 											?>
 			</fieldset>

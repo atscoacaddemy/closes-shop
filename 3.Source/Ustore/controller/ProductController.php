@@ -12,6 +12,8 @@ class ProductController
 							and product.sub_type = product_subtype.ID
 		limit $offset, $count";
 		$result = DataProvider::Query($strSQL);
+		if(mysql_num_rows($result)==0)
+                    return null;
 		while($row= mysql_fetch_array ($result,MYSQL_BOTH))
 			$return[]=$row;
 			

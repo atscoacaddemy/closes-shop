@@ -2,7 +2,7 @@
             	<ul>
                 	<li ><a href="user_index.php">Users</a></li>
                     <li class="current"><a href="product_index.php">Products</a></li>
-                	
+                	<li> <a href="promotion_index.php">Promotions</a></li>
               </ul>
           </div>
       </div>

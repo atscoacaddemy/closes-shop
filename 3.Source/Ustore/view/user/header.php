@@ -69,7 +69,7 @@
 <body class="body">
 	<div id="header" class="header">
 		<div>
-			<img src="<?php echo $contextPath?>template/images/banner.png" />
+			<img height="100" src="<?php echo $contextPath?>template/images/banner2.png" />
 		</div>
 		<div class='header-login-bar'>
 				<?php
@@ -126,17 +126,43 @@
 		<ul id="nav">
 			<li id="selected"><a href="<?php echo $contextPath?>index.php">New Collection</a>
 			</li>
-			<li><a href="#">Hot</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list-hot.php">Hot</a>
 			</li>
 			<li><a href="<?php echo $contextPath?>view/user/product-list.php?type=1">Túi Xách</a>
 			</li>
-			<li><a href="#">Hàng Order</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list-order.php">Hàng Order</a>
 			</li>
-			<li><a href="#">Hàng Sắp Về</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list-comming.php">Hàng Sắp Về</a>
 			</li>
-			<li><a href="#">Khuyến Mãi</a>
+			<li><a href="<?php echo $contextPath?>view/user/promotion.php">Khuyến Mãi</a>
 			</li>
-			<li><a href="#">Liên Hệ</a>
+			<li><a href="<?php echo $contextPath?>view/user/contact.php">Liên Hệ</a>
 			</li>
 		</ul>
 	</div>
+	
+	<style type="text/css">
+.w2bslikebox{background: url("http://2.bp.blogspot.com/-S3wMYM5ABsk/Tv57qFo1odI/AAAAAAAAAUw/8NkdLv4d9bo/s1600/w2b_facebookbadge.png") no-repeat scroll left center transparent !important;display: block;float: right;height: 270px;padding: 0 5px 0 46px;width: 245px;z-index: 99999;position:fixed;right:-250px;top:20%;}
+.w2bslikebox div{border:none;position:relative;display:block;}
+.w2bslikebox span{bottom: 12px;font: 8px "lucida grande",tahoma,verdana,arial,sans-serif;position: absolute;right: 6px;text-align: right;z-index: 99999;}
+.w2bslikebox span a{color: #808080;text-decoration:none;}
+.w2bslikebox span a:hover{text-decoration:underline;}
+</style>
+<script type="text/javascript" src="<?php echo $contextPath?>template/js/scrolltopcontrol.js"></script>
+<script type="text/javascript">
+scrolltotop.controlHTML = '<img src="<?php echo $contextPath.'template/images/scrolltop.png" />';?>'
+</script>
+<div class="w2bslikebox" style="right: -250px;">
+	<div>
+		<iframe
+			src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2FUstoreBag&amp;width=245&amp;colorscheme=light&amp;show_faces=true&amp;connections=9&amp;stream=true&amp;header=false&amp;height=500px"
+			scrolling="yes" frameborder="0"
+			style="border: medium none; overflow: hidden; height: 500px; width: 245px; background: #fff;"></iframe>
+	</div>
+</div>
+<script type="text/javascript">
+//<!--
+$(document).ready(function() {$(".w2bslikebox").hover(function() {$(this).stop().animate({right: "0"}, "medium");}, function() {$(this).stop().animate({right: "-250"}, "medium");}, 500);});
+//-->
+</script>
+	

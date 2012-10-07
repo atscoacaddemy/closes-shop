@@ -156,7 +156,7 @@
 				</div>
 				
 				<div  class="product-price">
-					<span><?php echo number_format($product_detail[4], 0, ',', ',');;?></span> 
+					<span><?php echo number_format($product_detail[4], 0, ',', ',');?></span> 
 				</div>
 				<?php
 				echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
@@ -169,7 +169,7 @@
 		
 		<div style="float:left; width: 750px;">
 			<?php //show detail image
-			for($i=7;$i<17;$i++)
+			for($i=7;$i<28;$i++)
 			{
 				if($productImage[$i] != null)
 				{

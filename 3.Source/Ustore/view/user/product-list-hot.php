@@ -26,16 +26,13 @@
  <?php include_once 'header.php';?>
  <?php
  require_once ("../../controller//ProductController.php");
-$type = $_GET['type'];
-$subtype = 0;
-if (!$_GET['subtype'] == '0') {
-	$subtype = $_GET['subtype'];
-}
-
+$type = null;
+$subtype = null;
+$presentType = '1';
 
 $productList = null;
-$productList = ProductController::getProductsOnPage($type, $subtype,null,$curItem,$maxItems);
-$totalItems=ProductController::getProductsOnPageCount($type, $subtype,null);
+$productList = ProductController::getProductsOnPage($type, $subtype,$presentType,$curItem,$maxItems);
+$totalItems=ProductController::getProductsOnPageCount($type, $subtype,$presentType);
 echo ' <script type="text/javascript">
  	var array = $("ul#nav > li");
  	for ( var int = 0; int < array.length; int++) {
@@ -45,21 +42,18 @@ echo ' <script type="text/javascript">
 		} 
 	}
  </script>';
-if ($type == '1') {
 echo
 	' <script type="text/javascript">
  	var array = $("ul#nav > li");
  	for ( var int = 0; int < array.length; int++) {
-		$(array[2]).attr("id", "selected");
+		$(array[1]).attr("id", "selected");
 	}
  </script>';
-}
 ?>
  <form action="product-list.php" method="get" id="form">
  <input type="hidden" id="action" name="action"/>
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
-			<?php require_once 'left-menu.php';?>
 				<div >
 				<?php if (!empty($productList) && $productList != null ) {?>
 					<?php foreach ($productList as $product) {?>
@@ -90,7 +84,7 @@ echo
 					
 				<?php } ?>
 				<?php } else { ?>
-				<div style="font-size: 14px;">Chua co san pham nao</div>
+				<div style="font-size: 14px;"><img src="<?php echo $contextPath?>template/images/coming_soon.png" /></div>
 				<?php } ?>
 				
 				

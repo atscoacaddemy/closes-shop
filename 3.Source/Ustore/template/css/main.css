@@ -39,7 +39,7 @@
 	box-shadow: 1px 1px 5px #333333;
 	width: 180px;
 	float: left;
-	margin: 5px;
+	margin: 25px;
 	position: relative;
 	z-index: 2;
 	text-align: center;
@@ -94,8 +94,8 @@
 .body {
 	margin: auto;
 	/*	background: url('../images/body_background_sweet.jpg')*/
-	/*background: url('../images/body_back_ground_pink.jpg');*/
-	background: #C9C8CC
+	background: url('../images/bg_img.jpg');*/
+	/*background: #C9C8CC*/
 }
 .contain {
 	width: 980px;
@@ -242,7 +242,7 @@ div #comment-toggle{
 } 
 .header-login-bar {
 	position: absolute;
-	top:50px;
+	top:110px;
 	left:900px;
 }
 .header-login-bar a{
@@ -256,3 +256,31 @@ div #comment-toggle{
 body {
 	font-family: Arial,Helvetica,sans-serif;
 }
+div.pagination {text-align: center; padding: 10px}
+
+body#manufacturer div#pagination,
+body#supplier div#pagination {margin-top:60px;background:#fff;}
+
+
+
+ul.pagination {float:left;}
+ul.pagination li {float:left;margin:0 1px 0 0;}
+
+ul.pagination li a,
+ul.pagination li span {height:25px;display:block;padding:9px 15px 0 15px;font:bold 13px "Arial";text-transform:uppercase;}
+
+ul.pagination li.item a,
+ul.pagination li.item span {width:34px;padding:9px 0 0 0;text-align:center;}
+
+ul.pagination li a {background:#fff;color:#80665a;text-decoration:none;}
+.pagination a:hover {background:#272221;color:#fff;}
+ul.pagination li.disabled span {background:#fff;color:#bbb;cursor:default;}
+.pagination .current {background:#ff5a00;color:#fff;}
+ul.pagination li.truncate span {background:#fff;color:#80665a;}
+
+form.pagination select {width:77px;height:34px;float:right;padding:7px;background:#fff;border:1px solid #fff;color:#80665a;}
+form.pagination label {display:block;float:right;padding:9px 15px 0 15px;color:#181413;text-transform:uppercase;}
+form.pagination a {width:45px;height:25px;display:block;float:right;padding:9px 0 0 0;background:#272221;color:#fff;font:bold 13px "Arial";color:#fff;text-decoration:none;text-align:center;text-transform:uppercase;}
+form.pagination a:hover {background:#ff5a00;}
+
+form.pagination input {display:none;}

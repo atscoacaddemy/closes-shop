@@ -13,15 +13,28 @@
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/menu.js"></script>
 	</head>
 	<body class="body">
+<?php
+	require_once("../../utility/Utils.php");
+	include_once ("../../controller/config.php");
+	$curPage = "";
+	if (isset($_GET["page"]))
+		$curPage = (int) $_GET["page"];
+    $curPage = $curPage>0?$curPage:1;
+	$curItem = ($curPage-1)*$maxItems;
+?>
  <?php include_once 'header.php';?>
  <?php
  require_once ("../../controller//ProductController.php");
 $type = $_GET['type'];
+$subtype = 0;
 if (!$_GET['subtype'] == '0') {
 	$subtype = $_GET['subtype'];
 }
+
+
 $productList = null;
-$productList = ProductController::getProducts($type, $subtype,null);
+$productList = ProductController::getProductsOnPage($type, $subtype,null,$curItem,$maxItems);
+$totalItems=ProductController::getProductsOnPageCount($type, $subtype,null);
 ?>
  <form action="product-list.php" method="get" id="form">
  <input type="hidden" id="action" name="action"/>
@@ -61,10 +74,21 @@ $productList = ProductController::getProducts($type, $subtype,null);
 				<?php } else { ?>
 				<div style="font-size: 14px;">Chua co san pham nao</div>
 				<?php } ?>
+				
+				
 				</div>
+			<?php 
+				
+				$strLink = "product-list.php?type=$type"."&subtype=".$_REQUEST['subtype']."&";
+								$strPaging = Utils::paging ($strLink,$totalItems,$curPage,$maxPages,$maxItems);
+								echo $strPaging; 
+				
+			?>
 				<div style="clear: both;"></div>
+				
 			</div>
 	</form>
+		
 			 <?php include_once 'footer.php';?>
 	</body>
 </html>

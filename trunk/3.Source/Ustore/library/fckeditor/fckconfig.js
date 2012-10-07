@@ -139,7 +139,7 @@ FCKConfig.ToolbarSets["MyTool"] = [
 	['Style','FontFormat','FontName','FontSize'],
 	['Link','Unlink','Anchor']
 ] ;
-FCKConfig.EnterMode = 'p' ;			// p | div | br
+FCKConfig.EnterMode = 'br' ;			// p | div | br
 FCKConfig.ShiftEnterMode = 'br' ;	// p | div | br
 
 FCKConfig.Keystrokes = [

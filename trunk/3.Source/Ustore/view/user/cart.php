@@ -127,43 +127,7 @@
         <body class="body" >
  <?php include_once 'header.php';?>
                 <div id="contain" class="contain contain box-transparent">
-                        <div class="sub-menu-title">
-                                <h1 style="top:20px">Túi Xách</h1>
-                        </div>
-                        <div class="left-menu">
-                                <div class="sub-menu">
-                                        <div >
-                                                Tất cả sản phẩm
-                                        </div>
-                                        <div>
-                                                For teen
-                                        </div>
-                                        <div>
-                                                Sang trọng
-                                        </div>
-                                        <div>
-                                                Cao cấp nhất
-                                        </div>
-                                </div>
-                                <div id="support">
-                                        <h1>Hỗ Trợ</h1>
-                                        <div class="phone">
-                                                09123456789
-                                        </div>
-                                        <div class="phone">
-                                                09123456789
-                                        </div>
-                                        <div class="yahoo">
-                                                <a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-                                                </div >
-                                                <div class="yahoo">
-                                                        <a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-                                                </div>
-                                        </div>
-                                        <div>
-
-                                        </div>
-                                </div>
+  
        	<?php 
 		
 	if((isset($_POST['txtProductID']) && $_POST['txtProductID'] !=null && isset($_SESSION["addCart"]) && $_SESSION["addCart"] == "true") || (isset($_REQUEST["productid"]) && $_REQUEST["productid"] >0))
@@ -178,7 +142,6 @@
 		
 		if (isset($_REQUEST["productid"]) && $_REQUEST["productid"] >0)
 		{
-			echo "<br>product id=".$_REQUEST["productid"];
 			$product_detail=ProductController::GetProductByID($_REQUEST["productid"]);
 			if($product_detail != null)
 			{
@@ -306,7 +269,6 @@ else
 						}
 						else
 						{	
-						//	echo "<br>them vao product id=".$cartInDB[$j][2];
 							array_push($_SESSION["cart"],$cartInDB[$j][2]);
 						}
 					}
@@ -372,7 +334,7 @@ echo "<form action='".$contextPath."controller/AddCartProcessor.php' method='pos
 						echo "<td style='border-right:solid 1px #D3D3D3; padding:4px;' width='10px' align='center'>";
 						$btn = "btnDelete".$i;
 						//echo "<bt>btn=".$btn;
-						echo     "<input type='image' src='".$contextPath."data/delete.png'' name='".$btn."' id='".$btn."' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
+						echo     "<input type='image' src='".$contextPath."template/images/delete.png'' name='".$btn."' id='".$btn."' width='15px' height='15px' value='".$product_detail[0]."' onclick='DeleteCart(".$product_detail[0].");'/>";
 						echo "</td>";
 						echo "</tr>";
 					}

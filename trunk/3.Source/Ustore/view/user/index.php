@@ -33,7 +33,7 @@
 							 
 							<?php foreach ($productList as $product) {?>
 							<li >
-								<a  href="<?php echo $contextPath.$product['Cover_Img'] ?>"> <img style="max-height: 100px; max-width: 100px;" src="<?php echo $contextPath.$product['Cover_Img'] ?>" class="image0" alt="111"> </a>
+								<a  href="<?php echo $contextPath.$product['Cover_Img'] ?>"> <img style="height: 60px;width: 60px;" src="<?php echo $contextPath.$product['Cover_Img'] ?>" class="image0" alt="111"> </a>
 							</li>
 							<?php }?>
 						</ul>

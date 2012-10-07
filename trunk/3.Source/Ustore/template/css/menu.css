@@ -84,6 +84,7 @@ ul, li {
 .left-menu {
 	float: left;
 	min-height: 800px;
+	padding-right: 50px;
 }
 .left-menu #support h1 {
 	font-family: Arial, sans-serif;

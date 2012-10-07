@@ -111,7 +111,53 @@ class ProductController
          		$return[]=$row;
          	return $return;
          }
- 
+      public static function getProductsOnPage($type, $subtype, $presentType,$offset,$count) {
+         	$strSQL = "select *
+         	from product,product_image";
+         	if ($type != null || $subtype != null || $presentType != null) {
+         		$strSQL.= " where product.ID = product_image.Product_ID";
+         	}
+         	if ($type != null) {
+         		$strSQL.=" and product.Type = ".$type;
+         	}
+         	
+         	if ($subtype != null) {
+         		$strSQL.=" and product.Sub_Type = ".$subtype;
+         	}
+         	if ($presentType != null) {
+         		$strSQL.=" and product.Present_Type = ".$presentType;
+         	}
+			$strSQL.=" limit $offset, $count";
+         	//echo $strSQL;
+         	$result = DataProvider::Query($strSQL);
+         	if(mysql_num_rows($result)==0)
+         		return null;
+         	while($row= mysql_fetch_array ($result,MYSQL_BOTH))
+         		$return[]=$row;
+         	return $return;
+         }
+	  public static function getProductsOnPageCount($type, $subtype, $presentType)
+	  {
+	  	$strSQL = "select count(*)
+         	from product,product_image";
+         	if ($type != null || $subtype != null || $presentType != null) {
+         		$strSQL.= " where product.ID = product_image.Product_ID";
+         	}
+         	if ($type != null) {
+         		$strSQL.=" and product.Type = ".$type;
+         	}
+         	
+         	if ($subtype != null) {
+         		$strSQL.=" and product.Sub_Type = ".$subtype;
+         	}
+         	if ($presentType != null) {
+         		$strSQL.=" and product.Present_Type = ".$presentType;
+         	}
+			
+         	$result = DataProvider::Query($strSQL);
+			$temp = mysql_fetch_array($result);
+            return $temp[0];
+	  }
          public static function getProductSubType($type) {
          	$strSQL = "select *
          	from product_subtype

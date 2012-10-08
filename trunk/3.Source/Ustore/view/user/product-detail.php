@@ -167,7 +167,7 @@
 			</div>
 	</form>
 		
-		<div style="float:left; width: 750px;">
+		<div style="float:left; width: 700px;">
 			<?php //show detail image
 			for($i=7;$i<28;$i++)
 			{
@@ -237,8 +237,6 @@
 					</div>
 						<div style="clear: both;"></div>
 				</div>
-				<div style="clear: both;"></div>
-			</div>
 			
                          <?php include_once 'footer.php';?>
                          <script type="text/javascript">

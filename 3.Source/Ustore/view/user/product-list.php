@@ -4,7 +4,7 @@
   $contextPath="../../";
  ?>
 	<head>
-		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
+		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
 		<title></title>
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/menu.css"  media="screen">
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/main.css"  media="screen"/>

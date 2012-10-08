@@ -9,7 +9,7 @@
  */
 (function($) {
   $.fn.adGallery = function(options) {
-    var defaults = { loader_image: 'loader.gif',
+    var defaults = { loader_image: 'template/AD Gallery 1.2.7/lib/loader.gif',
                      start_at_index: 0,
                      update_window_hash: true,
                      description_wrapper:  $('#product_description'),
@@ -33,7 +33,7 @@
                        onStart: true,
                        onStop: false
                      },
-                     effect: 'fade', // or 'slide-vert', 'fade', or 'resize', 'none'
+                     effect: 'resize', // or 'slide-vert', 'fade', or 'resize', 'none'
                      enable_keyboard_move: true,
                      cycle: true,
                      hooks: {

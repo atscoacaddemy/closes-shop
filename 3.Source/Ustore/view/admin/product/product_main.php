@@ -34,6 +34,14 @@ function deleteProduct()
 	var userId=$("#txtUserId").val();
 	$("#message-panel").load("action/action_product.php?action=delete",{'id':userId});
 }
+function showMessageOk()
+{
+	$("#lightbox, #info-addOk").fadeIn(300);
+}
+function gotoAddImage()
+{
+
+}
 </script>
 <?php
 	require_once("../../utility/Utils.php");
@@ -252,7 +260,7 @@ function deleteProduct()
 				<h4>Add completed</h4>
 				</fieldset>
 				<div align="center">				
-				<input  type="button" id="close-panel" value="Close" onclick="closePopupEdit();"/>
+				<input  type="button" id="close-panel" value="Close" onclick="gotoAddImage();"/>
 			</div>
 		</form>
 	</div>

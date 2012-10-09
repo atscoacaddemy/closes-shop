@@ -29,9 +29,20 @@ function addProduct()
 function closePopupEdit() {
   $("#lightbox, #lightbox-panel, #info-panel, #info-addOk").fadeOut(300);
 }
-function showMessageOk()
+function showMessageOk(proId)
 {
+	$("#txtProAdded").val(proId);
+	//alert(proId);
 	$("#lightbox, #info-addOk").fadeIn(300);
+}
+function gotoAddImage()
+{
+	var id = $("#txtProAdded").val();
+	window.location='product_index.php?action=image&proId='+id;
+}
+function showMessageFail()
+{
+$("#lightbox, #info-addFail").fadeIn(300);
 }
 </script>
 
@@ -152,15 +163,16 @@ function showMessageOk()
 					MESSAGE
 				</legend>
 				<h4>Add completed</h4>
+				<input id="txtProAdded" type="hidden"/>
 				</fieldset>
 				<div align="center">				
-				<input  type="button" id="close-panel" value="Close" onclick="closePopupEdit();"/>
+				<input  type="button" id="close-panel" value="Close" onclick="gotoAddImage();"/>
 			</div>
 		</form>
 	</div>
 	<?php
-if(isset($_REQUEST['result']) && $_REQUEST["result"]=='ok')
-	echo "<script> showMessageOk(); </script>";
+if(isset($_REQUEST['result']) && $_REQUEST["result"]>=0)
+	echo "<script> showMessageOk(".$_REQUEST["result"]."); </script>";
 ?>
 	<div class="lightbox-panel" id="info-addFail">
 		<form id="form" action="" method="post">
@@ -176,7 +188,7 @@ if(isset($_REQUEST['result']) && $_REQUEST["result"]=='ok')
 		</form>
 	</div>
 	<?php
-	if(isset($_REQUEST['result']) && $_REQUEST["result"]=='fail')
-	echo "<script> showMessageOk(); </script>";
+	if(isset($_REQUEST['result']) && $_REQUEST["result"]<0)
+	echo "<script> showMessageFail(); </script>";
 ?>
 </div>

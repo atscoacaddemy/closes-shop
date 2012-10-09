@@ -109,8 +109,10 @@ require_once ("../../controller/ProductImageController.php");
 										$uploader->UploadUrl="../../utility/phpfileuploader/my_handler.php?imgType=Detail_Img_10".$i."&proId=".$_REQUEST["proId"];       
 										$uploader->Render();  
 										?>-->
-				
-				
+				<br />
+				<div align="center">
+				<input align="center" type="button" value="Back" onclick="window.location='product_index.php?action=add';" />
+				</div>
 			</fieldset>
 			
 			

@@ -60,7 +60,7 @@ echo
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
 			<?php require_once 'left-menu.php';?>
-				<div >
+				<div class="main-contain ">
 				<?php if (!empty($productList) && $productList != null ) {?>
 					<?php foreach ($productList as $product) {?>
 					<div class="product-cell">
@@ -92,6 +92,7 @@ echo
 				<?php } else { ?>
 				<div style="font-size: 14px;">Chua co san pham nao</div>
 				<?php } ?>
+									<div style="clear: both;"></div>
 				
 				
 				</div>

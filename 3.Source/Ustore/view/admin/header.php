@@ -17,6 +17,7 @@
 <link rel="stylesheet" type="text/css" href="css/theme.css" />
 <link rel="stylesheet" type="text/css" href="css/style.css" />
 <link rel="stylesheet" type="text/css" href="css/light box.css">
+<link rel="stylesheet" type="text/css" href="../../template/css/jquery-ui-1.9.0.custom.min.css">
 <script>
    var StyleFile = "theme" + document.cookie.charAt(6) + ".css";
    document.writeln('<link rel="stylesheet" type="text/css" href="css/' + StyleFile + '">');
@@ -25,6 +26,8 @@
 <link rel="stylesheet" type="text/css" href="css/ie-sucks.css" />
 <![endif]-->
 <script type="text/javascript" src="../../template/js/jquery.min.js">
+</script>
+<script type="text/javascript" src="../../template/js/jquery-ui-1.9.0.custom.min.js">
 </script>
 
 <script type="text/javascript">

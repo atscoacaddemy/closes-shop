@@ -16,7 +16,7 @@
 <?php
 	require_once("../../utility/Utils.php");
 	include_once ("../../controller/config.php");
-	$maxItems = 9;
+	$maxItems = 12;
 	$curPage = "";
 	if (isset($_GET["page"]))
 		$curPage = (int) $_GET["page"];

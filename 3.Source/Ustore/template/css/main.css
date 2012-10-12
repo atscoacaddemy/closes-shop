@@ -60,7 +60,7 @@
 }
 .product-cell .product-price {
 	color: #FF6600;
-	font: italic small-caps bold 23px/20px "Arial,Helvetica,sans-serif";
+	font: italic small-caps bold 20px/20px "Arial,Helvetica,sans-serif";
 }
 .product-cell div a img {
 	width: 180px;
@@ -94,7 +94,7 @@
 .body {
 	margin: auto;
 	/*	background: url('../images/body_background_sweet.jpg')*/
-	background: url('../images/bg_img.jpg');*/
+	background: url('../images/table.jpg');*/
 	/*background: #C9C8CC*/
 }
 .contain {
@@ -106,6 +106,7 @@
 	padding: 10px;
 	width: 320px;
 	float: left;
+	border: 1px solid #ECECEC;
 }
 .product-description {
 	width: 350px;
@@ -123,7 +124,7 @@
 }
 .product-description .product-price span {
 	color: #FF6600;
-	font: italic small-caps bold 50px/20px "Arial,Helvetica,sans-serif";
+	font: italic small-caps bold 40px/20px "Arial,Helvetica,sans-serif";
 }
 .product-description .product-price{
 	margin: 20px 0;
@@ -284,3 +285,11 @@ form.pagination a {width:45px;height:25px;display:block;float:right;padding:9px 
 form.pagination a:hover {background:#ff5a00;}
 
 form.pagination input {display:none;}
+.product-gallery {
+	float:left; 
+	width: 700px;
+	border: 1px solid #ECECEC;
+}
+.product-gallery img {
+	max-width: 700px;
+}

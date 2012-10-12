@@ -85,6 +85,9 @@ ul, li {
 	float: left;
 	min-height: 800px;
 	padding-right: 20px;
+	border: 1px solid #ECECEC;
+	border-bottom: none;
+	border-right: none;
 }
 .left-menu #support h1 {
 	font-family: Arial, sans-serif;
@@ -116,4 +119,9 @@ ul, li {
 }
 .left-menu div{
 	margin: 10px;
+}
+.main-contain {
+	width: 700px;
+	border: 1px solid #ECECEC;
+	float:left;
 }

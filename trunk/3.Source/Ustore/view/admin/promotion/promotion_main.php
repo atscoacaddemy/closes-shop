@@ -29,6 +29,14 @@ function deleteProduct()
 	$("#message-panel").load("action/action_promotion.php?action=delete",{'id':userId});
 }
 </script>
+<script>
+    $(function() {
+        $( "#startdate" ).datepicker();
+    });
+    $(function() {
+        $( "#enddate" ).datepicker();
+    });
+    </script>
 <?php
 	require_once("../../utility/Utils.php");
 	include_once ("../../controller/config.php");
@@ -118,11 +126,11 @@ function deleteProduct()
 				
 				<br />				
 				<label for="startdate">Start date : </label>	
-				<input name="startdate" id="datepicker" type="text"
+				<input name="startdate" id="startdate" type="text"
 								tabindex="2" />				
 				<br/>
 				<label for="enddate">End date : </label>	
-				<input name="enddate" id="datepicker" type="text"
+				<input name="enddate" id="enddate" type="text"
 								tabindex="2" />			
 															
 				<br/>

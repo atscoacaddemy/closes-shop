@@ -123,7 +123,7 @@
 				<img src="<?php echo $contextPath.$productImage[1];?>" alt='' title="Optional title display" width="330px" height="300px;"/>
 			</div>
 		</div>
-		<div>
+		<div style="padding: 10px; border: solid wheat; width: 305px;">
 					
 						<?php //show detail image
 							for($i=2;$i<7;$i++)
@@ -139,7 +139,8 @@
 						<?php
 								}
 							}
-						?>							
+						?>	
+						<div style="clear: both;"></div>						
 				<!-- "next page" action -->
 				<a class="next browse right"></a>
 		</div>
@@ -149,7 +150,7 @@
 
 			<div class="product-description" id="product-description">
 				<div class="product-title" id="product-title">
-					<?php echo $product_detail[1];?>
+					<h2><?php echo $product_detail[1];?></h2>
 				</div>
 				<div style="height: 200px; overflow: hidden;">
 					<?php echo $product_detail[6];?>
@@ -167,11 +168,11 @@
 			</div>
 	</form>
 		
-		<div style="float:left; width: 700px;">
+		<div class="product-gallery" >
 			<?php //show detail image
-			for($i=7;$i<28;$i++)
+			for($i=7;$i<27;$i++)
 			{
-				if($productImage[$i] != null)
+				if($productImage[$i] != null )
 				{
 					echo "<img src='".$contextPath.$productImage[$i]."'/></br>";
 				}
@@ -234,9 +235,10 @@
 ?>
 					
 					</div>
-					</div>
 						<div style="clear: both;"></div>
 				</div>
+				<div style="clear: both;"></div>
+			</div>
 			
                          <?php include_once 'footer.php';?>
                          <script type="text/javascript">

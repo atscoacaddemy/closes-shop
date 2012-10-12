@@ -30,12 +30,12 @@
 						<div>Mr Nhật - 0984669938</div>
 					</div >
 					<div class="yahoo">
-						<a href="ymsgr:SendIM?goodking2403" title="mr Quân"> <img  border="0" src="http://opi.yahoo.com/online?u=goodking2403&amp;m=g&amp;t=22"> </a>
+						<a href="ymsgr:SendIM?goodking2403" title="Mr Quân"> <img  border="0" src="http://opi.yahoo.com/online?u=goodking2403&amp;m=g&amp;t=22"> </a>
 						<div>Mr Quân - 0906622190</div>
 					</div>
 					<div style="font-weight: bold; padding-top: 10px;">Mỹ Tho</div>
 					<div class="yahoo">
-						<a href="ymsgr:SendIM?boolep_1188" title="mr Xuân"> <img  border="0" src="http://opi.yahoo.com/online?u=boolep_1188&amp;m=g&amp;t=22"> </a>
+						<a href="ymsgr:SendIM?boolep_1188" title="Ms Xuân"> <img  border="0" src="http://opi.yahoo.com/online?u=boolep_1188&amp;m=g&amp;t=22"> </a>
 						<div>Ms Xuân - 0972150979</div>
 					</div>
 					</div>

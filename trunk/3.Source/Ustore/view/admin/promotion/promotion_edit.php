@@ -29,7 +29,14 @@ function showMessageFail()
 	$("#lightbox, #info-addFail").fadeIn(300);
 }
 </script>
-
+<script>
+    $(function() {
+        $( "#startdate" ).datepicker();
+    });
+    $(function() {
+        $( "#enddate" ).datepicker();
+    });
+    </script>
 <div id="wrapper">
 <div id="content">
 <div id="box">
@@ -43,11 +50,11 @@ function showMessageFail()
 				<input name="name" id="name" type="text" tabindex="1" value="<?php echo $promotion["Name"]; ?>"/>				
 				<br />				
 				<label for="startdate">Start date : </label>	
-				<input name="startdate" id="datepicker" type="text"
+				<input name="startdate" id="startdate" type="text"
 								tabindex="2" <?php echo $promotion["Apply_Date_Start"]; ?>/>				
 				<br/>
 				<label for="enddate">End date : </label>	
-				<input name="enddate" id="datepicker" type="text"
+				<input name="enddate" id="enddate" type="text"
 								tabindex="2" <?php echo $promotion["Apply_Date_End"]; ?>/>			
 															
 				<br/>

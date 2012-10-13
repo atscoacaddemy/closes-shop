@@ -28,6 +28,8 @@ class PromotionController
 	}
 	public function Add($name,$description,$startdate,$enddate)
 	{
+		$startdate=date("Y-m-d",strtotime($startdate));		
+		$enddate=date("Y-m-d",strtotime($enddate));
 		$strSQL="insert into promotion (Name,Detail,Apply_Date_Start,Apply_Date_End) values ('$name','$description','$startdate','$enddate')";
 		$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);

@@ -39,7 +39,7 @@ function showMessageFail()
 <div id="wrapper">
 <div id="content">
 <div id="box">
-		<h3 id="adduser">PRODUCT</h3>
+		<h3 id="adduser">PROMOTION</h3>
 		<form id="form" action="action/action_promotion.php?action=addNew" method="post" onsubmit="return addProduct();">
 			<fieldset id="personal">
 				<legend>

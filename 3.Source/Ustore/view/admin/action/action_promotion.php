@@ -10,7 +10,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="addNew")
 		$enddate=$_REQUEST["enddate"];
 				
 		$result = PromotionController::Add($name,$description,$startdate,$enddate);
-		if($result)
+		if($result>=0)
 		{
 			header("Location:../promotion_index.php?action=add&result=ok");
 			//echo ProductUtil::createMessageBox("ADD PRODUCT","Add completed!");

@@ -4,29 +4,29 @@
 <?php
 	class CommentController
 	{
-	/*	public static function GetAll($offset,$count)
+		public static function GetAll($offset,$count)
 		{
 			$strSQL = "	select * 
-						from comment 				
-						limit $offset, $count";
+						from comment
+						where Delete_Flag='0'						
+						limit $offset, $count ";
             $result = DataProvider::Query($strSQL);
 			$return[]=null;
             while($row= mysql_fetch_array ($result,MYSQL_BOTH))
                 $return[]=$row;
-			
 			return $return;
 		}
 		public static function Count()
-		 {
-			 $strSQL = "select count(*) from comment";
+		{
+			$strSQL = "select count(*) from comment";
             $result = DataProvider::Query($strSQL);
 			$temp = mysql_fetch_array($result);
             return $temp[0];
-		 }
-		 public static function Update ($ID,$Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
+		}
+		 public static function Update ($ID,$Description)
         {
-            $strSQL = "update comment set Name='$Name',Type='$Type',Sub_Type='$Sub_Type',Price='$Price',Description='$Description',Promotion_ID='$Promotion_ID' ,Present_Type='$Present_Type' 
-                      where ID=$ID";
+            $strSQL = "update comment set Detail='$Description'  
+                      where ID='$ID' ";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			
@@ -38,7 +38,7 @@
 			DataProvider::Close ($cn);
             return $result;
         }
-		 */
+		 /**/
 		public static function Add ($Product_ID,$User_ID,$Detail)
         {
             $strSQL = "Insert into comment (Product_ID, User_ID, Detail, Create_Date, Delete_Flag) values ( '$Product_ID','$User_ID', '$Detail', NOW(), '0')";
@@ -80,8 +80,8 @@
 		 
 		public static function Delete ($ID)
 		{
-			$strSQL = "update comment set Delete_Flag=1
-                      where ID=$ID";
+			$strSQL = "update comment set Delete_Flag='1' 
+                      where ID='$ID' ";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			

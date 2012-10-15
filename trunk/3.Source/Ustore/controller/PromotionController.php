@@ -81,7 +81,7 @@ class PromotionController
 	}
 	public function Get($offset,$count)
 	{
-		$strSQL="select * from promotion limit $offset, $count" ;
+		$strSQL="select * from promotion order by  Apply_Date_Start DESC limit $offset, $count" ;
 		$result = DataProvider::Query($strSQL);
 		if(mysql_num_rows($result)==0)
                     return null;

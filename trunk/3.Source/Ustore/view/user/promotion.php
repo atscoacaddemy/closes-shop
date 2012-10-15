@@ -50,10 +50,29 @@ echo
 	}
  </script>';
 ?>
+<?php
+ include_once ('../../controller/PromotionController.php');
+ require_once("../../utility/Utils.php");
+ include_once ("../../controller/config.php");
+ $maxItems = 10;
+ $curPage = "";
+ if (isset($_GET["page"]))
+ 	$curPage = (int) $_GET["page"];
+ $curPage = $curPage>0?$curPage:1;
+ $curItem = ($curPage-1)*$maxItems;
+ $promotionController = new PromotionController();
+ $promotionList = $promotionController -> Get($curItem,$maxItems);
+ $totalItems=$promotionController -> Count();
+?>
 		<div id="contain" class="contain contain box-transparent">
-				<div >
+				<?php if (!empty($promotionList) && $promotionList != null ) {?>
+					<?php foreach ($promotionList as $promotion) {?>
+					<div class="promotion">
+						<?php echo $promotion['Detail'];?>
+					</div>
+					<?php } } else {?>
 				<div style="font-size: 14px;"><img src="<?php echo $contextPath?>template/images/coming_soon.png" /></div>
-			</div>
+				<?php }?>
 		</div>
 			 <?php include_once 'footer.php';?>
 	</body>

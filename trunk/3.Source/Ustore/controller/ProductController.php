@@ -9,7 +9,7 @@ class ProductController
 		$strSQL = "	select product.ID, product.Name as Name, product.Description, product_type.`Type`, product_subtype.Name as Subtype_Name, product.Price
 		from product,product_type, product_subtype
 			where product.Delete_Flag = '0' and product.Type =  product_type.ID
-							and product.sub_type = product_subtype.ID
+							and product.sub_type = product_subtype.ID  order by product.ID  DESC
 		limit $offset, $count";
 		$result = DataProvider::Query($strSQL);
 		if(mysql_num_rows($result)==0)

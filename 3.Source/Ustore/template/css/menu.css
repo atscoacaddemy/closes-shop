@@ -66,6 +66,12 @@ ul, li {
 	border-radius: 10px 10px 10px 10px;
 	padding: 20px;
 }
+.sub-menu div.selected {
+	margin: 10px;
+	background: none repeat scroll 0 0 #DE79A3;
+	border-radius: 10px 10px 10px 10px;
+	padding: 20px;
+}
 .sub-menu-title {
 /*	background: url(../images/sub-menu-title-background.png) no-repeat;*/
 	background: url(../images/1_7.png) no-repeat;
@@ -124,4 +130,10 @@ ul, li {
 	width: 700px;
 	border: 1px solid #ECECEC;
 	float:left;
+}
+.promotion {
+	padding: 20px;
+}
+.promotion img {
+	max-width: 850px;
 }

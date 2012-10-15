@@ -6,18 +6,31 @@
 			<?php 
 			$type = $_GET['type'];
 			$subtypeList=ProductController::getProductSubType($type);
+			$selectedSubtype = 0;
+			if (!$_GET['subtype'] == '0') {
+				$selectedSubtype = $_GET['subtype'];
+			}
+			if (isset($product_detail)){
+				$selectedSubtype = $product_detail['Sub_Type'];
+			}
+			function isSelected($selectedSubtype,$sub)
+			{
+				if ($selectedSubtype == $sub) {
+					echo 'selected';
+				}
+			}
 			?>
 			<div class="sub-menu-title">
 				<h1 style="top:20px">Túi Xách</h1>
 			</div>
 			<div class="left-menu">
 				<div class="sub-menu">
-					<div  onclick="doFilter(<?php echo $type.','.'0'?>)">
+					<div class="<?php isSelected($selectedSubtype,'0')?>" onclick="doFilter(<?php echo $type.','.'0'?>)">
 						Tất cả sản phẩm
 					</div>
 				<?php foreach ($subtypeList as $subtype) {?>
 					
-					<div onclick="doFilter(<?php echo $type.','. $subtype['ID']?>)">
+					<div  class="<?php isSelected($selectedSubtype,$subtype['ID'])?>"  onclick="doFilter(<?php echo $type.','. $subtype['ID']?>)">
 						<?php echo $subtype["Name"]?>
 					</div>
 					<?php }?>

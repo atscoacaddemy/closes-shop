@@ -163,7 +163,7 @@
 				echo "<input name='txtProductID' id='txtProductID' type='text' style='width:300px;display:none;' value='".$productid."'>";
 				?>
 				<div>
-					<input class="stock-status" type="submit" value="Thêm vào giở hàng" id="btAddToCard" name="btAddToCard" />
+					<input class="stock-status" type="submit" value="Thêm vào giỏ hàng" id="btAddToCard" name="btAddToCard" />
 				</div>
 			</div>
 	</form>

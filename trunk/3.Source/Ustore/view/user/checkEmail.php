@@ -8,7 +8,7 @@
 	
 	if(!empty($productdeleteid) && $productdeleteid>0 )
 	{
-		session_start();
+		//session_start();
 		
 		for($i=0 ; $i < count($_SESSION["cart"]) ; $i++)
 		{

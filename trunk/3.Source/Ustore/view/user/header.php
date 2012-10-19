@@ -1,7 +1,7 @@
 <?php
-	session_start();
 	$_SESSION["contextPath"] = $contextPath;
 	include_once ($contextPath."controller/config.php");
+	include_once ($contextPath."utility/Utils.php");
 	$url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 	
 	// echo "url=".$url;
@@ -53,7 +53,7 @@
         unset($_SESSION["curUser"]);
         unset($_SESSION["cart"]);
 		$curUser=null;
-		header("Location:".$contextPath.$strUrl);
+		Utils::redirect($contextPath.$strUrl);
 	}
 
 	$curUser=$_SESSION["curUser"];

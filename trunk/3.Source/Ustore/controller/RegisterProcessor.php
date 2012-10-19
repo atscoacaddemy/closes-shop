@@ -63,24 +63,22 @@
 					//echo "</br>rs=".$rs."</br>";
 					if($rs == true)
 					{
-						header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=success");
-						//header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=success");
+						Utils::redirect("../view/user/forget-password.php?email='".$txtEmail."'&send=success");
 					}
 					else
 					{
-						header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
-						//header("Location:../view/user/forget-password.php?email=".$txtEmail."&send=failed");
+						Utils::redirect("../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
 					}
 				}
 				else
 				{
-					header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
+					Utils::redirect("../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
 				}
 				
 			}
 			else
 			{
-				header("Location:../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
+				Utils::redirect("../view/user/forget-password.php?email='".$txtEmail."'&send=failed");
 			}
 		}
 		if(isset($_POST["btnGuiTin"]))
@@ -97,10 +95,10 @@
 			 $process = LienHeBUS::Add($txtHoTen,$txtDienThoai,$txtEmail,$txtDiaChi,$txtNoiDung,$date,$status);
 			 if($process != false)
 			 {
-				header("Location:../lienhe.php?send=success");
+				Utils::redirect("../lienhe.php?send=success");
 			 }
 			 else
-				header("Location:../lienhe.php?send=failed");
+				Utils::redirect("../lienhe.php?send=failed");
 		}
 		if(isset($_POST["btnNangVip"]) && isset($_GET['iddv']))
 		{
@@ -115,10 +113,10 @@
 			 $process = DichVuVIPBUS::Add($iddv, $txtNoiDung, $time_send,$time_update,$cbbMonth,$status);
 			 if($process != false)
 			 {
-				header("Location:../nangcaptinvip.php?iddv=".$iddv."&send=success");
+				Utils::redirect("../nangcaptinvip.php?iddv=".$iddv."&send=success");
 			 }
 			 else
-				header("Location:../nangcaptinvip.php?iddv=".$iddv."&send=failed");
+				Utils::redirect("../nangcaptinvip.php?iddv=".$iddv."&send=failed");
 		}
 		if(isset($_POST["btnChangeInfoUser"]))
 		{
@@ -136,9 +134,9 @@
 			 echo "<br>radio=".$radio_gender;
 			 $rsUpdate=UsersBUS::UpdateInfor($id,$username,$radio_gender,$address,$dt1,$dt2,$time);
 			 if($rsUpdate == true)
-				header("Location:../thongtinkhachhang.php?update=success");
+				Utils::redirect("../thongtinkhachhang.php?update=success");
 			else
-			    header("Location:../thongtinkhachhang.php?update=failed");
+			    Utils::redirect("../thongtinkhachhang.php?update=failed");
 		}
 		if(isset($_POST["btRegister"]))
 		{
@@ -159,12 +157,12 @@
 				$fRegister="true";
 				//echo "suceess";
 			//$_SESSION["register"] = "true";
-				header("Location:../view/user/product-list.php?type=1&do=login");
+				Utils::redirect("../view/user/product-list.php?type=1&do=login");
 			}
 			else
 			{
 				echo "failed";
-				header("Location:../view/user/register.php?do=failed");
+				Utils::redirect("../view/user/register.php?do=failed");
 			}
 			
 		}	

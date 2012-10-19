@@ -23,7 +23,7 @@
 				$strUrl =$_SESSION["strUrl"];
 				echo "contextPath=".$contextPath;
 			    echo "</br>url=".$strUrl;
-			    header("Location:".$contextPath.$strUrl);
+			    Utils::redirect($contextPath.$strUrl);
 			
 			 }
 			

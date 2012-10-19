@@ -3,9 +3,9 @@
 	echo "<br>add to cart processpor";
 	if(isset($_POST["btnDatHang"]))
 	{   
-		session_start();
 		//include_once("UserController.php");
 		include_once("CartController.php");
+		include_once ("../utility/Utils.php");
 		//echo "<br>add to cart processpor";
 		$email=$_POST["txtUsernameLogin"];
 		$pass=$_POST["txtPasswordLogin"];
@@ -84,11 +84,11 @@
 		}
 	    if($flag == "false")
 	    {
-			header("Location:../view/user/cart.php?addcart=failed");
+			Utils::redirect("../view/user/cart.php?addcart=failed");
 	    }
 	    else
 	    {
-			header("Location:../view/user/cart.php?addcart=successful");
+			Utils::redirect("../view/user/cart.php?addcart=successful");
 	    }
 			
 		  

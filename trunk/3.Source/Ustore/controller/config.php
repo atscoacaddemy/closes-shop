@@ -2,7 +2,7 @@
 	$hostName = "localhost";
    	$databaseName = "ustorevn_ustore";
    	$username = "root";
-   	$password = "root";	
+   	$password = "";	
 	$maxPages = 5;
 	$maxItems = 10;
 	$amountDate = 30;

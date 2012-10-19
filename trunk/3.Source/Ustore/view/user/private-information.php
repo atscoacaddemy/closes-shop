@@ -58,7 +58,7 @@
 	// echo "curUser[1]=".$curUser[1]."</br>";
 	if(!isset($curUser) && $curUser[1] == null)
 	{
-		header("Location:product-list.php");
+		Utils::redirect("product-list.php");
 	}
  ?>
 		<div id="contain" class="contain contain box-transparent">

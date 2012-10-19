@@ -12,12 +12,11 @@
 		echo "<br>repass=".$repass;
 		echo "<br>oldpass=".$oldpass;
 		echo "<br>id=".$id;
-		//header("Location:../dichvu.php?do=login");
 		$result=UserController::CheckOldPassword($id,$oldpass);
 		echo "<br>result=".$result;
 		if($result==null || $newpass != $repass)
 		{
-			header("Location:../view/user/change-password.php?error=error");
+			Utils::redirect("../view/user/change-password.php?error=error");
 		}
 		else
 		{
@@ -25,11 +24,11 @@
 			echo "<br>resultChange=".$resultChange;
 			if($resultChange == false)
 			{
-				header("Location:../view/user/change-password.php?error=failed");
+				Utils::redirect("../view/user/change-password.php?error=failed");
 			}
 			else
 			{
-				header("Location:../view/user/change-password.php?changepassword=successfull");
+				Utils::redirect("../view/user/change-password.php?changepassword=successfull");
 			}
 		}  /**/
 	}                     

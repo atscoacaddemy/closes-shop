@@ -1,4 +1,5 @@
-﻿<?php
+<?php session_start();?>
+<?php
 	//xu ly dang nhap
 	echo "<br>add to cart processpor";
 	if(isset($_POST["btnDatHang"]))

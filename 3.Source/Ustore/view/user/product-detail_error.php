@@ -140,7 +140,6 @@
 	// }
 	// else
 	// {
-		// header("Location:product-list.php");
 	// }
 	?>			
 				<div >
@@ -305,7 +304,7 @@ The output of the code above will be:
 Array ( [0] => Dog [1] => Cat [2] => Horse [3] => Bird ) 
 
  <?php 
- session_start(); 
+ //session_start(); 
  
  // makes an array 
  $colors=array('red', 'yellow', 'blue'); 
@@ -319,7 +318,7 @@ Array ( [0] => Dog [1] => Cat [2] => Horse [3] => Bird )
 Now let's run this on mypage2.php to show our new information:
 
  <?php 
- session_start(); 
+ //session_start(); 
  Print_r ($_SESSION);
  echo "<p>";
 

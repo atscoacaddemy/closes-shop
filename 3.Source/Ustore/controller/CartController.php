@@ -6,8 +6,10 @@
 <?php
 	class CartController
 	{
+		
     	public static function AddCart ($user_id,$product_id, $quantity)
         {
+        	echo ($user_id.$product_id.$quantity);
             $strSQL = "Insert into cart (User_ID,Product_ID,Quantity) values ( '$user_id','$product_id','$quantity')";
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);

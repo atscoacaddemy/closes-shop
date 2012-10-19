@@ -1,3 +1,4 @@
+<?php session_start();?>
 <?php 
 	$txtEmail = $_REQUEST["txtEmail"];
 	$txtNumberPhone = $_REQUEST["txtNumberPhone"];

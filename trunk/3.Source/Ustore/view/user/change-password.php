@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<?php session_start();?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" >
  <?php  
 	$contextPath="../../";
@@ -71,48 +72,13 @@ $(document).ready(function()
 	// echo "curUser[1]=".$curUser[1]."</br>";
 	if(!isset($curUser) && $curUser[1] == null)
 	{
-		Utils::redirect("product-list.php");
+		//Utils::redirect("product-list.php");
 	}
  ?>
 		<div id="contain" class="contain contain box-transparent">
 			<div class="sub-menu-title">
 				<h1 style="top:20px">Túi Xách</h1>
 			</div>
-			<div class="left-menu">
-				<div class="sub-menu">
-					<div >
-						Tất cả sản phẩm
-					</div>
-					<div>
-						For teen
-					</div>
-					<div>
-						Sang trọng
-					</div>
-					<div>
-						Cao cấp nhất
-					</div>
-				</div>
-				<div id="support">
-					<h1>Hỗ Trợ</h1>
-					<div class="phone">
-						09123456789
-					</div>
-					<div class="phone">
-						09123456789
-					</div>
-					<div class="yahoo">
-						<a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-						</div >
-						<div class="yahoo">
-							<a href="ymsgr:SendIM?dinhbanhut24" title="mr Nhut"> <img width="101" height="21" border="0" src="http://mail.opi.yahoo.com/online?u=d&amp;m=g&amp;t=2"> </a>
-						</div>
-					</div>
-					<div>
-
-					</div>
-			</div>
-
 <!--start content in forget password!-->		
 			<!--div class="product-cell"-->
 			<div>

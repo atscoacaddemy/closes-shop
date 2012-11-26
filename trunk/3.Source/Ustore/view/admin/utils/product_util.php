@@ -62,5 +62,15 @@ class ProductUtil{
 	$str.='	</div>';
 	return $str;
 	}
+	public static function createSearchResult4Arrange($productList)
+	{
+		
+				foreach ($productList as $product) {
+					
+		$str.='			<li class="ui-state-default" id="'.$product["ID"]. '">'.$product["Name"].'</li>';
+		
+				}
+				return $str;
+	}
 }
 ?>

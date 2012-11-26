@@ -40,57 +40,69 @@ ul, li {
 	font-size: 14px;
 	font-family: helvetica, arial, sans-serif;
 	text-decoration: none;
-	padding: 14px 35px;
+	padding: 14px 50px;
 }
 .sub-menu {
 	font-family: Arial, Helvetica, sans-serif;
-	color: white;
-	background: url("../images/pattern-grey.png");
+	color: black;
+	/*background: url("../images/pattern-grey.png");*/
 	width: 200px;
-	background-color: lightSteelBlue;
+	/*background-color: lightSteelBlue;*/
 	padding: 10px 0px;
 	border-radius: 10px;
 	clear: both;
 }
-.sub-menu div {
+.category-label div {
+	color: white;
+	text-align: center;
 	cursor: pointer;
 	margin: 10px;
-	background: none repeat scroll 0 0 #292929;
+	background: none repeat scroll 0 0 #DB323A;
+	padding: 10px;
+}
+.sub-menu div {
+	cursor: pointer;
+	margin: 2px;
+	background: none repeat scroll 0 0 whitesmoke;
+	padding: 10px;
 	border-radius: 10px 10px 10px 10px;
-	padding: 20px;
 }
 .sub-menu div:hover {
 	cursor: pointer;
-	margin: 10px;
+	margin: 2px;
 	background: none repeat scroll 0 0 #DE79A3;
+	padding: 10px;
 	border-radius: 10px 10px 10px 10px;
-	padding: 20px;
 }
 .sub-menu div.selected {
-	margin: 10px;
-	background: none repeat scroll 0 0 #DE79A3;
+	margin: 2px;
+	padding: 10px;
 	border-radius: 10px 10px 10px 10px;
-	padding: 20px;
+	color: orange;
+	font-weight: bold;
 }
 .sub-menu-title {
-/*	background: url(../images/sub-menu-title-background.png) no-repeat;*/
-	background: url(../images/1_7.png) no-repeat;
-	height: 120px;
+	margin-bottom: 50px;
+	background:#DB323A;
+	height: 50px;
 	border-radius: 10px 10px 10px 10px;
 	margin-left: 15px;
+	width: 300px;
 }
 .sub-menu-title h1 {
+	color: white;
 	font-family: Arial, sans-serif;
 	font-weight: normal;
 	text-transform: uppercase;
 	padding-left: 120px;
-	padding-top: 45px;
+	padding-top: 10px;
 	font-size: 23px;
 }
 .left-menu {
 	float: left;
 	min-height: 800px;
-	padding-right: 20px;
+	margin-right: 50px;
+	margin-top: 5px;
 	border: 1px solid #ECECEC;
 	border-bottom: none;
 	border-right: none;
@@ -103,10 +115,9 @@ ul, li {
 	padding-bottom: 40px;
 }
 .left-menu #support {
-	padding-top: 20px;
-	text-align: center;\
+	text-align: center;
 	font-family: Arial, Helvetica, sans-serif;
-	background: url("../images/pattern-grey.png");
+	background: whitesmoke;
 	clear: both;
 	margin: 10px;
 }
@@ -124,10 +135,10 @@ ul, li {
 	
 }
 .left-menu div{
-	margin: 10px;
+	margin: 2px;
 }
 .main-contain {
-	width: 700px;
+	width: 939px;
 	border: 1px solid #ECECEC;
 	float:left;
 }

@@ -92,7 +92,7 @@ echo
 				</div>
 			<?php 
 				
-				$strLink = "product-list-order.php?type=$type"."&subtype=".$_REQUEST['subtype']."&";
+				$strLink = "product-list-order.php?type=$selectedSubtype"."&subtype=".$_REQUEST['subtype']."&";
 				$strPaging = Utils::paging2 ($strLink,$totalItems,$curPage,$maxPages,$maxItems,$contextPath);
 				
 				

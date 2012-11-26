@@ -56,12 +56,16 @@ echo
  </script>';
 }
 ?>
+
  <form action="product-list.php" method="get" id="form">
  <input type="hidden" id="action" name="action"/>
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
 			<?php require_once 'left-menu.php';?>
 				<div class="main-contain ">
+				<div class="sub-menu-title">
+					<h1 style="top:20px"><?php echo $typeList[$selectedSubtype - 1]['Type'] ?></h1>
+				</div>
 				<?php if (!empty($productList) && $productList != null ) {?>
 					<?php foreach ($productList as $product) {?>
 					<div class="product-cell">
@@ -99,7 +103,7 @@ echo
 				</div>
 			<?php 
 				
-				$strLink = "product-list.php?type=$type"."&subtype=".$_REQUEST['subtype']."&";
+				$strLink = "product-list.php?type=$selectedSubtype"."&subtype=".$_REQUEST['subtype']."&";
 				$strPaging = Utils::paging2 ($strLink,$totalItems,$curPage,$maxPages,$maxItems,$contextPath);
 				
 				

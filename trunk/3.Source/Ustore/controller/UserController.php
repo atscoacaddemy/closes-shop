@@ -1,8 +1,6 @@
-
 <?php 
 	include_once("DataProvider.php");
 ?>
-
 <?php
 	class UserController
 	{

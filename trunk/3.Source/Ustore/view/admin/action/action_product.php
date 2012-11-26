@@ -98,6 +98,8 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
 			$strSQL.=" and Type = $type" ;
 		if($sub_type!=-1)
 			$strSQL.="and Sub_Type = $sub_type ";
+		if(strlen($promotion_id)>0)
+			$strSQL.="and Promotion_ID = $promotion_id ";
 		if($present_type!=-1)
 			$strSQL.="and Present_Type = $present_type ";
 		if($pricefrom>0)
@@ -111,6 +113,51 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
 			echo ProductUtil::createSearchResult($result);
 
 		}
+					
+		
+}
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search4Arrange")
+{
+	
+		$name=$_REQUEST["name"];
+		$type=$_REQUEST["type"];
+		$sub_type=$_REQUEST["sub_type"];
+		$pricefrom=$_REQUEST["pricefrom"];
+		$priceto=$_REQUEST["priceto"];
+		$promotion_id=$_REQUEST["promotion_id"];
+		$present_type=$_REQUEST["present_type"];
+		
+		$strSQL = "select * from product where 1=1 ";
+		if(strlen($name)>0)
+			$strSQL.=" and Name LIKE '%$name%' ";
+		if($type!=-1)
+			$strSQL.=" and Type = $type" ;
+		if($sub_type!=-1)
+			$strSQL.="and Sub_Type = $sub_type ";
+		if(strlen($promotion_id)>0)
+			$strSQL.="and Promotion_ID = $promotion_id ";
+		if($present_type!=-1)
+			$strSQL.="and Present_Type = $present_type ";
+		if($pricefrom>0)
+			$strSQL.="and Price >= $pricefrom ";
+		if($priceto>0)
+			$strSQL.="and Price <= $priceto ";
+		$strSQL.=" order by  priority ";
+		$result = ProductController::GetAllBySQL($strSQL);
+		if($result)
+		{
+			echo ProductUtil::createSearchResult4Arrange($result);
+
+		}
+					
+		
+}
+if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="arrange")
+{
+		$productArr = $_REQUEST["arrProduct"];
+		foreach ($productArr as $key => $value) {
+			echo ProductController::UpdatePriority($key,$value);
+		};
 					
 		
 }

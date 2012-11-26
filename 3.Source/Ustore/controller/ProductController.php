@@ -59,6 +59,21 @@ class ProductController
 			DataProvider::Close ($cn);
             return $result;
         }
+		public static function UpdatePriority ($ID,$priority)
+        {
+            $strSQL = "update product set Priority='$priority'
+                      where ID=$ID";
+			$cn = DataProvider::Open ();
+			DataProvider::MoreQuery ($strSQL,$cn);
+			
+			if(mysql_affected_rows () == 0)
+				$result=false;
+			else
+				$result=true;
+				
+			DataProvider::Close ($cn);
+            return $result;
+        }
 		public static function Delete ($ID)
 		{
 			$strSQL = "update product set Delete_Flag=1
@@ -103,7 +118,7 @@ class ProductController
          	if ($presentType != null) {
          		$strSQL.=" and product.Present_Type = ".$presentType;
          	}
-         	
+         	$strSQL.=" and product.delete_flag = '0'";
          	$result = DataProvider::Query($strSQL);
          	if(mysql_num_rows($result)==0)
          		return null;
@@ -127,7 +142,10 @@ class ProductController
          	if ($presentType != null) {
          		$strSQL.=" and product.Present_Type = ".$presentType;
          	}
+         	$strSQL.=" and product.delete_flag = '0'";
+			$strSQL.=" order by product.priority";
 			$strSQL.=" limit $offset, $count";
+			
          	//echo $strSQL;
          	$result = DataProvider::Query($strSQL);
          	if(mysql_num_rows($result)==0)
@@ -153,7 +171,7 @@ class ProductController
          	if ($presentType != null) {
          		$strSQL.=" and product.Present_Type = ".$presentType;
          	}
-			
+         	$strSQL.=" and product.delete_flag = '0'";
          	$result = DataProvider::Query($strSQL);
 			$temp = mysql_fetch_array($result);
             return $temp[0];

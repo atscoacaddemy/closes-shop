@@ -1,6 +1,6 @@
 ﻿.header {
-	background: url("../images/bg_header.png") repeat scroll center 0
-		transparent;
+	/*background: url("../images/bg_header.png") repeat scroll center 0
+		transparent;*/
 	display: block;
 	width: 100%;
 	z-index: 3;
@@ -12,7 +12,7 @@
 	background-color: black;
 	display: block;
 	height: 40px;
-	width: 980px;
+	width: 1200px;
 	text-align: center;
 	color: white;
 	margin: auto;
@@ -42,9 +42,8 @@
 }
 
 .product-cell {
-	border-radius: 9px 9px 9px 9px;
-	box-shadow: 1px 1px 5px #333333;
-	width: 180px;
+	border: 1px solid wheat;
+	width: 250px;
 	float: left;
 	margin: 25px; position : relative;
 	z-index: 2;
@@ -81,8 +80,7 @@
 }
 
 .cart-button {
-	background: url("../images/cart-button.png") repeat-x scroll left bottom
-		#3A3A3A;
+	background: #FF5A00;
 	border: 0 none;
 	border-radius: 3px 3px 3px 3px;
 	color: #FFFFFF;
@@ -90,7 +88,7 @@
 }
 
 .cart-button:hover {
-	background: green;
+	background: black;
 	border: 0 none;
 	border-radius: 3px 3px 3px 3px;
 	color: #FFFFFF;
@@ -108,19 +106,20 @@
 }
 
 .menu {
-	padding-left: 192px;
+	margin-top : 30px;
+	padding-left: 85px;
 }
 
 .body {
 	margin: auto;
 	/*	background: url('../images/body_background_sweet.jpg')*/
-	background: url('../images/bg_img.jpg');*/
+	background: url('../images/background05.jpg');*/
 	*/
 	/*background: #C9C8CC*/
 }
 
 .contain {
-	width: 980px;
+	width: 1200px;
 	min-height: 500px;
 	margin: auto;
 }

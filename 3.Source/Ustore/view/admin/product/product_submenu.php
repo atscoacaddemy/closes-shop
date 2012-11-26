@@ -19,6 +19,9 @@
 			<li>
 				<a href="product_index.php?action=search" class="search">Find product</a>
 			</li>
+			<li>
+				<a href="product_index.php?action=arrange" class="search">Arrange product</a>
+			</li>
 			
 		</ul>
 	</div>

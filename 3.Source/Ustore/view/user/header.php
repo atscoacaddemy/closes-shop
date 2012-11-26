@@ -128,7 +128,7 @@
 			</li>
 			<li><a href="<?php echo $contextPath?>view/user/product-list-hot.php">Hot</a>
 			</li>
-			<li><a href="<?php echo $contextPath?>view/user/product-list.php?type=1">Túi Xách</a>
+			<li><a href="<?php echo $contextPath?>view/user/product-list.php?type=1">Sản phẩm</a>
 			</li>
 			<li><a href="<?php echo $contextPath?>view/user/product-list-order.php">Hàng Order</a>
 			</li>

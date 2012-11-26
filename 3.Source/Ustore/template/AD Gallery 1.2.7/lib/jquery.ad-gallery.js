@@ -16,7 +16,7 @@
                      thumb_opacity: 0.7,
                      animate_first_image: false,
                      animation_speed: 800,
-                     width: 900,
+                     width: 1160,
                      height: 500,
                      display_next_and_prev: true,
                      display_back_and_forward: true,
@@ -33,7 +33,7 @@
                        onStart: true,
                        onStop: false
                      },
-                     effect: 'resize', // or 'slide-vert', 'fade', or 'resize', 'none'
+                     effect: 'slide-hori', // or 'slide-vert', 'fade', or 'resize', 'none'
                      enable_keyboard_move: true,
                      cycle: true,
                      hooks: {
@@ -325,7 +325,7 @@
       link.click(
         function() {
           context.showImage(link.data("ad-i"));
-          context.slideshow.stop();
+          //context.slideshow.stop();
           return false;
         }
       ).hover(
@@ -373,11 +373,11 @@
           if(e.keyCode == 39) {
             // right arrow
             context.nextImage();
-            context.slideshow.stop();
+            //context.slideshow.stop();
           } else if(e.keyCode == 37) {
             // left arrow
             context.prevImage();
-            context.slideshow.stop();
+            //context.slideshow.stop();
           };
         }
       );
@@ -494,10 +494,10 @@
         function() {
           if($(this).is('.ad-next')) {
             context.nextImage();
-            context.slideshow.stop();
+            //context.slideshow.stop();
           } else {
             context.prevImage();
-            context.slideshow.stop();
+            //context.slideshow.stop();
           };
         }
       ).find('div').css('opacity', 0.7);

@@ -142,6 +142,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search4Arrange")
 			$strSQL.="and Price >= $pricefrom ";
 		if($priceto>0)
 			$strSQL.="and Price <= $priceto ";
+		$strSQL.= " and delete_flag = '0'";
 		$strSQL.=" order by  priority ";
 		$result = ProductController::GetAllBySQL($strSQL);
 		if($result)

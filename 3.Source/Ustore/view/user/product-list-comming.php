@@ -55,6 +55,7 @@ echo
  <input type="hidden" id="action" name="action"/>
  <input type="hidden" id="subtype" name="subtype"/>
 		<div id="contain" class="contain contain box-transparent">
+				<?php require_once 'left-menu.php';?>
 				<div >
 				<?php if (!empty($productList) && $productList != null ) {?>
 					<?php foreach ($productList as $product) {?>

@@ -9,7 +9,9 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="addNew")
 		$type=$_REQUEST["type"];
 		$sub_type=$_REQUEST["sub_type"];
 		$description=$_REQUEST["description"];
-		$price=$_REQUEST["price"];
+		$description = str_replace("'","",$description);
+		
+		$price=$_REQUEST["price"] * 1000;
 		$promotion_id=$_REQUEST["promotion_id"];
 		$present_type=$_REQUEST["present_type"];
 				
@@ -34,7 +36,8 @@ else if(isset($_POST["btnUpdateProduct"]))
 	$type=$_REQUEST["type"];
 	$sub_type=$_REQUEST["sub_type"];
 	$description=$_REQUEST["description"];
-	$price=$_REQUEST["price"].'000';
+	$description = str_replace("'","",$description);
+	$price=$_REQUEST["price"]*1000;
 	$promotion_id=$_REQUEST["promotion_id"];
 	$present_type=$_REQUEST["present_type"];
 	$result = ProductController::Update($id,$name,$type,$sub_type,$price,$description,$promotion_id,$present_type);
@@ -90,7 +93,6 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
 		$priceto=$_REQUEST["priceto"];
 		$promotion_id=$_REQUEST["promotion_id"];
 		$present_type=$_REQUEST["present_type"];
-		
 		$strSQL = "select * from product where 1=1 ";
 		if(strlen($name)>0)
 			$strSQL.=" and Name LIKE '%$name%' ";
@@ -98,7 +100,7 @@ if(isset($_REQUEST["action"]) && $_REQUEST["action"]=="search")
 			$strSQL.=" and Type = $type" ;
 		if($sub_type!=-1)
 			$strSQL.="and Sub_Type = $sub_type ";
-		if(strlen($promotion_id)>0)
+		if($promotion_id>0)
 			$strSQL.="and Promotion_ID = $promotion_id ";
 		if($present_type!=-1)
 			$strSQL.="and Present_Type = $present_type ";

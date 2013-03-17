@@ -2,7 +2,8 @@
 <head>
 <?php $contextPath ="" ?>
 		<meta http-equiv=Content-Type content='text/html; charset=utf-8'>
-		<title>U Store</title>
+		<title>U Store - Chuyên Túi Xách Thời Trang, Túi Xách Hàng Hiệu</title>
+		<LINK REL="SHORTCUT ICON" HREF="template/images/banner2.png" />
 		<link rel="stylesheet" type="text/css" href="<?php echo $contextPath?>template/AD Gallery 1.2.7/lib/jquery.ad-gallery.css">
 		<link rel="stylesheet" href="<?php echo $contextPath?>template/css/main.css" type="text/css" media="screen"/>
 		<link rel="stylesheet" href="<?php echo $contextPath?>template/css/menu.css" type="text/css" media="screen">

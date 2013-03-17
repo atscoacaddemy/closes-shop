@@ -9,7 +9,7 @@ function addProduct()
 		 //var sub_type = $("#sub_type").val();
 		 //var promotion_id = $("#promotion_id").val();
 		 //var present_type = $("#present_type").val();
-		 var price = $("#price").val();
+		  var price = $("#price").val()+ '000';
 		  if(name.length<=0 )
 		 	{
 		 		alert("Must input product name");
@@ -133,6 +133,7 @@ $("#lightbox, #info-addFail").fadeIn(300);
                     || (event.keyCode>34 && event.keyCode<40) 
                     || (event.keyCode==46) )" 
 				/>
+				<span style="font-size: 20px; color: red">,000</span>		
 				<br/>
 				<?php
 												//$path = rtrim($_SERVER['PHP_SELF'],"ce/module/dangtindichvu.php/")."/library/fckeditor/";

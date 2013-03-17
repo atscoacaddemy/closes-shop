@@ -32,7 +32,6 @@ class ProductController
 		public static function Add ($Name,$Type,$Sub_Type,$Price,$Description,$Promotion_ID,$Present_Type)
         {
             $strSQL = "Insert into product (Name,Type,Sub_Type,Price,Description,Promotion_ID,Present_Type) values ( '$Name','$Type','$Sub_Type','$Price','$Description','$Promotion_ID','$Present_Type' )";
-			//echo $strSQL;
 			$cn = DataProvider::Open ();
 			DataProvider::MoreQuery ($strSQL,$cn);
 			

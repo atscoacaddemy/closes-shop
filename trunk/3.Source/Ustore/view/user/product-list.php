@@ -6,7 +6,8 @@
  ?>
 	<head>
 		<meta http-equiv='Content-Type' content='text/html; charset=utf-8'>
-		<title></title>
+		<title>U Store - Chuyên Túi Xách Thời Trang, Túi Xách Hàng Hiệu</title>
+		<LINK REL="SHORTCUT ICON" HREF="<?php echo $contextPath?>template/images/banner2.png" />
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/menu.css"  media="screen">
 		<link type="text/css" rel="stylesheet" href="<?php echo $contextPath?>template/css/main.css"  media="screen"/>
 		<script type="text/javascript" src="<?php echo $contextPath?>template/js/jquery.min.js"></script>

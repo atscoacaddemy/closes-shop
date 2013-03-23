@@ -128,7 +128,7 @@
 		<div style="padding: 10px; border: solid wheat; width: 305px;">
 					
 						<?php //show detail image
-							for($i=2;$i<7;$i++)
+							for($i=1;$i<6;$i++)
 							{
 								if($productImage[$i] != null)
 								{ 
